@@ -1,0 +1,15 @@
+Step-by-step, I'll need to:
+
+1. **Handle Player Selection:** Add event listeners to the X and O toggles in index.html, store the player's choice, and start the game with O.
+
+2. **Initialize Game Variables:** currentPlayer starts as O. gameBoard array tracks cell states.
+
+3. **Cell Interactions:** On hover, show the outline of the currentPlayer's symbol. On click, place the symbol if the cell is empty, update gameBoard, check for win/draw, switch turns.
+
+4. **Update Turn Indicator:** Toggle visibility of the X or O SVG in the header based on currentPlayer.
+
+5. **Check for Win/Draw:** Use the winConditions array to check if currentPlayer has won. If all cells filled with no winner, it's a draw.
+
+6. **End Game Handling:** Show the appropriate end screen (win or draw), update scores, handle quit/next round actions.
+
+7. **Reset Functionality:** Clear the board, reset variables, hide end screens.
