@@ -32,11 +32,11 @@ function toggleButton() {
             playerOneSelection = true;
             currentPlayer = 2;
             rightCurrentValue = '133.7496px';
-            console.log('Shape Right Current Value:', rightCurrentValue)
+            console.log('Player 1 choose X')
         } 
 
     oShapeUnselected.addEventListener('click', function() {
-        console.log('O Button Funciona');
+            console.log('Player 1 choose O');
 
         if (rightCurrentValue === '133.7496px') {
             shapeGlow.classList.remove('active');
@@ -53,8 +53,6 @@ function toggleButton() {
         }
     })
     })
-
-
 }
 toggleButton();
 

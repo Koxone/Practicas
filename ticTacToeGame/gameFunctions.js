@@ -77,6 +77,7 @@ function handleScoresCounter() {
 
 //Funcion para mostrar simbolos en cada cuadrante
 function handleClicksAndTurns() {
+
     let cuadrantes = document.querySelectorAll('.cuadranteContainer');
 
     cuadrantes.forEach(function(cuadrante) {
@@ -438,11 +439,8 @@ resetButton();
       console.error("No se encontró el elemento .headerLogoContainerMain")
     }
   }
-
-  // Llamar a la función después de que se cargue la página
   forceTieForTesting()
 
-  
   //Función para forzar una victoria al hacer clic en oScoreDinamic
   function forceWinForTesting() {
     const oScoreDinamic = document.getElementById("oScoreDinamic")
@@ -486,8 +484,6 @@ resetButton();
       console.error("No se encontró el elemento con ID oScoreDinamic")
     }
   }
-
-  // Llamar a la función después de que se cargue la página
   forceWinForTesting()
 
 });
