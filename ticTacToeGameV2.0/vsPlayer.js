@@ -65,8 +65,6 @@ function scoreBoardsPoints() {
 }
 scoreBoardsPoints();
 
-document.addEventListener('click', scoreBoardsPoints);
-
 //Funcion para manejar turnos
 function handlerTurns() {
     if (turnNumber % 2 !== 0) {
@@ -109,6 +107,18 @@ function showWinnerScreen() {
     showOverlay();
 }
 
+//Funcion para obtener Square a partir de Board
+function getSquares() {
+    const board = document.querySelectorAll('.cuadranteContainer');
+    const squares = [];
+
+    board.forEach(function(square) {
+        const id = square.id;
+        squares.push({square, id})
+    });
+    return squares
+}
+
 //Funcion para mostrar pantalla de empate
 function showTiedScreen() {
     const tiedScreen = document.querySelector('.tiedScreenContainer');
@@ -123,17 +133,22 @@ function showResetScreen() {
     showOverlay();
 }
 
+//Funcion para Hide Elements Needed
+function hideElements() {
+
+}
+
 //Funcion para esconder todo despues de reset o comenzar de nuevo
 function restartBoardGame() {
-    const board = document.querySelectorAll('.cuadranteContainer');
     const showTurnO = document.getElementById('turnO');
     const showTurnX = document.getElementById('turnX');
     const winnerScreen = document.querySelector('.winnerScreenContainer');
     const restartScreen = document.getElementById('restartScreenContainer');
     const tiedScreen = document.querySelector('.tiedScreenContainer');
     const overlay = document.getElementById('overlay');
-    
-    board.forEach(function(square) {
+    const squares = getSquares();
+
+    squares.forEach(function({square, id}) {
         const imageO = square.querySelector('.cuadranteO');
         const imageX = square.querySelector('.cuadranteX');
 
@@ -178,7 +193,7 @@ function checkForWinner() {
             });
         }
         if (Object.keys(wayToWin).length === 9 && winnerFound === false) {
-            let tiesTotal = parseInt(localStorage.getItem('Ties Total')) || 0;
+            let tiesTotal = parseInt(localStorage.getItem('tiesTotal')) || 0;
             let tiedScreen = document.querySelector('.tiedScreenContainer');
             
             tiedScreen.style.display = 'flex';
@@ -292,6 +307,7 @@ buttonScreenNextRound();
 //Funcion para cambiar Mark y Show Turn dinamicamente, manejar 1 click maximo por Square y cambios de turno
 function handlerClicksAndTurns() {
     let board = document.querySelectorAll('.cuadranteContainer');
+    const squares = getSquares();
     
     board.forEach(function(square) {
         const id = square.id;
@@ -316,8 +332,8 @@ function handlerClicksAndTurns() {
 
             if (currentPlayer === 'X') {
                 imageX.style.display = 'block'
-                showTurnX.style.display = 'none';
-                showTurnO.style.display = 'block';
+                showTurnX.style.display = 'none';//repite
+                showTurnO.style.display = 'block'; //repite
             }else {
                 imageO.style.display = 'block'
                 showTurnX.style.display = 'block';
