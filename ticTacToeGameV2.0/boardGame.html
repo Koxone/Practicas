@@ -220,7 +220,7 @@
                 </div>
                 <div class="score" id="oScoreDinamic">
                     <p class="xxsText">
-                        O <span id="oScore">(P1)</span><!--Se cambia dinamicamente-->
+                        O<span id="oScore">(P1)</span><!--Se cambia dinamicamente-->
                     </p>
                     <div class="resultNumber" id="oScoreResult">
                         0
@@ -229,8 +229,20 @@
             </div>
         </div>
     </main>
-    <script src="vsPlayer.js"></script>
-    <script src="vsCPU.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const gameMode = localStorage.getItem('gameMode');
+        const script = document.createElement('script');
+        if (gameMode === 'cpu') {
+            script.src = 'vsCPU.js';
+            console.log('Cargando modo CPU');
+        } else {
+            script.src = 'vsPlayer.js';
+            console.log('Cargando modo Player');
+        }
+        document.body.appendChild(script);
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1"></script>
 </body>
 </html>
