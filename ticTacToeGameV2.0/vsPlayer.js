@@ -1,9 +1,6 @@
 window.addEventListener('load', function() {
 //Variables localStorage
-let playerOneSelection = localStorage.getItem('playerOneSelection') === 'true'; //If true P1 is X, if False P1 is O
-let xTotalWins = parseInt(localStorage.getItem('xWins')) || 0;
-let oTotalWins = parseInt(localStorage.getItem('oWins')) || 0;
-let tiesTotal = parseInt(localStorage.getItem('tiesTotal')) || 0;
+let playerOneSelection = localStorage.getItem('playerOneSelection') === 'true';
 
 //Variables Globales
 let currentPlayer = 'O';
@@ -24,11 +21,6 @@ const winningCombinations = [
 ];
 let winnerFound = false;
 let winner = null;
-
-//Variables para actualizar puntuaciones
-let xScoreGlobal = xTotalWins || 0;
-let oScoreGlobal = oTotalWins || 0;
-let tiesScoreGlobal = tiesTotal || 0;
 
 //Funcion para manejar Scores
 function handleScoreBoards() {
@@ -55,17 +47,11 @@ function scoreBoardsPoints() {
     let oTotalWins = parseInt(localStorage.getItem('oWins')) || 0;
     let tiesTotal = parseInt(localStorage.getItem('tiesTotal')) || 0;
 
-    xScoreGlobal = xTotalWins;
-    oScoreGlobal = oTotalWins;
-    tiesScoreGlobal = tiesTotal;
-
-    xScoreResult.textContent = xScoreGlobal;
-    oScoreResult.textContent = oScoreGlobal;
-    tiedScoreResult.textContent = tiesScoreGlobal;
+    xScoreResult.textContent = xTotalWins;
+    oScoreResult.textContent = oTotalWins;
+    tiedScoreResult.textContent = tiesTotal;
 }
 scoreBoardsPoints();
-
-document.addEventListener('click', scoreBoardsPoints);
 
 //Funcion para manejar turnos
 function handlerTurns() {
@@ -107,6 +93,19 @@ function showWinnerScreen() {
     }
     winnerScreen.style.display = 'flex';
     showOverlay();
+    scoreBoardsPoints();
+}
+
+//Funcion para obtener Square a partir de Board
+function getSquares() {
+    const board = document.querySelectorAll('.cuadranteContainer');
+    const squares = [];
+
+    board.forEach(function(square) {
+        const id = square.id;
+        squares.push({square, id})
+    });
+    return squares
 }
 
 //Funcion para mostrar pantalla de empate
@@ -114,6 +113,7 @@ function showTiedScreen() {
     const tiedScreen = document.querySelector('.tiedScreenContainer');
     tiedScreen.style.display = 'flex';
     showOverlay();
+    scoreBoardsPoints();
 }
 
 //Funcion para mostrar pantalla de Reset
@@ -125,15 +125,15 @@ function showResetScreen() {
 
 //Funcion para esconder todo despues de reset o comenzar de nuevo
 function restartBoardGame() {
-    const board = document.querySelectorAll('.cuadranteContainer');
     const showTurnO = document.getElementById('turnO');
     const showTurnX = document.getElementById('turnX');
     const winnerScreen = document.querySelector('.winnerScreenContainer');
     const restartScreen = document.getElementById('restartScreenContainer');
     const tiedScreen = document.querySelector('.tiedScreenContainer');
     const overlay = document.getElementById('overlay');
-    
-    board.forEach(function(square) {
+    const squares = getSquares();
+
+    squares.forEach(function({square, id}) {
         const imageO = square.querySelector('.cuadranteO');
         const imageX = square.querySelector('.cuadranteX');
 
@@ -155,6 +155,17 @@ function restartBoardGame() {
     tiedFound = false;
     winnerFound = false;
     winner = null;
+    scoreBoardsPoints();
+}
+
+//Funcion animacion de confetti
+function lanzarConfeti() {
+    confetti({
+        particleCount: 200, // Cantidad de partículas
+        spread: 90, // Angulo de dispersión
+        origin: { y: 0.6 }, // Desde dónde sale el confeti
+        scalar: 1.2 // Tamaño del confeti
+    });
 }
 
 //Funcion para detectar ganador
@@ -168,6 +179,7 @@ function checkForWinner() {
         if (wayToWin[a] && wayToWin[a] === wayToWin[b] && wayToWin[a] === wayToWin[c]) {
             winner = currentPlayer; 
             winnerFound = true;
+            lanzarConfeti();
             showWinnerScreen();
             console.log('Ganador es:', winner);
 
@@ -177,17 +189,17 @@ function checkForWinner() {
                 return;
             });
         }
-        if (Object.keys(wayToWin).length === 9 && winnerFound === false) {
-            let tiesTotal = parseInt(localStorage.getItem('tiesTotal')) || 0;
-            let tiedScreen = document.querySelector('.tiedScreenContainer');
-            
-            tiedScreen.style.display = 'flex';
-            tiedFound = true;
-            showTiedScreen();
-            tiesTotal++;
-            localStorage.setItem('tiesTotal', tiesTotal);
-            console.log('Empate!');
-        }
+    }
+}
+
+//Funcion para detectar empate
+function checkForTie() {
+    if (Object.keys(wayToWin).length === 9 && winnerFound === false) {
+        let tiesTotal = parseInt(localStorage.getItem('tiesTotal')) || 0;
+        tiesTotal++;
+        localStorage.setItem('tiesTotal', tiesTotal);
+        showTiedScreen();
+        console.log('Empate!');
     }
 }
 
@@ -217,7 +229,7 @@ function buttonScreenQuit() {
             localStorage.setItem('xWins', '0');
             localStorage.setItem('oWins', '0');
         });
-    })
+    });
 }
 buttonScreenQuit();
 
@@ -240,11 +252,8 @@ function buttonYesReset() {
     const restartScreen = document.getElementById('restartScreenContainer');
     const showTurnO = document.getElementById('turnO');
     const showTurnX = document.getElementById('turnX');
-    const winnerScreen = document.querySelector('.winnerScreenContainer');
-    const tiedScreen = document.querySelector('.tiedScreenContainer');
     
     yesButton.addEventListener('click', function() {
-
         restartScreen.style.display = 'none';
         overlay.style.display = 'none';
         showTurnO.style.display = 'block';
@@ -253,12 +262,12 @@ function buttonYesReset() {
         turnNumber = 0;
         clickPerSquare = {};
         wayToWin = {};
-        tiedFound = false;
         winnerFound = false;
         winner = null;
         localStorage.setItem('tiesTotal', '0');
         localStorage.setItem('xWins', '0');
         localStorage.setItem('oWins', '0');
+        scoreBoardsPoints();
     });
 }
 buttonYesReset();
@@ -280,10 +289,7 @@ function buttonScreenNextRound() {
                 localStorage.setItem('oWins', oWins);
             }
             restartBoardGame();
-
-            console.log('Winner:', winner);
-            console.log('Winner Found?:', winnerFound);
-            console.log('Clicks per Square:', clickPerSquare);
+            scoreBoardsPoints();
         });
     });
 }
@@ -291,10 +297,9 @@ buttonScreenNextRound();
 
 //Funcion para cambiar Mark y Show Turn dinamicamente, manejar 1 click maximo por Square y cambios de turno
 function handlerClicksAndTurns() {
-    let board = document.querySelectorAll('.cuadranteContainer');
+    const squares = getSquares();
     
-    board.forEach(function(square) {
-        const id = square.id;
+    squares.forEach(function({square, id}) {
         let imageO = square.querySelector('.cuadranteO');
         let imageX = square.querySelector('.cuadranteX');
         let showTurnO = document.getElementById('turnO');
@@ -316,18 +321,16 @@ function handlerClicksAndTurns() {
 
             if (currentPlayer === 'X') {
                 imageX.style.display = 'block'
-                showTurnX.style.display = 'none';
-                showTurnO.style.display = 'block';
+                showTurnX.style.display = 'none';//repite
+                showTurnO.style.display = 'block'; //repite
             }else {
                 imageO.style.display = 'block'
                 showTurnX.style.display = 'block';
                 showTurnO.style.display = 'none';
             }
             turnNumber++;
-            let result = checkForWinner();
-            if (result) {
-                console.log('Ganador Encontrado!');
-            }
+            checkForWinner();
+            checkForTie();
         })
     })
 }
