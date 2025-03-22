@@ -1,0 +1,351 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Rubik';
+    margin: 0;
+    padding: 0;
+}
+
+.smText {
+    font-size: 14px;
+    font-style: italic;
+    color: #ABC1E1;
+}
+
+.midText, 
+.questionText2, 
+.scoreTopicName {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 100%;
+    color: white;
+}
+
+.lgText {
+    text-align: left;
+    font-size: 40px;
+    font-weight: 300;
+    color: white;
+}
+
+.questionText {
+    font-size: 20px;
+    color: white;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-image: url(assets/images/pattern-background-mobile-dark.svg);
+    background-repeat: no-repeat;
+    background-color: #313e51;
+}
+
+.generalContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 32px 24px 24px 24px;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 72px;
+    padding: 16px 24px;
+}
+
+.darkModeContainer {
+    display: flex;
+    width: 80px;
+    height: 40px;
+    align-items: center;
+    gap: 10px;
+}
+
+.darkModeContainer img {
+    width: 14px;
+}
+
+.toggleButtonContainer {
+    position: relative;
+    width: 32px;
+    height: 20px;
+}
+
+.toggleButtonContainer input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+    background-color: #9b3aff;
+}
+
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.toggleButtonContainer input:checked + .slider {
+    background-color: #9b3aff;
+}
+
+.toggleButtonContainer input:checked + .slider::before {
+    transform: translateX(12px);
+}
+
+.landingTextContainer  {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    height: 125px;
+    margin-bottom: 40px;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.strongLgText {
+    font-weight: 600;
+}
+
+.menuContainer, 
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.optionContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    border-radius: 12px;
+    padding: 12px;
+    background-color: #3b4d66;
+    gap: 16px;
+}
+
+.answerLabel {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    border-radius: 12px;
+    padding: 12px;
+    background-color: #3b4d66;
+    gap: 16px;
+}
+
+.optionContainer:hover, 
+.answerLabel:hover {
+    cursor: pointer;
+    background-color: #2e3c50;
+    border: 1px solid #3b4d66;
+}
+
+.topicImgContainer, 
+.letterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: white;
+}
+
+.optionContainer img {
+    width: 28.57px;
+    height: 28.57px;
+}
+
+/*------------------------------------------------------QUESTIONS---------------------------------------------------*/
+
+.questionTitleText {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.topicContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.topicContainer img, 
+.topContainer img {
+    display: flex;
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid white;
+}
+
+.questionTextContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.progressContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 16px;
+    padding: 4px;
+    border-radius: 999px;
+    background-color: #3b4d66;
+    margin-bottom: 40px;
+}
+
+.progressBar {
+    position: absolute;
+    top: 25%;
+    left: 2%;
+    transform: translateY(-50%);
+    -webkit-appearance: none;
+    appearance: none;
+    width: 96%;
+    height: 8px;
+}
+
+.progressBar::-webkit-progress-bar {
+    background-color: #3b4d66;
+    border-radius: 10px;
+}
+
+.progressBar::-webkit-progress-value {
+    background-color: #9b3aff;
+    height: 8px;
+    margin: 4px 0;
+    border-radius: 10px;
+}
+
+.progressBar::-moz-progress-bar {
+    background-color: #9b3aff;
+    height: 8px;
+    margin: 4px 0;
+    border-radius: 10px;
+}
+
+fieldset {
+    border: none;
+}
+
+input[type='radio'], 
+legend, 
+.questionScreen, 
+.scoreContainer {
+    display: none;
+}
+
+.mainButton {
+    width: 100%;
+    height: 56px;
+    border-radius: 12px;
+    background-color: #9b3aff;
+    border: solid #9b3aff;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.mainButton:hover {
+    border: solid #6425a4;
+    background-color: #6425a4;
+    cursor: pointer;
+}
+
+.scoreContainer {
+    flex-direction: column;
+    width: 100%;
+    height: 438px;
+    gap: 40px;
+}
+
+.scoreTopicContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 242px;
+    border-radius: 12px;
+    padding: 32px;
+    background-color: #3b4d66;
+    margin-bottom: 12px;
+    gap: 16px;
+}
+
+.topContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 167px;
+    height: 40px;
+    gap: 16px;
+}
+
+.bottomContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 263px;
+    height: 122px;
+}
+
+.scoreNumber {
+    font-size: 88px;
+    color: white;
+}
+
+.outOf {
+    color: white;
+}
+
+
+
+
+

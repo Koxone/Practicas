@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <title>Question</title>
+    </head>
+    <body>
+        <main class="mainContainer">
+            <header class="headerContainer">
+                <div class="topicContainer">
+                    <img class="quizIcon" src="assets/images/icon-html.svg" alt="">
+                    <strong class="questionTitleText">
+                        HTML
+                    </strong>
+                </div>
+                <div class="darkModeContainer">
+                    <img src="assets/images/icon-sun-light.svg" alt="" />
+                    <div class="toggleButtonContainer">
+                      <input type="checkbox" id="toggleButton" />
+                      <label class="slider" for="toggleButton"></label>
+                    </div>
+                    <img src="assets/images/icon-moon-light.svg" alt="" />
+                </div>              
+            </header>
+            <div class="generalContainer">
+                <div class="mainQuestionContainer">
+                    <div class="questionTextContainer">
+                        <p class="smText">
+                            Question 1 of 10
+                        </p>
+                        <h3 class="questionText">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, 
+                            quisquam quos quasi laudantium vero illo nam illum corporis vitae, 
+                            repudiandae sit laborum! Modi beatae perspiciatis neque quidem et ipsa fugit.
+                        </h3>
+                    </div>
+                    <div class="progressContainer">
+                        <progress class="progressBar" value="1" max="10"></progress>
+                    </div>
+                    <div class="answersContainer">
+                        <fieldset>
+                            <legend>
+                                Pick an Answer
+                            </legend>
+                            <label for="opt1" class="answerLabel">
+                                <input type="radio" id="opt1" name="option1" value="a">
+                                <div class="letterContainer">
+                                    A
+                                </div>
+                                <p class="questionText2">
+                                    Question
+                                </p>
+                            </label>
+                            <label for="opt2" class="answerLabel">
+                                <input type="radio" id="opt2" name="option2" value="b">
+                                <div class="letterContainer">
+                                    B
+                                </div>
+                                <p class="questionText2">
+                                    Question
+                                </p>
+                            </label>
+                            <label for="opt3" class="answerLabel">
+                                <input type="radio" id="opt3" name="option3" value="c">
+                                <div class="letterContainer">
+                                    C
+                                </div>
+                                <p class="questionText2">
+                                    Question
+                                </p>
+                            </label>
+                            <label for="opt4" class="answerLabel">
+                                <input type="radio" id="opt4" name="option4" value="d">
+                                <div class="letterContainer">
+                                    D
+                                </div>
+                                <p class="questionText2">
+                                    Question
+                                </p>
+                            </label>
+                            <button class="mainButton" id="submitButton">
+                                Submit Answer
+                            </button>
+                        </fieldset>
+                    </div>
+                </div>
+                <section class="scoreContainer">
+                    <div class="scorePageTextContainer">
+                        <h1 class="lgText">
+                            Quiz completed <br><span class="strongLgText">You scored...</span>
+                        </h1>
+                    </div>
+                    <div class="scoreMainContainer">
+                        <div class="scoreTopicContainer">
+                            <div class="topContainer">
+                                <img src="assets/images/icon-html.svg" alt="" class="iconTopic">
+                                <strong class="scoreTopicName">
+                                    HTML
+                                </strong>
+                            </div>
+                            <div class="bottomContainer">
+                                <h2 class="scoreNumber">
+                                    1
+                                </h2>
+                                <p class="outOf" id="">
+                                    out of 10
+                                </p>
+                            </div>
+                        </div>
+                        <button class="mainButton" id="playAgainButton">
+                            Play Again
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <script src="questions.js"></script>
+    </body>
+</html>

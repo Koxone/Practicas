@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Quiz App</title>
+  </head>
+  <body>
+    <main class="mainContainer">
+      <div class="headerContainer">
+        <div class="topicContainer">
+        </div>
+        <div class="darkModeContainer">
+          <img src="assets/images/icon-sun-light.svg" alt="" />
+          <div class="toggleButtonContainer">
+            <input type="checkbox" id="toggleButton" />
+            <label class="slider" for="toggleButton"></label>
+          </div>
+          <img src="assets/images/icon-moon-light.svg" alt="" />
+        </div>          
+      </div>
+      <div class="generalContainer">
+      <div class="landingPage">
+        <div class="landingTextContainer">
+          <div class="titleContainer">
+            <h1 class="lgText">
+              Welcome to the <br /><span class="strongLgText"
+                >Frontend Quiz!</span
+              >
+            </h1>
+            <p class="smText">Pick a subject to get started</p>
+          </div>
+        </div>
+        <section class="menuContainer">
+          <div class="optionContainer" id="html">
+            <div class="topicImgContainer">
+                          <img
+              class="iconTopic"
+              src="assets/images/icon-html.svg"
+              alt=""
+              class="menuImg"
+              id=""
+            />
+            </div>
+            <strong class="midText" id="">
+              HTML
+            </strong>
+          </div>
+          <div class="optionContainer" id="css">
+            <div class="topicImgContainer">
+                          <img
+              class="iconTopic"
+              src="assets/images/icon-css.svg"
+              alt=""
+              class="menuImg"
+              id=""
+            />
+            </div>
+            <strong class="midText" id="">
+              CSS
+            </strong>
+          </div>
+          <div class="optionContainer" id="javascript">
+            <div class="topicImgContainer">
+                          <img
+              class="iconTopic"
+              src="assets/images/icon-js.svg"
+              alt=""
+              class="menuImg"
+              id=""
+            />
+            </div>
+            <strong class="midText" id="">
+              Javascript
+            </strong>
+          </div>
+          <div class="optionContainer" id="accessibility">
+            <div class="topicImgContainer">
+                          <img
+              class="iconTopic"
+              src="assets/images/icon-accessibility.svg"
+              alt=""
+              class="menuImg"
+              id=""
+            />
+            </div>
+            <strong class="midText" id="">
+              Accessibility
+            </strong>
+          </div>
+        </section>
+      </div>
+      </div>
+    </main>
+    <script src="styles.js"></script>
+  </body>
+</html>
