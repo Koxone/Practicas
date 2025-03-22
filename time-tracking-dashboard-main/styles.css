@@ -1,0 +1,229 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Rubik';
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Primary Colors */
+    --blue: hsl(246, 80%, 60%);
+  
+    /* Activity Colors */
+    --light-red-work: hsl(15, 100%, 70%);
+    --soft-blue-play: hsl(195, 74%, 62%);
+    --light-red-study: hsl(348, 100%, 68%);
+    --lime-green-exercise: hsl(145, 58%, 55%);
+    --violet-social: hsl(264, 64%, 52%);
+    --soft-orange-self-care: hsl(43, 84%, 65%);
+  
+    /* Neutral Colors */
+    --very-dark-blue: hsl(226, 43%, 10%);
+    --dark-blue: hsl(235, 46%, 20%);
+    --desaturated-blue: hsl(235, 45%, 61%);
+    --pale-blue: hsl(236, 100%, 87%);
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: var(--very-dark-blue);
+}
+
+.generalContainer {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 81px 24px;
+    gap: 24px;
+}
+
+.userContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 327px;
+    height: 203px;
+    border-radius: 15px;
+    background-color: var(--dark-blue);
+}
+
+.profileContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 327px;
+    height: 133px;
+    padding: 35px 39px 34px 32px;
+    border-radius: 15px;
+    background-color: var(--violet-social);
+}
+
+.avatarContainer {
+    display: flex;
+    border: 3px solid white;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profileTextContainer {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: 50px;
+}
+
+.smText {
+    font-size: 15px;
+    color: white;
+}
+
+.lgText {
+    font-size: 24px;
+    color: white;
+    font-weight: 300;
+    white-space: nowrap;
+}
+
+.timeContainer {
+    display: flex;
+    justify-content: space-evenly;
+    width: 327px;
+    height: 70px;
+}
+
+.dateButton {
+    border: none;
+    background-color: none;
+    background: none;
+    color: var(--desaturated-blue);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.dateButton:hover {
+    color: white;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 327px;
+    border-radius: 15px;
+}
+
+.backgroundContainer {
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    width: 327px;
+    height: 160px;
+    overflow: hidden;
+}
+
+.backgroundContainer img {
+    position: relative;
+    z-index: 1;
+    margin: -10px 17.5px 0 0;
+}
+
+.card:nth-last-of-type(6) .backgroundContainer {
+    background-color: var(--light-red-work);
+    border-radius: 15px;
+}
+
+.card:nth-last-of-type(5) .backgroundContainer {
+    background-color: var(--soft-blue-play);
+    border-radius: 15px;
+}
+
+.card:nth-last-of-type(4) .backgroundContainer {
+    background-color: var(--light-red-study);
+    border-radius: 15px;
+}
+
+.card:nth-last-of-type(3) .backgroundContainer {
+    background-color: var(--lime-green-exercise);
+    border-radius: 15px;
+}
+.card:nth-last-of-type(2) .backgroundContainer {
+    background-color: var(--violet-social);
+    border-radius: 15px;
+}
+
+.card:nth-last-of-type(1) .backgroundContainer {
+    background-color: var(--soft-orange-self-care);
+    border-radius: 15px;
+}
+
+.contentContainer {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 122px;
+    background-color: var(--dark-blue);
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    border-radius: 15px;
+    padding: 28px 24px;
+}
+
+.mainTextContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.topTextContainer, 
+.bottomTextContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 279px;
+    height: 22px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+}
+
+.dotsButton {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    width: 21px;
+    height: 5px;
+    background: none;
+    border: none;
+    margin-top: -15px;
+    color: white;
+    cursor: pointer;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 200;
+    color: white;
+}
+
+.lastPeriod {
+    font-size: 15px;
+    width: 115px;
+    color: white;
+    text-align: left;
+    white-space: nowrap;
+}
+

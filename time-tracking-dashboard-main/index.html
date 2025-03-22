@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Time tracking dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="mainContainer">
+      <div class="generalContainer">
+        <section class="userContainer">
+          <div class="profileContainer">
+            <div class="avatarContainer">
+              <img src="images/image-jeremy.png" />
+            </div>
+            <div class="profileTextContainer">
+              <p class="smText">Report for</p>
+              <p class="lgText">Jeremy Robson</p>
+            </div>
+          </div>
+          <div class="timeContainer">
+            <button class="dateButton" id="daily">Daily</button>
+            <button class="dateButton" id="weekly">Weekly</button>
+            <button class="dateButton" id="monthly">Monthly</button>
+          </div>
+        </section>
+        <section class="card" id="workCard">
+          <div class="backgroundContainer">
+            <img src="images/icon-work.svg" alt="" />
+          </div>
+          <div class="contentContainer">
+            <div class="mainTextContainer">
+              <div class="topTextContainer">
+                <strong class="title">Work</strong>
+                <button class="dotsButton">...</button>
+              </div>
+              <div class="bottomTextContainer">
+                <h2 class="time">10Hrs</h2>
+                <p class="lastPeriod">
+                  Last <span>Day</span> -
+                  <span class="totalTime"></span>10 hrs
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="card" id="playCard">
+          <div class="backgroundContainer">
+            <img src="images/icon-play.svg" class="backgroundImage" />
+          </div>
+          <div class="contentContainer">
+            <div class="mainTextContainer">
+              <div class="topTextContainer">
+                <strong class="title">Play</strong>
+                <button class="dotsButton">...</button>
+              </div>
+              <div class="bottomTextContainer">
+                <h2 class="time">10Hrs</h2>
+                <p class="lastPeriod">
+                  Last <span>Day</span> -
+                  <span class="totalTime"></span>10 hrs
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="card" id="studyCard">
+          <div class="backgroundContainer">
+            <img src="images/icon-study.svg" class="backgroundImage" />
+          </div>
+          <div class="contentContainer">
+            <div class="mainTextContainer">
+              <div class="topTextContainer">
+                <strong class="title">Study</strong>
+                <button class="dotsButton">...</button>
+              </div>
+              <div class="bottomTextContainer">
+                <h2 class="time">10Hrs</h2>
+                <p class="lastPeriod">
+                  Last <span>Day</span> -
+                  <span class="totalTime"></span>10 hrs
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="card" id="exerciseCard">
+          <div class="backgroundContainer">
+            <img src="images/icon-exercise.svg" class="backgroundImage" />
+          </div>
+          <div class="contentContainer">
+            <div class="mainTextContainer">
+              <div class="topTextContainer">
+                <strong class="title">Exercise</strong>
+                <button class="dotsButton">...</button>
+              </div>
+              <div class="bottomTextContainer">
+                <h2 class="time">10Hrs</h2>
+                <p class="lastPeriod">
+                  Last <span>Day</span> -
+                  <span class="totalTime"></span>10 hrs
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="card" id="socialCard">
+          <div class="backgroundContainer">
+            <img src="images/icon-social.svg" class="backgroundImage" />
+          </div>
+          <div class="contentContainer">
+            <div class="mainTextContainer">
+              <div class="topTextContainer">
+                <strong class="title">Social</strong>
+                <button class="dotsButton">...</button>
+              </div>
+              <div class="bottomTextContainer">
+                <h2 class="time">10Hrs</h2>
+                <p class="lastPeriod">
+                  Last <span>Day</span> -
+                  <span class="totalTime"></span>10 hrs
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="card" id="selfCareCard">
+          <div class="backgroundContainer">
+            <img src="images/icon-self-care.svg" class="backgroundImage" />
+          </div>
+          <div class="contentContainer">
+            <div class="mainTextContainer">
+              <div class="topTextContainer">
+                <strong class="title"> Self Care </strong>
+                <button class="dotsButton">...</button>
+              </div>
+              <div class="bottomTextContainer">
+                <h2 class="time">10Hrs</h2>
+                <p class="lastPeriod">
+                  Last <span>Day</span> -
+                  <span class="totalTime"></span>10 hrs
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="styles.js"></script>
+  </body>
+</html>
