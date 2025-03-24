@@ -14,8 +14,9 @@
 .midText, 
 .questionText2, 
 .scoreTopicName {
+    display: inline-block;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 100%;
     color: white;
 }
@@ -159,6 +160,7 @@ fieldset {
 }
 
 .answerLabel {
+    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
@@ -167,6 +169,22 @@ fieldset {
     padding: 12px;
     background-color: #3b4d66;
     gap: 16px;
+}
+
+.radios input[type="radio"]:checked + label {
+    border: 2px solid #9b3aff;
+}
+
+.radios input[type="radio"].error:checked + label {
+    border: 2px solid #9b3aff;
+}
+
+.radios input[type="radio"].correct:checked + label {
+    border: 2px solid green;
+}
+
+.radios input[type="radio"].correct + label {
+    border: 2px solid green;
 }
 
 .optionContainer:hover, 
@@ -185,7 +203,29 @@ fieldset {
     height: 40px;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: 500;
     background-color: white;
+}
+
+.letterContainer.active {
+    background-color: #9b3aff;
+    color: white;
+}
+
+.letterContainer.error {
+    background-color: red;
+    color: white;
+}
+
+.letterContainer.correct {
+    background-color: green;
+    color: white;
+}
+
+.topicContainer.active {
+    background-color: #9b3aff;
+    color: white;
+    border: 2px solid white;
 }
 
 .optionContainer img {
@@ -282,6 +322,7 @@ legend,
 }
 
 .mainButton {
+    position: relative;
     width: 100%;
     height: 56px;
     border-radius: 12px;
@@ -290,6 +331,12 @@ legend,
     color: white;
     font-size: 18px;
     font-weight: 500;
+}
+
+#submitButton:disabled {
+    background-color: grey;
+    border: solid grey;
+    cursor: no-drop;
 }
 
 .mainButton:hover {
@@ -344,6 +391,21 @@ legend,
 .outOf {
     color: white;
 }
+
+.correctImg {
+    opacity: 0;
+    position: absolute;
+    right: 2%;
+}
+
+.errorImg {
+    opacity: 0;
+    position: absolute;
+    right: 2%;
+}
+
+/*--------------------------------------------------ERROR STATE-----------------------------*/
+
 
 
 

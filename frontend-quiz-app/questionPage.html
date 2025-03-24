@@ -30,60 +30,56 @@
             <div class="generalContainer">
                 <div class="mainQuestionContainer">
                     <div class="questionTextContainer">
-                        <p class="smText">
+                        <p id="questionNumber" class="smText">
                             Question 1 of 10
                         </p>
                         <h3 class="questionText">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, 
-                            quisquam quos quasi laudantium vero illo nam illum corporis vitae, 
-                            repudiandae sit laborum! Modi beatae perspiciatis neque quidem et ipsa fugit.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit...
                         </h3>
                     </div>
+                
                     <div class="progressContainer">
                         <progress class="progressBar" value="1" max="10"></progress>
                     </div>
+                
                     <div class="answersContainer">
-                        <fieldset>
+                        <fieldset class="radios">
                             <legend>
                                 Pick an Answer
                             </legend>
+                            <input type="radio" class="inputRadio" id="opt1" name="answer" value="0">
                             <label for="opt1" class="answerLabel">
-                                <input type="radio" id="opt1" name="option1" value="a">
-                                <div class="letterContainer">
-                                    A
-                                </div>
-                                <p class="questionText2">
-                                    Question
-                                </p>
+                                <img src="assets/correct.png" class="correctImg" alt="">
+                                <img src="assets/error.png" class="errorImg" alt="">
+                                <div class="letterContainer">A</div>
+                                <p class="questionText2">Option A</p>
                             </label>
+                
+                            <input type="radio" class="inputRadio" id="opt2" name="answer" value="1">
                             <label for="opt2" class="answerLabel">
-                                <input type="radio" id="opt2" name="option2" value="b">
-                                <div class="letterContainer">
-                                    B
-                                </div>
-                                <p class="questionText2">
-                                    Question
-                                </p>
+                                <img src="assets/correct.png" class="correctImg" alt="">
+                                <img src="assets/error.png" class="errorImg" alt="">
+                                <div class="letterContainer">B</div>
+                                <p class="questionText2">Option B</p>
                             </label>
+                
+                            <input type="radio" class="inputRadio" id="opt3" name="answer" value="2">
                             <label for="opt3" class="answerLabel">
-                                <input type="radio" id="opt3" name="option3" value="c">
-                                <div class="letterContainer">
-                                    C
-                                </div>
-                                <p class="questionText2">
-                                    Question
-                                </p>
+                                <img src="assets/correct.png" class="correctImg" alt="">
+                                <img src="assets/error.png" class="errorImg" alt="">
+                                <div class="letterContainer">C</div>
+                                <p class="questionText2">Option C</p>
                             </label>
+                
+                            <input type="radio" class="inputRadio" id="opt4" name="answer" value="3">
                             <label for="opt4" class="answerLabel">
-                                <input type="radio" id="opt4" name="option4" value="d">
-                                <div class="letterContainer">
-                                    D
-                                </div>
-                                <p class="questionText2">
-                                    Question
-                                </p>
+                                <img src="assets/correct.png" class="correctImg" alt="">
+                                <img src="assets/error.png" class="errorImg" alt="">
+                                <div class="letterContainer">D</div>
+                                <p class="questionText2">Option D</p>
                             </label>
-                            <button class="mainButton" id="submitButton">
+                
+                            <button class="mainButton" id="submitButton" disabled>
                                 Submit Answer
                             </button>
                         </fieldset>
