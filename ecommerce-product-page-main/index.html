@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+  
+<title>E-commerce product page</title>
+</head>
+<body>
+  <main class="mainContainer">
+    <div class="generalContainer">
+      <div class="layout" id="layout"></div>
+      <nav class="mainMenuContainer" id="mainMenuContainer">
+        <div class="innerMainMenuContainer">
+          <button class="closeButton" id="mainMenuCloseButton">
+            <img src="images/icon-close.svg" alt="">
+          </button>
+          <ul class="menuList">
+            <li class="menuListText">
+              Collections
+            </li>
+            <li class="menuListText">
+              Men
+            </li>
+            <li class="menuListText">
+              Women
+            </li>
+            <li class="menuListText">
+              About
+            </li>
+            <li class="menuListText">
+              Contact
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <header class="headerContainer">
+        <div class="logoContainer">
+          <button class="mainMenuButton" id="mainMenuButton">
+            <img src="images/icon-menu.svg" alt="">
+          </button>
+          <img src="images/logo.svg" alt="">
+        </div>
+        <button id="mainCartButton" class="mainCartButton">
+          <div class="cartFill" id="cartFill">
+            0
+          </div>
+          <img src="images/icon-cart.svg" alt="">
+        </button>
+        <div class="avatarContainer" id="avatarContainer">
+          <img src="images/image-avatar.png" alt="">
+        </div>
+      </header>
+      <section class="productMainImagesContainer">
+        <button class="prevButton" id="prevButtonMain">
+          <img src="images/icon-previous.svg" alt="">
+        </button>
+        <button class="nextButton" id="nextButtonMain">
+          <img src="images/icon-next.svg" alt="">
+        </button>
+        <div class="sliderContainer">
+          <img id="sliderOne" class="sliderPicture active" src="images/image-product-1.jpg" alt="">
+          <img id="sliderTwo" class="sliderPicture" src="images/image-product-2.jpg" alt="">
+          <img id="sliderThree" class="sliderPicture" src="images/image-product-3.jpg" alt="">
+          <img id="sliderFour" class="sliderPicture" src="images/image-product-4.jpg" alt="">
+        </div>
+        <nav class="cartMenu" id="cartMenu">
+          <div class="cartHeader">
+            Cart
+          </div>
+          <div class="cartProducts">
+            <div class="insideCartProduct">
+              <img src="images/image-product-1-thumbnail.jpg" alt="">
+              <div class="iCartProductTextContainer">
+                <p class="cartProductTitle">
+                  Fall Limited Edition Sneakers
+                </p>
+                <div class="productPriceInsideCart" id="productPriceInsideCart">
+                  <div class="priceText" id="priceText">
+                    <p>
+                      Price:
+                    </p>
+                  </div>
+                  <div class="price" id="price">
+                    <p>
+                      $125.00
+                    </p>
+                  </div>
+                  <div class="productQuantityInsideCart" id="productQuantityInsideCart">
+                    <img src="images/icon-minus.svg" alt="">
+                    <input type="number" min="1" step="1" value="1" id="quantityInput" class="quantityInput">
+                    <img src="images/icon-plus.svg" alt="">
+                  </div>
+                  <div class="totalContainer" id="totalContainer"> 
+                    <p>
+                      Total:
+                    </p>
+                    <p>
+                      $375.00
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button class="cartMenuProductRemove">
+                <img src="images/icon-delete.svg" alt="">
+              </button>
+            </div>
+          </div>
+          <button class="mainButton" id="checkoutButton">
+            Checkout
+          </button>
+        </nav>
+      </section>
+      <dialog class="lightboxContainer">
+        <button class="closeButton" id="closeButtonLightbox">
+          <img src="images/icon-close.svg" alt="">
+        </button>
+        <div class="lightBoxContent">
+          <img src="images/image-product-1-thumbnail.jpg" alt="">
+          <span class="lightboxMosaicContainer">
+            <img src="images/image-product-1-thumbnail.jpg" alt="">
+            <img src="images/image-product-2-thumbnail.jpg" alt="">
+            <img src="images/image-product-3-thumbnail.jpg" alt="">
+            <img src="images/image-product-4-thumbnail.jpg" alt="">
+          </span>
+        </div>
+        <div class="lightboxNavigation">
+          <button class="prevButton">
+            <img src="images/icon-previous.svg" alt="">
+          </button>
+          <button class="nextButton">
+            <img src="images/icon-next.svg" alt="">
+          </button>
+        </div>
+      </dialog>
+      <section class="productContentContainer">
+        <section class="mainTextContainer">
+          <p class="midText">
+            SNEAKER COMPANY
+          </p>
+          <h1 class="lgText">
+            Fall Limited Edition Sneakers
+          </h1>
+          <p class="smText">
+            These low-profile sneakers are yout perfect casual wear companion. Featuring a durable ruber outer sole, 
+            they'll withsandt everything the weather can offer.
+          </p>
+        </section>
+        <section class="priceContainer">
+          <span class="currentPrice" id="currentPrice">
+            $125.00
+          </span>
+          <span class="discount">
+            50%
+          </span>
+          <del class="originalPrice">
+            $250
+          </del>
+        </section>
+        <section class="addTocartContainer">
+          <div class="quantityContainer">
+            <span>
+              <button class="minusButton" id="minusButton">
+                <img src="images/icon-minus.svg" alt="">
+              </button>
+              <div class="quantity" id="quantity">
+                0
+              </div>
+              <button class="plusButton" id="plusButton">
+                <img src="images/icon-plus.svg" alt="">
+              </button>
+            </span>
+          </div>
+          <button class="mainButton" id="addToCartButton">
+            <img src="images/icon-cart.svg" alt="">
+            Add to cart
+          </button>
+        </section>
+      </section>
+    </div>
+  </main>
+  <script src="styles.js"></script>
+</body>
+</html>
