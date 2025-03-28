@@ -111,19 +111,59 @@ minusButton()
 
 //Function to Update UI
 function updateUi() {
-    let pieces = document.getElementById('cartProductMenuQuantity');
-
+    let pieces = document.getElementById('quantityInput');
     let price = document.getElementById('currentPrice');//$125.00
     let priceText = price.textContent;
     priceText = priceText.replace('$', '');
-    let priceNumber = parseFloat(priceText);
+    let priceNumber = parseFloat(priceText); //125.00
 
-    const totalPrice = document.getElementById('cartProductMenuTotalPrice');  //Total del  carro
+    const totalPrice = document.getElementById('totalPrice');  //Total del  carro
 
-    pieces.textContent = `x${mainQuantityLS}`;
+    pieces.value = mainQuantityLS;
     totalPrice.textContent = `$${priceNumber * mainQuantityLS}`;
 }
 updateUi()
+
+//Function for Checkout Button in cart
+function checkoutButtonCart() {
+    const input = document.getElementById('quantityInput').value;
+
+    localStorage.setItem('mainQuantityLS', JSON.stringify(input));
+}
+
+//Function to manipulate quantity inside cart
+function quantityInsideCart() {
+    const cartMinusButton = document.getElementById('cartMinusButton');
+    const cartPlusButton = document.getElementById('cartPlusButton');
+    const input = document.getElementById('quantityInput');
+    const total = document.getElementById('totalPrice');
+    const price = document.getElementById('price');
+    let priceText = document.getElementById('price').textContent;
+    const checkoutButton = document.getElementById('checkoutButton');
+    const cartFill = document.getElementById('cartFill');
+
+    priceText = priceText.replace('$', '');
+    const priceNumber = parseFloat(priceText);
+
+    cartPlusButton.addEventListener('click', () => {
+        input.value++;
+        mainQuantity++;
+        mainQuantityLS++;
+        total.textContent = `$${input.value * priceNumber}`;
+    })
+    cartMinusButton.addEventListener('click', () => {
+        input.value--;
+        mainQuantity--;
+        mainQuantityLS--;
+        total.textContent = `$${input.value * priceNumber}`;
+    })
+
+    checkoutButton.addEventListener('click', () => {
+        checkoutButtonCart()
+        cartFill.textContent = mainQuantityLS;
+    })
+}
+quantityInsideCart()
 
 //Function to save quantity in local storage with add to cart button 
 function addToCartButton() {
@@ -216,6 +256,74 @@ function pictureSlider() {
     
 }
 pictureSlider()
+
+//Function to hide prev and next button
+function hideButtons() {
+    const prevButton = document.querySelectorAll('.prevButton')
+    const nextButton = document.querySelectorAll('.nextButton')
+    
+    prevButton.forEach(function (button) {
+        button.style.display = 'none'
+    })
+    nextButton.forEach(function (button) {
+        button.style.display = 'none'
+    })
+}
+
+//Function to hide prev and next button
+function showButtons() {
+    const prevButton = document.querySelectorAll('.prevButton')
+    const nextButton = document.querySelectorAll('.nextButton')
+    
+    prevButton.forEach(function (button) {
+        button.style.display = 'flex'
+    })
+    nextButton.forEach(function (button) {
+        button.style.display = 'flex'
+    })
+}
+
+//Function for LightBox
+function lightboxHandler() {
+    const imagesMain = document.querySelectorAll('.sliderPicture');
+    const layout = document.getElementById('layout');
+    imagesMain.forEach(image => {
+        image.addEventListener('click', (event) => {
+            const lightboxContainer = document.getElementById('lightboxContainer');
+            lightboxContainer.classList.add('active')
+            layout.style.display = 'flex'
+            hideButtons()
+        })
+    });
+}
+lightboxHandler()
+
+//Function to close lightbox
+function closeLightboxButton() {
+    const closeLightbox = document.getElementById('closeButtonLightbox');
+    const layout = document.getElementById('layout');
+    closeLightbox.addEventListener('click', () => {
+        const lightboxContainer = document.getElementById('lightboxContainer');
+        lightboxContainer.classList.remove('active');
+        layout.style.display = 'none'
+        showButtons()
+    })
+}
+closeLightboxButton()
+
+//Function for browsing images inside lightbox
+function lightboxBrowser() {
+    const imagesMosaic = document.querySelectorAll('.lightboxImage');
+    const currentLightboxImage = document.querySelector('.lightboxCurrentImage');
+
+    imagesMosaic.forEach(image => {
+        image.addEventListener('click', () => {
+            let  imageSrc = image.src;
+            currentLightboxImage.src = imageSrc
+        })
+    });
+}
+lightboxBrowser()
 
 
 
