@@ -1,0 +1,219 @@
+[
+    {
+      "Name": "the Great Lands",
+      "Rate": "E",
+      "Year": "2019",
+      "Category": "Movie",
+      "ID": "card1",
+      "CategoryIcon": "assets/icon-category-movie.svg",
+      "ImageSRC": "assets/thumbnails/the-great-lands/regular/small.jpg"
+    },
+    {
+      "Name": "the Diary",
+      "Rate": "PG",
+      "Year": "2019",
+      "Category": "TV Show",
+      "ID": "card2",
+      "CategoryIcon": "assets/icon-category-tv.svg",
+      "ImageSRC": "assets/thumbnails/the-diary/regular/small.jpg"
+    },
+    {
+      "Name": "Earths Untouched",
+      "Rate": "18+",
+      "Year": "2017",
+      "Category": "Movie",
+      "ID": "card3",
+      "CategoryIcon": "assets/icon-category-movie.svg",
+      "ImageSRC": "assets/thumbnails/earths-untouched/regular/small.jpg"
+    },
+    {
+      "Name": "No Land Beyond",
+      "Rate": "E",
+      "Year": "2019",
+      "Category": "Movie",
+      "ID": "card4",
+      "CategoryIcon": "assets/icon-category-movie.svg",
+      "ImageSRC": "assets/thumbnails/no-land-beyond/regular/small.jpg"
+    },
+    {
+      "Name": "During the Hunt",
+      "Rate": "PG",
+      "Year": "2016",
+      "Category": "TV Show",
+      "ID": "card5",
+      "CategoryIcon": "assets/icon-category-tv.svg",
+      "ImageSRC": "assets/thumbnails/during-the-hunt/regular/small.jpg"
+    },
+    {
+      "Name": "Autosport the Series",
+      "Rate": "18+",
+      "Year": "2016",
+      "Category": "TV Show",
+      "ID": "card6",
+      "CategoryIcon": "assets/icon-category-tv.svg",
+      "ImageSRC": "assets/thumbnails/autosport-the-series/regular/small.jpg"
+    },
+    {
+      "Name": "Same Answer Ii",
+      "Rate": "E",
+      "Year": "2017",
+      "Category": "Movie",
+      "ID": "card7",
+      "CategoryIcon": "assets/icon-category-movie.svg",
+      "ImageSRC": "assets/thumbnails/same-answer-ii/regular/small.jpg"
+    },
+    {
+      "Name": "Below Echo",
+      "Rate": "PG",
+      "Year": "2016",
+      "Category": "TV Show",
+      "ID": "card8",
+      "CategoryIcon": "assets/icon-category-tv.svg",
+      "ImageSRC": "assets/thumbnails/below-echo/regular/small.jpg"
+    },
+    {
+      "Name": "the Rockies",
+      "Rate": "E",
+      "Year": "2015",
+      "Category": "TV Show",
+      "ID": "card9",
+      "CategoryIcon": "assets/icon-category-tv.svg",
+      "ImageSRC": "assets/thumbnails/the-rockies/regular/small.jpg"
+    },
+    {
+      "Name": "Relentless",
+      "Rate": "PG",
+      "Year": "2017",
+      "Category": "Movie",
+      "ID": "card10",
+      "CategoryIcon": "assets/icon-category-movie.svg",
+      "ImageSRC": "assets/thumbnails/relentless/regular/small.jpg"
+    },
+    {
+      "Name": "Community Of Ours",
+      "Rate": "18+",
+      "Year": "2018",
+      "Category": "TV Show",
+      "ID": "card11",
+      "CategoryIcon": "assets/icon-category-tv.svg",
+      "ImageSRC": "assets/thumbnails/community-of-ours/regular/small.jpg"
+    },
+    {
+      "Name": "Can Life",
+      "Rate": "PG",
+      "Year": "2015",
+      "Category": "Movie",
+      "ID": "card12",
+      "CategoryIcon": "assets/icon-category-movie.svg",
+      "ImageSRC": "assets/thumbnails/can-life/regular/small.jpg"
+    },
+    {
+      "Name": "the Heiress",
+      "Rate": "PG",
+      "Year": "2021",
+      "Category": "Movie",
+      "ID": "card13",
+      "CategoryIcon": "assets/icon-category-movie.svg",
+      "ImageSRC": "assets/thumbnails/the-heiress/regular/small.jpg"
+    },
+    {
+      "Name": "Off the Track",
+      "Rate": "18+",
+      "Year": "2017",
+      "Category": "Movie",
+      "ID": "card14",
+      "CategoryIcon": "assets/icon-category-movie.svg",
+      "ImageSRC": "assets/thumbnails/off-the-track/regular/small.jpg"
+    },
+    {
+      "Name": "Whispering Hill",
+      "Rate": "E",
+      "Year": "2017",
+      "Category": "Movie",
+      "ID": "card15",
+      "CategoryIcon": "assets/icon-category-movie.svg",
+      "ImageSRC": "assets/thumbnails/whispering-hill/regular/small.jpg"
+    },
+    {
+      "Name": "112",
+      "Rate": "PG",
+      "Year": "2013",
+      "Category": "TV Show",
+      "ID": "card16",
+      "CategoryIcon": "assets/icon-category-tv.svg",
+      "ImageSRC": "assets/thumbnails/112/regular/small.jpg"
+    },
+    {
+      "Name": "Lone Heart",
+      "Rate": "E",
+      "Year": "2017",
+      "Category": "Movie",
+      "ID": "card17",
+      "CategoryIcon": "assets/icon-category-movie.svg",
+      "ImageSRC": "assets/thumbnails/lone-heart/regular/small.jpg"
+    },
+    {
+      "Name": "Production Line",
+      "Rate": "PG",
+      "Year": "2018",
+      "Category": "TV Show",
+      "ID": "card18",
+      "CategoryIcon": "assets/icon-category-tv.svg",
+      "ImageSRC": "assets/thumbnails/production-line/regular/small.jpg"
+    },
+    {
+      "Name": "Dogs",
+      "Rate": "E",
+      "Year": "2016",
+      "Category": "TV Show",
+      "ID": "card19",
+      "CategoryIcon": "assets/icon-category-tv.svg",
+      "ImageSRC": "assets/thumbnails/dogs/regular/small.jpg"
+    },
+    {
+      "Name": "Asia In 24 Days",
+      "Rate": "PG",
+      "Year": "2020",
+      "Category": "TV Show",
+      "ID": "card20",
+      "CategoryIcon": "assets/icon-category-tv.svg",
+      "ImageSRC": "assets/thumbnails/asia-in-24-days/regular/small.jpg"
+    },
+    {
+      "Name": "the Tasty Tour",
+      "Rate": "PG",
+      "Year": "2016",
+      "Category": "TV Show",
+      "ID": "card21",
+      "CategoryIcon": "assets/icon-category-tv.svg",
+      "ImageSRC": "assets/thumbnails/the-tasty-tour/regular/small.jpg"
+    },
+    {
+      "Name": "Darker",
+      "Rate": "18+",
+      "Year": "2017",
+      "Category": "Movie",
+      "ID": "card22",
+      "CategoryIcon": "assets/icon-category-movie.svg",
+      "ImageSRC": "assets/thumbnails/darker/regular/small.jpg"
+    },
+    {
+      "Name": "Unresolved Cases",
+      "Rate": "18+",
+      "Year": "2018",
+      "Category": "TV Show",
+      "ID": "card23",
+      "CategoryIcon": "assets/icon-category-tv.svg",
+      "ImageSRC": "assets/thumbnails/unresolved-cases/regular/small.jpg"
+    },
+    {
+      "Name": "Mission: Saturn",
+      "Rate": "PG",
+      "Year": "2017",
+      "Category": "Movie",
+      "ID": "card24",
+      "CategoryIcon": "assets/icon-category-movie.svg",
+      "ImageSRC": "assets/thumbnails/mission-saturn/regular/small.jpg"
+    }
+  ]
+  

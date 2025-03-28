@@ -1,0 +1,394 @@
+* {
+    font-family: 'Outfit';
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+
+:root {
+    --color-red: #FC4747;           /* Rojo Principal */
+    --color-dark-blue: #10141E;     /* Azul Oscuro */
+    --color-light-blue: #5A698F;    /* Azul Claro */
+    --color-white: #FFFFFF;         /* Blanco */
+    --color-dark: #161D2F;          /* Azul Suave */
+}
+
+:root {
+    --font-size-heading-l: 32px;  /* Heading L */
+    --font-size-heading-m: 24px;  /* Heading M */
+    --font-size-heading-s: 24px;  /* Heading S */
+    --font-size-heading-xs: 18px; /* Heading XS */
+    --font-size-body-s: 15px;     /* Body S */
+    --font-size-body-m: 15px;     /* Body M */
+}
+
+p, h2 {
+    color: white;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #10141E;
+}
+
+.generalContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 24px 16px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 56px;
+    padding: 18px 16px;
+    background-color: #161D2F;
+}
+
+.logoContainer {
+    cursor: pointer;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+}
+
+.menuContainer {
+    display: flex;
+    width: 133.54px;
+    height: auto;
+    justify-content: space-between;
+}
+
+.menuContainer img {
+    cursor: pointer;
+}
+
+.avatarContainer {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    outline: 1px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/*--------------------------------------------------------Search Bar----------------------------------------------------------*/
+
+.searchBarContainer {
+    display: flex;
+    align-items: center;
+    width: 270px;
+    height: 24px;
+    align-self: flex-start;
+    margin-bottom: 24px;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+form img {
+    margin-right: 16px;
+    width: 24px;
+    height: 24px;
+}
+
+form input {
+    display: flex;
+    all: unset;
+    width: 100%;
+}
+
+form input::placeholder {
+    color: white;
+}
+
+/*--------------------------------------------------------Trending----------------------------------------------------------*/
+
+.trendingContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.titleContainer {
+    display: flex;
+    font-size: 20px;
+    letter-spacing: -0.31px;
+    font-weight: 300;
+    margin-bottom: 16px;
+}
+
+.trendingImagesContainer {
+    display: flex;
+    width: 100%;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    flex-wrap: nowrap;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tCard {
+    position: relative;
+    width: 240px;
+    height: 140px;
+    border-radius: 8px;
+    scroll-snap-align: start;
+    flex-shrink: 0; 
+}
+
+.tCardImage img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.tBookmarkContainer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #979797;
+    top: 7%;
+    right: 5%;
+    cursor: pointer;
+}
+
+.bookmarkActive {
+    display: none;
+}
+
+.tBookmarkContainer .bookmarkInactive {
+    width: 11.67px;
+    height: 14px;
+}
+
+.tCardTextContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 132px;
+    height: 38px;
+    bottom: 16px;
+    left: 16px;
+}
+
+.topContainer {
+    display: flex;
+    align-items: center;
+}
+
+.topContainer img {
+    margin-right: 6px;
+}
+
+.spacer {
+    width: 3px;
+    height: 3px;
+    background-color: #979797;
+    border-radius: 50%;
+    margin-left: 8px;
+    margin-right: 6px;
+}
+
+.smText {
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.tBottomContainer {
+    width: 91px;
+    height: 19px;
+}
+
+.midText {
+    display: inline;
+    white-space: nowrap;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+}
+
+/*--------------------------------------------------------Recommended----------------------------------------------------------*/
+
+.recommendedForYouContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.recommendedTitleContainer {
+    margin-bottom: 24px;
+}
+
+.recommendedCardsContainer {
+    display: flex;
+    gap: 15px;
+}
+
+.cardsContainer {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 164px;
+    height: 154px;
+    border-radius: 8px;
+}
+
+.cardContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.cardImage {
+    width: 164px;
+    height: 110px;
+}
+
+.cardImage img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.cardTextContainer {
+    position: absolute;
+    bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bookmarkContainer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #979797;
+    top: 7%;
+    right: 5%;
+    cursor: pointer;
+}
+
+.bookmarkActive {
+    display: none;
+}
+
+.bookmarkContainer .bookmarkInactive {
+    width: 11.67px;
+    height: 14px;
+}
+
+.cardTextContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 132px;
+    height: 38px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.rateText {
+    font-size: 11px;
+    font-weight: 300;
+}
+
+/*
+the great lands - rate E - year 2019 - id card1 - category
+the diary - rate PG - year 2019 - id card2 - category
+earths untouched - rate 18+ - year 2017 - id card3 - category
+no land beyond - rate E - year 2019 - id card4 - category
+during the hunt - rate PG - year 2016 - id card5 - category
+autosport the Series - rate 18+ - year 2016 - id card6 - category
+same  answer ii - rate E - year 2017 - id card7 - category
+below echo - rate PG - year 2016 - id card8 - category
+the rockies - rate E - year 2015 - id card9 - category
+relentless - rate PG - year 2017 - id card10 - category
+community of ours - rate 18+ - year 2018 - id card11 - category
+can life - rate PG - year 2015 - id card12 - category
+the heiress  - rate PG  - year 2021 - id card13 - category
+off the track - rate 18+ - year 2017 - id card14 - category
+whispering hill - rate E - year 2017 - id card15 - category
+112 - rate PG - year 2013 - id card16 - category
+lone heart - rate E - year 2017 - id card17 - category
+production line - rate PG - year 2018 - id card18 - category
+dogs - rate E - year 2016 - id card19 - category
+asia in 24 days - rate PG - year 2020 - id card20 - category
+the tasty tour - rate PG - year 2016 - id card21 - category
+darker - rate 18+ - year 2017 - id card22 - category
+unresolved cases  - rate 18+ - year 2018 - id card23 - category
+mission: saturn - rate PG - year 2017 - id card24 - category
+
+Movie Cards:
+1, 3, 4, 7, 10, 12, 13, 14, 15, 17, 22, 24
+
+TV Show cards:
+the rest of them
+
+Name:
+Rate:
+Year:
+Category:
+Category Icon: (
+Si es movie el SRC debe ser: assets/icon-category-movie.svg
+Si es TV Show el SRC debe ser: assets/icon-category-tv.svg
+)
+ID:
+Image SRC: (
+El formato del SRC debe ser assets/thumbnails/the-great-lands/regular/small.jpg
+dependiendo de el titulo, en estte ejemplo el titulo es The Great Lands, asi que todo se vuelve
+minusculas y los espacios se reemplazan por - quedando the-great-lands
+)
+
+Year:
+Category Icon:
+Category Name:
+Rate:
+Title:
+Icon SRC if Movie: assets/icon-category-movie.svg
+Icon SRC if TV Show: assets/icon-category-tv.svg
+IMG SRC: assets/thumbnails/title-replacing-spaces-with-hyphen/regular/small.jpg
+
+*/
+

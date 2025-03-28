@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <title>Entertainment web app</title>
+  </head>
+  <body>
+    <main class="mainContainer">
+      <header>
+        <div class="headerContainer">
+          <div class="logoContainer">
+            <img src="assets/logo.svg" alt="" />
+          </div>
+          <div class="menuContainer">
+            <img src="assets/icon-nav-home.svg" alt="" />
+            <img src="assets/icon-nav-movies.svg" alt="" />
+            <img src="assets/icon-nav-tv-series.svg" alt="" />
+            <img src="assets/icon-nav-bookmark.svg" alt="" />
+          </div>
+          <div class="avatarContainer">
+            <img src="assets/image-avatar.png" alt="" />
+          </div>
+        </div>
+      </header>
+      <div class="generalContainer">
+        <div class="searchBarContainer">
+          <form action="/search" method="get" class="form">
+            <img src="assets/icon-search.svg" alt="" />
+            <input
+              type="search"
+              name="q"
+              placeholder="Search for movies or TV series"
+              class="searchBar"
+              id="searchBarLanding"
+              aria-label="Search"
+            />
+          </form>
+        </div>
+        <section class="trendingContainer" id="trending">
+          <div class="titleContainer">
+            <h2 class="title">Trending</h2>
+          </div>
+          <div class="trendingImagesContainer">
+            <div class="tCard" id="tCard1">
+              <div class="tCardImage">
+                <img
+                src="assets/thumbnails/beyond-earth/trending/small.jpg"
+                alt=""
+                />
+              </div>
+              <div class="tBookmarkContainer"><!--Absolute-->
+                <img class="bookmarkInactive" src="assets/icon-bookmark-empty.svg" alt="" />
+                <img class="bookmarkActive" src="assets/icon-bookmark-full.svg" alt="" />
+              </div>
+              <div class="tCardTextContainer"><!--Absolute-->
+                <div class="topContainer">
+                  <p class="smText">
+                    2019
+                  </p>
+                  <span class="spacer"></span>
+                  <img
+                    src="assets/icon-category-movie.svg"
+                    alt=""
+                    class="categoryMovieIcon"
+                  />
+                  <p class="smText">
+                    Movie
+                  </p>
+                  <span class="spacer"></span>
+                  <p class="rateText">
+                    PG
+                  </p>
+                </div>
+                <div class="tBottomContainer">
+                  <strong class="midText">
+                    Beyond Earth
+                  </strong>
+                </div>
+                <div class="tRateContainer">
+                  <p class="tRateText"></p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tCard" id="tCard2">
+              <div class="tCardImage">
+                <img
+                src="assets/thumbnails/bottom-gear/trending/small.jpg"
+                alt=""
+                />
+              </div>
+              <div class="tBookmarkContainer">
+                <img class="bookmarkInactive" src="assets/icon-bookmark-empty.svg" alt="" />
+                <img class="bookmarkActive" src="assets/icon-bookmark-full.svg" alt="" />
+              </div>
+              <div class="tCardTextContainer">
+                <div class="topContainer">
+                  <p class="smText">
+                    2021
+                  </p>
+                  <span class="spacer"></span>
+                  <img
+                    src="assets/icon-category-movie.svg"
+                    alt=""
+                    class="categoryMovieIcon"
+                  />
+                  <p class="smText">
+                    Movie
+                  </p>
+                  <span class="spacer"></span>
+                  <p class="rateText">
+                    PG
+                  </p>
+                </div>
+                <div class="tBottomContainer">
+                  <strong class="midText">
+                    Bottom Gear
+                  </strong>
+                </div>
+                <div class="tRateContainer">
+                  <p class="tRateText"></p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tCard" id="tCard3">
+              <div class="tCardImage">
+                <img
+                src="assets/thumbnails/undiscovered-cities/trending/small.jpg"
+                alt=""
+                />
+              </div>
+              <div class="tBookmarkContainer">
+                <img class="bookmarkInactive" src="assets/icon-bookmark-empty.svg" alt="" />
+                <img class="bookmarkActive" src="assets/icon-bookmark-full.svg" alt="" />
+              </div>
+              <div class="tCardTextContainer">
+                <div class="topContainer">
+                  <p class="smText">
+                    2019
+                  </p>
+                  <span class="spacer"></span>
+                  <img
+                    src="assets/icon-category-tv.svg"
+                    alt=""
+                    class="categoryMovieIcon"
+                  />
+                  <p class="smText">
+                    TV Series
+                  </p>
+                  <span class="spacer"></span>
+                  <p class="rateText">
+                    E
+                  </p>
+                </div>
+                <div class="tBottomContainer">
+                  <strong class="midText">
+                    Undiscovered Cities
+                  </strong>
+                </div>
+                <div class="tRateContainer">
+                  <p class="tRateText"></p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tCard" id="tCard4">
+              <div class="tCardImage">
+                <img src="assets/thumbnails/1998/trending/small.jpg" alt="" />
+              </div>
+              <div class="tBookmarkContainer">
+                <img class="bookmarkInactive" src="assets/icon-bookmark-empty.svg" alt="" />
+                <img class="bookmarkActive" src="assets/icon-bookmark-full.svg" alt="" />
+              </div>
+              <div class="tCardTextContainer">
+                <div class="topContainer">
+                  <p class="smText">
+                    2018
+                  </p>
+                  <span class="spacer"></span>
+                  <img
+                    src="assets/icon-category-movie.svg"
+                    alt=""
+                    class="categoryMovieIcon"
+                  />
+                  <p class="smText">
+                    Movie
+                  </p>
+                  <span class="spacer"></span>
+                  <p class="rateText">
+                    18+
+                  </p>
+                </div>
+                <div class="tBottomContainer">
+                  <strong class="midText">
+                    1998
+                  </strong>
+                </div>
+                <div class="tRateContainer">
+                  <p class="tRateText"></p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tCard" id="tCard5">
+              <div class="tCardImage">
+                <img
+                src="assets/thumbnails/dark-side-of-the-moon/trending/small.jpg"
+                alt=""
+                />
+              </div>
+              <div class="tBookmarkContainer">
+                <img class="bookmarkInactive" src="assets/icon-bookmark-empty.svg" alt="" />
+                <img class="bookmarkActive" src="assets/icon-bookmark-full.svg" alt="" />
+              </div>
+              <div class="tCardTextContainer">
+                <div class="topContainer">
+                  <p class="smText">
+                    2018
+                  </p>
+                  <span class="spacer"></span>
+                  <img
+                    src="assets/icon-category-tv.svg"
+                    alt=""
+                    class="categoryMovieIcon"
+                  />
+                  <p class="smText">
+                    TV Series
+                  </p>
+                  <span class="spacer"></span>
+                  <p class="rateText">
+                    PG
+                  </p>
+                </div>
+                <div class="tBottomContainer">
+                  <strong class="midText">
+                    Dark Side of the Moon
+                  </strong>
+                </div>
+                <div class="tRateContainer">
+                  <p class="tRateText"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="recommendedForYouContainer" id="recommended">
+          <div class="recommendedTitleContainer">
+            <h2 class="title">Recommended for you</h2>
+          </div>
+          <div class="recommendedCardsContainer">
+            <div class="cardsContainer">
+              <!-- Card 1 -->
+              <div class="card" id="card1">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt=""> <!--depende de cada titulo de las cards de la  imagen, los archivos de imagen  estan en este mismo formato, asi que por ejemplo si el titulo de la siguiente card en la imagen es The Diary, el formato seria <img src="assets/thumbnails/the-diary/regular/small.jpg" alt=""> -->
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText">
+                      2019
+                    </p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-movie.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText">
+                      Movie <!--Movie o TV Series dependiendo de cada card en la imagen-->
+                    </p>
+                    <span class="spacer"></span>
+                    <p class="rateText">
+                      E <!--Dependiendo de cada card en la imagen imagen-->
+                    </p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText">
+                      The Great Lands <!--Depende del titulo de cada card en la imagen-->
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 2 -->
+              <div class="card" id="card2">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-tv.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 3 -->
+              <div class="card" id="card3">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-movie.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 4 -->
+              <div class="card" id="card4">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-movie.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 5 -->
+              <div class="card" id="card5">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-tv.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 6 -->
+              <div class="card" id="card6">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-tv.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 7 -->
+              <div class="card" id="card7">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-movie.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 8 -->
+              <div class="card" id="card8">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-tv.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 9 -->
+              <div class="card" id="card9">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-tv.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 10 -->
+              <div class="card" id="card10">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-movie.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 11 -->
+              <div class="card" id="card11">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-tv.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 12 -->
+              <div class="card" id="card12">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-movie.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 13 -->
+              <div class="card" id="card13">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-movie.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 14 -->
+              <div class="card" id="card14">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-movie.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 15 -->
+              <div class="card" id="card15">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-movie.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 16 -->
+              <div class="card" id="card16">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-tv.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 17 -->
+              <div class="card" id="card17">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-movie.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 18 -->
+              <div class="card" id="card18">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-tv.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 19 -->
+              <div class="card" id="card19">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-tv.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 20 -->
+              <div class="card" id="card20">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-tv.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 21 -->
+              <div class="card" id="card21">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-tv.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 22 -->
+              <div class="card" id="card22">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-movie.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 23 -->
+              <div class="card" id="card23">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-tv.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Card 24 -->
+              <div class="card" id="card24">
+                <div class="cardImageContainer">
+                  <div class="cardImage">
+                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                  </div>
+                  <div class="bookmarkContainer">
+                    <img
+                      src="assets/icon-bookmark-empty.svg"
+                      alt="An empty bookmark icon"
+                    />
+                    <img
+                      src="assets/icon-bookmark-full.svg"
+                      alt="A full bookmark icon"
+                    />
+                  </div>
+                  <img src="assets/thumbnails/" alt="" />
+                </div>
+                <div class="cardTextContainer">
+                  <div class="topContainer">
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <img
+                      src="assets/icon-category-movie.svg"
+                      alt=""
+                      class="categoryMovieIcon"
+                    />
+                    <p class="smText"></p>
+                    <span class="spacer"></span>
+                    <p class="rateText"></p>
+                  </div>
+                  <div class="bottomContainer">
+                    <strong class="midText"></strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>
