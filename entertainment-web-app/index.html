@@ -21,10 +21,10 @@
             <img src="assets/logo.svg" alt="" />
           </div>
           <div class="menuContainer">
-            <img src="assets/icon-nav-home.svg" alt="" />
-            <img src="assets/icon-nav-movies.svg" alt="" />
-            <img src="assets/icon-nav-tv-series.svg" alt="" />
-            <img src="assets/icon-nav-bookmark.svg" alt="" />
+            <svg class="menuButton" id="home" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 0H1C.4 0 0 .4 0 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1V1c0-.6-.4-1-1-1Zm0 11H1c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1v-7c0-.6-.4-1-1-1ZM19 0h-7c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1V1c0-.6-.4-1-1-1Zm0 11h-7c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h7c.6 0 1-.4 1-1v-7c0-.6-.4-1-1-1Z" /></svg>
+            <svg class="menuButton" id="movie" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M16.956 0H3.044A3.044 3.044 0 0 0 0 3.044v13.912A3.044 3.044 0 0 0 3.044 20h13.912A3.044 3.044 0 0 0 20 16.956V3.044A3.044 3.044 0 0 0 16.956 0ZM4 9H2V7h2v2Zm-2 2h2v2H2v-2Zm16-2h-2V7h2v2Zm-2 2h2v2h-2v-2Zm2-8.26V4h-2V2h1.26a.74.74 0 0 1 .74.74ZM2.74 2H4v2H2V2.74A.74.74 0 0 1 2.74 2ZM2 17.26V16h2v2H2.74a.74.74 0 0 1-.74-.74Zm16 0a.74.74 0 0 1-.74.74H16v-2h2v1.26Z" /></svg>
+            <svg class="menuButton" id="tv" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M20 4.481H9.08l2.7-3.278L10.22 0 7 3.909 3.78.029 2.22 1.203l2.7 3.278H0V20h20V4.481Zm-8 13.58H2V6.42h10v11.64Zm5-3.88h-2v-1.94h2v1.94Zm0-3.88h-2V8.36h2v1.94Z" /></svg>
+            <svg class="menuButton" id="bookmarked" width="17" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M15.387 0c.202 0 .396.04.581.119.291.115.522.295.694.542.172.247.258.52.258.82v17.038c0 .3-.086.573-.258.82a1.49 1.49 0 0 1-.694.542 1.49 1.49 0 0 1-.581.106c-.423 0-.79-.141-1.098-.423L8.46 13.959l-5.83 5.605c-.317.29-.682.436-1.097.436-.202 0-.396-.04-.581-.119a1.49 1.49 0 0 1-.694-.542A1.402 1.402 0 0 1 0 18.52V1.481c0-.3.086-.573.258-.82A1.49 1.49 0 0 1 .952.119C1.137.039 1.33 0 1.533 0h13.854Z" /></svg>
           </div>
           <div class="avatarContainer">
             <img src="assets/image-avatar.png" alt="" />
@@ -53,201 +53,157 @@
             <div class="tCard" id="tCard1">
               <div class="tCardImage">
                 <img
-                src="assets/thumbnails/beyond-earth/trending/small.jpg"
-                alt=""
-                />
+                  class="tCardThumbnail"
+                  src=""
+                  alt=""
+                /><!--Fill with JSON-->
               </div>
-              <div class="tBookmarkContainer"><!--Absolute-->
-                <img class="bookmarkInactive" src="assets/icon-bookmark-empty.svg" alt="" />
-                <img class="bookmarkActive" src="assets/icon-bookmark-full.svg" alt="" />
+              <div class="tBookmarkContainer">
+                <img class="bookmarkTcard" src="" alt="" /><!--Fill with JSON-->
               </div>
-              <div class="tCardTextContainer"><!--Absolute-->
+              <div class="tCardTextContainer">
                 <div class="topContainer">
-                  <p class="smText">
-                    2019
+                  <p class="smText tCardYear">
+                    <!--Fill with JSON-->
                   </p>
                   <span class="spacer"></span>
                   <img
-                    src="assets/icon-category-movie.svg"
+                    src=""
                     alt=""
-                    class="categoryMovieIcon"
-                  />
-                  <p class="smText">
-                    Movie
+                    class="categoryMovieIcon tCardCategoryIcon"
+                  /><!--Fill with JSON-->
+                  <p class="smText tCardCategory">
+                    <!--Fill with JSON-->
                   </p>
                   <span class="spacer"></span>
-                  <p class="rateText">
-                    PG
+                  <p class="rateText tCardRate">
+                    <!--Fill with JSON-->
                   </p>
                 </div>
                 <div class="tBottomContainer">
-                  <strong class="midText">
-                    Beyond Earth
+                  <strong class="midText tCardTitle">
+                    <!--Fill with JSON-->
                   </strong>
-                </div>
-                <div class="tRateContainer">
-                  <p class="tRateText"></p>
                 </div>
               </div>
             </div>
-            
+
             <div class="tCard" id="tCard2">
               <div class="tCardImage">
-                <img
-                src="assets/thumbnails/bottom-gear/trending/small.jpg"
-                alt=""
-                />
+                <img class="tCardThumbnail" src="" alt="" />
               </div>
               <div class="tBookmarkContainer">
-                <img class="bookmarkInactive" src="assets/icon-bookmark-empty.svg" alt="" />
-                <img class="bookmarkActive" src="assets/icon-bookmark-full.svg" alt="" />
+                <img class="bookmarkTcard" src="" alt="" /><!--Fill with JSON-->
               </div>
               <div class="tCardTextContainer">
                 <div class="topContainer">
-                  <p class="smText">
-                    2021
-                  </p>
+                  <p class="smText tCardYear"></p>
                   <span class="spacer"></span>
                   <img
-                    src="assets/icon-category-movie.svg"
+                    src=""
                     alt=""
-                    class="categoryMovieIcon"
-                  />
-                  <p class="smText">
-                    Movie
-                  </p>
+                    class="categoryMovieIcon tCardCategoryIcon"
+                  /><!--Fill with JSON-->
+                  <p class="smText tCardCategory"></p>
                   <span class="spacer"></span>
-                  <p class="rateText">
-                    PG
+                  <p class="rateText tCardRate">
+                    <!--Fill with JSON-->
                   </p>
                 </div>
                 <div class="tBottomContainer">
-                  <strong class="midText">
-                    Bottom Gear
+                  <strong class="midText tCardTitle">
+                    <!--Fill with JSON-->
                   </strong>
-                </div>
-                <div class="tRateContainer">
-                  <p class="tRateText"></p>
                 </div>
               </div>
             </div>
-            
+
             <div class="tCard" id="tCard3">
               <div class="tCardImage">
-                <img
-                src="assets/thumbnails/undiscovered-cities/trending/small.jpg"
-                alt=""
-                />
+                <img class="tCardThumbnail" src="" alt="" />
               </div>
               <div class="tBookmarkContainer">
-                <img class="bookmarkInactive" src="assets/icon-bookmark-empty.svg" alt="" />
-                <img class="bookmarkActive" src="assets/icon-bookmark-full.svg" alt="" />
+                <img class="bookmarkTcard" src="" alt="" /><!--Fill with JSON-->
               </div>
               <div class="tCardTextContainer">
                 <div class="topContainer">
-                  <p class="smText">
-                    2019
-                  </p>
+                  <p class="smText tCardYear"></p>
                   <span class="spacer"></span>
                   <img
-                    src="assets/icon-category-tv.svg"
+                    src=""
                     alt=""
-                    class="categoryMovieIcon"
-                  />
-                  <p class="smText">
-                    TV Series
-                  </p>
+                    class="categoryMovieIcon tCardCategoryIcon"
+                  /><!--Fill with JSON-->
+                  <p class="smText tCardCategory"></p>
                   <span class="spacer"></span>
-                  <p class="rateText">
-                    E
+                  <p class="rateText tCardRate">
+                    <!--Fill with JSON-->
                   </p>
                 </div>
                 <div class="tBottomContainer">
-                  <strong class="midText">
-                    Undiscovered Cities
+                  <strong class="midText tCardTitle">
+                    <!--Fill with JSON-->
                   </strong>
-                </div>
-                <div class="tRateContainer">
-                  <p class="tRateText"></p>
                 </div>
               </div>
             </div>
-            
+
             <div class="tCard" id="tCard4">
               <div class="tCardImage">
-                <img src="assets/thumbnails/1998/trending/small.jpg" alt="" />
+                <img class="tCardThumbnail" src="" alt="" />
               </div>
               <div class="tBookmarkContainer">
-                <img class="bookmarkInactive" src="assets/icon-bookmark-empty.svg" alt="" />
-                <img class="bookmarkActive" src="assets/icon-bookmark-full.svg" alt="" />
+                <img class="bookmarkTcard" src="" alt="" /><!--Fill with JSON-->
               </div>
               <div class="tCardTextContainer">
                 <div class="topContainer">
-                  <p class="smText">
-                    2018
-                  </p>
+                  <p class="smText tCardYear"></p>
                   <span class="spacer"></span>
                   <img
-                    src="assets/icon-category-movie.svg"
+                    src=""
                     alt=""
-                    class="categoryMovieIcon"
-                  />
-                  <p class="smText">
-                    Movie
-                  </p>
+                    class="categoryMovieIcon tCardCategoryIcon"
+                  /><!--Fill with JSON-->
+                  <p class="smText tCardCategory"></p>
                   <span class="spacer"></span>
-                  <p class="rateText">
-                    18+
+                  <p class="rateText tCardRate">
+                    <!--Fill with JSON-->
                   </p>
                 </div>
                 <div class="tBottomContainer">
-                  <strong class="midText">
-                    1998
+                  <strong class="midText tCardTitle">
+                    <!--Fill with JSON-->
                   </strong>
-                </div>
-                <div class="tRateContainer">
-                  <p class="tRateText"></p>
                 </div>
               </div>
             </div>
-            
+
             <div class="tCard" id="tCard5">
               <div class="tCardImage">
-                <img
-                src="assets/thumbnails/dark-side-of-the-moon/trending/small.jpg"
-                alt=""
-                />
+                <img class="tCardThumbnail" src="" alt="" />
               </div>
               <div class="tBookmarkContainer">
-                <img class="bookmarkInactive" src="assets/icon-bookmark-empty.svg" alt="" />
-                <img class="bookmarkActive" src="assets/icon-bookmark-full.svg" alt="" />
+                <img class="bookmarkTcard" src="" alt="" /><!--Fill with JSON-->
               </div>
               <div class="tCardTextContainer">
                 <div class="topContainer">
-                  <p class="smText">
-                    2018
-                  </p>
+                  <p class="smText tCardYear"></p>
                   <span class="spacer"></span>
                   <img
-                    src="assets/icon-category-tv.svg"
+                    src=""
                     alt=""
-                    class="categoryMovieIcon"
-                  />
-                  <p class="smText">
-                    TV Series
-                  </p>
+                    class="categoryMovieIcon tCardCategoryIcon"
+                  /><!--Fill with JSON-->
+                  <p class="smText tCardCategory"></p>
                   <span class="spacer"></span>
-                  <p class="rateText">
-                    PG
+                  <p class="rateText tCardRate">
+                    <!--Fill with JSON-->
                   </p>
                 </div>
                 <div class="tBottomContainer">
-                  <strong class="midText">
-                    Dark Side of the Moon
+                  <strong class="midText tCardTitle">
+                    <!--Fill with JSON-->
                   </strong>
-                </div>
-                <div class="tRateContainer">
-                  <p class="tRateText"></p>
                 </div>
               </div>
             </div>
@@ -259,898 +215,1011 @@
           </div>
           <div class="recommendedCardsContainer">
             <div class="cardsContainer">
-              <!-- Card 1 -->
+              <!-- card1 -->
               <div class="card" id="card1">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt=""> <!--depende de cada titulo de las cards de la  imagen, los archivos de imagen  estan en este mismo formato, asi que por ejemplo si el titulo de la siguiente card en la imagen es The Diary, el formato seria <img src="assets/thumbnails/the-diary/regular/small.jpg" alt=""> -->
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText">
-                      2019
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
                     </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-movie.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText">
-                      Movie <!--Movie o TV Series dependiendo de cada card en la imagen-->
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
                     </p>
                     <span class="spacer"></span>
-                    <p class="rateText">
-                      E <!--Dependiendo de cada card en la imagen imagen-->
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
                     </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText">
-                      The Great Lands <!--Depende del titulo de cada card en la imagen-->
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
                     </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 2 -->
+              <!-- card2 -->
               <div class="card" id="card2">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-tv.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 3 -->
+              <!-- card3 -->
               <div class="card" id="card3">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-movie.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 4 -->
+              <!-- card4 -->
               <div class="card" id="card4">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-movie.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 5 -->
+              <!-- card5 -->
               <div class="card" id="card5">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-tv.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 6 -->
+              <!-- card6 -->
               <div class="card" id="card6">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-tv.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 7 -->
+              <!-- card7 -->
               <div class="card" id="card7">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-movie.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 8 -->
+              <!-- card8 -->
               <div class="card" id="card8">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-tv.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 9 -->
+              <!-- card9 -->
               <div class="card" id="card9">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-tv.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 10 -->
+              <!-- card10 -->
               <div class="card" id="card10">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-movie.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 11 -->
+              <!-- card11 -->
               <div class="card" id="card11">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-tv.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 12 -->
+              <!-- card12 -->
               <div class="card" id="card12">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-movie.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 13 -->
+              <!-- card13 -->
               <div class="card" id="card13">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-movie.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 14 -->
+              <!-- card14 -->
               <div class="card" id="card14">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-movie.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 15 -->
+              <!-- card15 -->
               <div class="card" id="card15">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-movie.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 16 -->
+              <!-- card16 -->
               <div class="card" id="card16">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-tv.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 17 -->
+              <!-- card17 -->
               <div class="card" id="card17">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-movie.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 18 -->
+              <!-- card18 -->
               <div class="card" id="card18">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-tv.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 19 -->
+              <!-- card19 -->
               <div class="card" id="card19">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-tv.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 20 -->
+              <!-- card20 -->
               <div class="card" id="card20">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-tv.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 21 -->
+              <!-- card21 -->
               <div class="card" id="card21">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-tv.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 22 -->
+              <!-- card22 -->
               <div class="card" id="card22">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-movie.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 23 -->
+              <!-- card23 -->
               <div class="card" id="card23">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-tv.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>
-            
-              <!-- Card 24 -->
+              <!-- card24 -->
               <div class="card" id="card24">
                 <div class="cardImageContainer">
                   <div class="cardImage">
-                    <img src="assets/thumbnails/the-great-lands/regular/small.jpg" alt="">
+                    <img class="cardThumbnail" src="" alt="" />
+                    <!--Fill with JSON-->
                   </div>
                   <div class="bookmarkContainer">
                     <img
-                      src="assets/icon-bookmark-empty.svg"
-                      alt="An empty bookmark icon"
-                    />
-                    <img
-                      src="assets/icon-bookmark-full.svg"
-                      alt="A full bookmark icon"
-                    />
+                      class="cardBookmark"
+                      src="assets/thumbnails/"
+                      alt=""
+                    /><!--Fill with JSON-->
                   </div>
-                  <img src="assets/thumbnails/" alt="" />
                 </div>
                 <div class="cardTextContainer">
                   <div class="topContainer">
-                    <p class="smText"></p>
+                    <p class="smText cardYear">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
                     <img
-                      src="assets/icon-category-movie.svg"
+                      src=""
                       alt=""
-                      class="categoryMovieIcon"
+                      class="categoryMovieIcon cardCategoryIcon"
                     />
-                    <p class="smText"></p>
+                    <!--Fill with JSON-->
+                    <p class="smText cardCategory">
+                      <!--Fill with JSON-->
+                    </p>
                     <span class="spacer"></span>
-                    <p class="rateText"></p>
+                    <p class="rateText cardRate">
+                      <!--Fill with JSON-->
+                    </p>
                   </div>
                   <div class="bottomContainer">
-                    <strong class="midText"></strong>
+                    <strong class="midText cardTitle">
+                      <!--Fill with JSON-->
+                    </strong>
                   </div>
                 </div>
               </div>

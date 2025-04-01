@@ -14,16 +14,24 @@
 }
 
 :root {
-    --font-size-heading-l: 32px;  /* Heading L */
-    --font-size-heading-m: 24px;  /* Heading M */
-    --font-size-heading-s: 24px;  /* Heading S */
-    --font-size-heading-xs: 18px; /* Heading XS */
-    --font-size-body-s: 15px;     /* Body S */
-    --font-size-body-m: 15px;     /* Body M */
+    --font-size-heading-l: 2rem;  /* Heading L */
+    --font-size-heading-m: 1.5rem;  /* Heading M */
+    --font-size-heading-s: 1.5rem;  /* Heading S */
+    --font-size-heading-xs: 1.125rem; /* Heading XS */
+    --font-size-body-s: 0.9375rem;     /* Body S */
+    --font-size-body-m: 0.9375rem;     /* Body M */
 }
 
 p, h2 {
     color: white;
+}
+
+body {
+    background-color: #10141E;
+}
+
+.hover {
+    display: none;
 }
 
 .mainContainer {
@@ -33,7 +41,6 @@ p, h2 {
     height: 100%;
     justify-content: center;
     align-items: center;
-    background-color: #10141E;
 }
 
 .generalContainer {
@@ -43,7 +50,7 @@ p, h2 {
     align-items: center;
     width: 100%;
     height: 100%;
-    padding: 24px 16px;
+    padding: 1.5rem 1rem;
 }
 
 header {
@@ -51,8 +58,8 @@ header {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 56px;
-    padding: 18px 16px;
+    height: 3.5rem;
+    padding: 1.125rem 1rem;
     background-color: #161D2F;
 }
 
@@ -65,25 +72,30 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 20px;
+    height: 1.25rem;
 }
 
 .menuContainer {
     display: flex;
-    width: 133.54px;
+    width: 8.3462rem;
     height: auto;
     justify-content: space-between;
 }
 
-.menuContainer img {
+.menuContainer svg path {
     cursor: pointer;
+    fill: #5A698F;
+}
+
+.menuContainer svg path:hover {
+    fill: var(--color-red);
 }
 
 .avatarContainer {
     display: flex;
-    width: 20px;
-    height: 20px;
-    outline: 1px solid white;
+    width: 1.25rem;
+    height: 1.25rem;
+    outline: 0.0625rem solid white;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -93,10 +105,10 @@ header {
 .searchBarContainer {
     display: flex;
     align-items: center;
-    width: 270px;
-    height: 24px;
+    width: 16.875rem;
+    height: 1.5rem;
     align-self: flex-start;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
 }
 
 form {
@@ -107,19 +119,20 @@ form {
 }
 
 form img {
-    margin-right: 16px;
-    width: 24px;
-    height: 24px;
+    margin-right: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 form input {
     display: flex;
     all: unset;
     width: 100%;
+    color: white;
 }
 
 form input::placeholder {
-    color: white;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 /*--------------------------------------------------------Trending----------------------------------------------------------*/
@@ -129,21 +142,22 @@ form input::placeholder {
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
 }
 
 .titleContainer {
     display: flex;
-    font-size: 20px;
-    letter-spacing: -0.31px;
+    font-size: 1.25rem;
+    letter-spacing: -0.0194rem;
     font-weight: 300;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 }
 
 .trendingImagesContainer {
     display: flex;
     width: 100%;
-    gap: 16px;
+    height: auto;
+    gap: 1rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     flex-wrap: nowrap;
@@ -153,17 +167,17 @@ form input::placeholder {
 
 .tCard {
     position: relative;
-    width: 240px;
-    height: 140px;
-    border-radius: 8px;
+    width: 15rem;
+    height: 8.75rem;
+    border-radius: 0.5rem;
     scroll-snap-align: start;
-    flex-shrink: 0; 
+    flex-shrink: 0;
 }
 
 .tCardImage img {
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 0.5rem;
 }
 
 .tBookmarkContainer {
@@ -171,8 +185,8 @@ form input::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
     background-color: #979797;
     top: 7%;
@@ -185,18 +199,18 @@ form input::placeholder {
 }
 
 .tBookmarkContainer .bookmarkInactive {
-    width: 11.67px;
-    height: 14px;
+    width: 0.7294rem;
+    height: 0.875rem;
 }
 
 .tCardTextContainer {
     position: absolute;
     display: flex;
     flex-direction: column;
-    width: 132px;
-    height: 38px;
-    bottom: 16px;
-    left: 16px;
+    width: 8.25rem;
+    height: 2.375rem;
+    bottom: 1rem;
+    left: 1rem;
 }
 
 .topContainer {
@@ -205,34 +219,35 @@ form input::placeholder {
 }
 
 .topContainer img {
-    margin-right: 6px;
+    width: 0.625rem;
+    margin-right: 0.375rem;
 }
 
 .spacer {
-    width: 3px;
-    height: 3px;
+    width: 0.1875rem;
+    height: 0.1875rem;
     background-color: #979797;
     border-radius: 50%;
-    margin-left: 8px;
-    margin-right: 6px;
+    margin-left: 0.5rem;
+    margin-right: 0.375rem;
 }
 
 .smText {
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 300;
 }
 
 .tBottomContainer {
-    width: 91px;
-    height: 19px;
+    width: 5.6875rem;
+    height: 1.1875rem;
 }
 
 .midText {
     display: inline;
     white-space: nowrap;
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 0.875rem;
+    font-weight: 400;
     color: white;
 }
 
@@ -245,22 +260,23 @@ form input::placeholder {
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 300;
 }
 
 .recommendedTitleContainer {
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
 }
 
 .recommendedCardsContainer {
     display: flex;
-    gap: 15px;
+    gap: 0.9375rem;
 }
 
 .cardsContainer {
     display: flex;
-    gap: 15px;
+    justify-content: center;
+    gap: 0.9375rem;
     flex-wrap: wrap;
 }
 
@@ -268,9 +284,9 @@ h2 {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 164px;
-    height: 154px;
-    border-radius: 8px;
+    width: 10.25rem;
+    height: 9.625rem;
+    border-radius: 0.5rem;
 }
 
 .cardContainer {
@@ -279,19 +295,19 @@ h2 {
 }
 
 .cardImage {
-    width: 164px;
-    height: 110px;
+    width: 10.25rem;
+    height: 6.875rem;
 }
 
 .cardImage img {
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 0.5rem;
 }
 
 .cardTextContainer {
     position: absolute;
-    bottom: 16px;
+    bottom: 1rem;
     display: flex;
     flex-direction: column;
 }
@@ -301,12 +317,12 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
     background-color: #979797;
-    top: 7%;
-    right: 5%;
+    top: 0.5rem;
+    right: 0.5rem;
     cursor: pointer;
 }
 
@@ -315,80 +331,179 @@ h2 {
 }
 
 .bookmarkContainer .bookmarkInactive {
-    width: 11.67px;
-    height: 14px;
+    width: 0.7294rem;
+    height: 0.875rem;
 }
 
 .cardTextContainer {
     position: absolute;
     display: flex;
     flex-direction: column;
-    width: 132px;
-    height: 38px;
-    bottom: 0px;
-    left: 0px;
+    width: 8.25rem;
+    height: 2.375rem;
+    bottom: 0rem;
+    left: 0rem;
 }
 
 .rateText {
-    font-size: 11px;
+    font-size: 0.6875rem;
     font-weight: 300;
 }
 
-/*
-the great lands - rate E - year 2019 - id card1 - category
-the diary - rate PG - year 2019 - id card2 - category
-earths untouched - rate 18+ - year 2017 - id card3 - category
-no land beyond - rate E - year 2019 - id card4 - category
-during the hunt - rate PG - year 2016 - id card5 - category
-autosport the Series - rate 18+ - year 2016 - id card6 - category
-same  answer ii - rate E - year 2017 - id card7 - category
-below echo - rate PG - year 2016 - id card8 - category
-the rockies - rate E - year 2015 - id card9 - category
-relentless - rate PG - year 2017 - id card10 - category
-community of ours - rate 18+ - year 2018 - id card11 - category
-can life - rate PG - year 2015 - id card12 - category
-the heiress  - rate PG  - year 2021 - id card13 - category
-off the track - rate 18+ - year 2017 - id card14 - category
-whispering hill - rate E - year 2017 - id card15 - category
-112 - rate PG - year 2013 - id card16 - category
-lone heart - rate E - year 2017 - id card17 - category
-production line - rate PG - year 2018 - id card18 - category
-dogs - rate E - year 2016 - id card19 - category
-asia in 24 days - rate PG - year 2020 - id card20 - category
-the tasty tour - rate PG - year 2016 - id card21 - category
-darker - rate 18+ - year 2017 - id card22 - category
-unresolved cases  - rate 18+ - year 2018 - id card23 - category
-mission: saturn - rate PG - year 2017 - id card24 - category
+/*--------------------------------------------------------Tablet----------------------------------------------------------*/
 
-Movie Cards:
-1, 3, 4, 7, 10, 12, 13, 14, 15, 17, 22, 24
+@media (min-width: 48rem) {
+    .trendingContainer {
+        height: 18.4375rem;
+    }
 
-TV Show cards:
-the rest of them
+    .tCard {
+        width: 29.375rem;
+        height: auto;
+    }
 
-Name:
-Rate:
-Year:
-Category:
-Category Icon: (
-Si es movie el SRC debe ser: assets/icon-category-movie.svg
-Si es TV Show el SRC debe ser: assets/icon-category-tv.svg
-)
-ID:
-Image SRC: (
-El formato del SRC debe ser assets/thumbnails/the-great-lands/regular/small.jpg
-dependiendo de el titulo, en estte ejemplo el titulo es The Great Lands, asi que todo se vuelve
-minusculas y los espacios se reemplazan por - quedando the-great-lands
-)
+    .tCardImage img {
+        height: 14.375rem;
+    }
 
-Year:
-Category Icon:
-Category Name:
-Rate:
-Title:
-Icon SRC if Movie: assets/icon-category-movie.svg
-Icon SRC if TV Show: assets/icon-category-tv.svg
-IMG SRC: assets/thumbnails/title-replacing-spaces-with-hyphen/regular/small.jpg
+    .trendingImagesContainer {
+        gap: 2.5rem;
+    }
 
-*/
+    .card {
+        width: 13.75rem;
+        height: 12rem;
+    }
 
+    .cardImage {
+        width: 13.75rem;
+        height: 8.75rem;
+    }
+
+    .midText {
+        font-size: 1.125rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .cardsContainer {
+        justify-content: center;
+    }
+}
+
+/*--------------------------------------------------------Desktop----------------------------------------------------------*/
+
+@media (min-width: 64rem) {
+
+    .mainContainer {
+        position: relative;
+        padding: 0 0 0 10.25rem;
+    }
+
+    .generalContainer {
+        padding-right: 1.25rem;
+    }
+
+    .headerContainer {
+        flex-direction: column;
+        height: 100%;
+        justify-content: unset;
+    }
+
+    .menuContainer {
+        flex-direction: column;
+        width: 1.25rem;
+        height: 12.5rem;
+        margin-bottom: 34.5rem;
+    }
+
+    .avatarContainer {
+        align-items: center;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .avatarContainer img {
+        width: 100%;
+    }
+
+    .menuContainer img {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .logoContainer, 
+    .logoContainer img {
+        width: 2rem;
+        height: 1.625rem;
+        margin-bottom: 4.6875rem;
+    }
+
+    header {
+        display: flex;
+        align-items: flex-start;
+        width: 6rem;
+        height: 60rem;
+        border-radius: 1.25rem;
+        top: 2rem;
+        left: 2rem;
+        position:absolute;
+        padding: 2.1875rem 1.75rem 2rem 1.75rem;
+        border: 0.0625rem solid white;
+    }
+
+    .trendingContainer {
+        height: 18.4375rem;
+    }
+
+    .tCard {
+        width: 29.375rem;
+        height: auto;
+    }
+
+    .tCardImage img {
+        height: 14.375rem;
+    }
+
+    .trendingImagesContainer {
+        gap: 2.5rem;
+    }
+
+    .card {
+        width: 17.5rem;
+        height: 14.125rem;
+    }
+
+    .cardImage {
+        width: 17.5rem;
+        height: 10.875rem;
+    }
+
+    .midText {
+        font-size: 1.125rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .cardsContainer {
+        justify-content: center;
+        width: 100%;
+        gap: 2.5rem;
+    }
+
+    .midText {
+        font-size: 1.125rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .cardsContainer {
+        justify-content: center;
+    }
+}
