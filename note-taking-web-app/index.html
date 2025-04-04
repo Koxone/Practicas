@@ -1,33 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.js" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Note-taking web app</title>
-</head>
-<body>
-
-  All Notes
-  Archived Notes
-  Tags
-
-  <!-- Page title -->
-
-  Search by title, content, or tags
-
-  Create New Note
-
-  Tags
-  Last Edited
-
-  Archive Note
-  Delete Note
-
-  Save Note
-  Cancel
-<script src="main.js"></script>
-</body>
+    <title>Note-taking web app</title>
+  </head>
+  <body>
+    <main class="mainContainer">
+      <header>
+        <div class="headerContainer">
+          <img src="assets/images/logo.svg" alt="" />
+        </div>
+      </header>
+      <div class="generalContainer">
+        <div class="titleContainer">
+          <h1 class="titleText">All Notes</h1>
+        </div>
+        <section class="allNotesContainer">
+          <article class="noteCard" data-id="note-1">
+            <h2 class="noteTitleText">React Performance Optimization</h2>
+            <ul class="noteTags">
+              <li>
+                <span class="tag" data-tag="tagNumber-1">Dev</span>
+              </li>
+              <li>
+                <span class="tag" data-tag="tagNumber-2">React</span>
+              </li>
+            </ul>
+            <time datetime="2025-04-03" class="noteTimeTag" data-time="note-1">
+              03 Apr 2025
+            </time>
+          </article>
+          <button class="mainNewNoteButton"><!--Absolute-->
+            <img src="./assets/images/icon-plus.svg" alt="">
+          </button>
+        </section>
+        <section class="noteDetailContainer">
+          <header class="noteDetailHeader">
+            <button class="backButton">
+              <img src="./assets/images/icon-arrow-left.svg" alt="" />
+              <span class="backButtonText"> Go Back </span>
+            </button>
+            <button class="noteDetailDeleteButton">
+              <img src="./assets/images/icon-delete.svg" alt="" />
+            </button>
+            <button class="noteDetailArchiveButton">
+              <img src="./assets/images/icon-archive.svg" alt="" />
+            </button>
+            <button class="noteDetailCancelButton">Cancel</button>
+            <button class="noteDetailSaveButton">Save Note</button>
+          </header>
+          <hr />
+          <div class="noteDetailContentContainer" data-id="note-1">
+            <div class="noteDetailTitleContainer">
+              <h2 class="noteDetailTitle">
+                <!--Rellenar con class="noteTitleText" textContent en JS-->
+              </h2>
+            </div>
+            <div class="innerInfoContainer">
+              <div class="innerTopContainer">
+                <img src="./assets/images/icon-tag.svg" alt="" />
+                <div class="noteDetailTagsTextContainer">
+                  <span data-tag="tagNumber-1">Dev</span>,<!--Rellenar con JS-->
+                  <span data-tag="tagNumber-2">React</span
+                  ><!--Rellenar con JS-->
+                </div>
+              </div>
+              <div class="innerBottomContainer">
+                <img src="./assets/images/icon-clock.svg" alt="" />
+                <div class="noteDetailEditedTextContainer">
+                  <span data-time="note-1">
+                    03 Apr 2025<!--Rellenar con JS-->
+                  </span>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="noteDetailTextContentContainer">
+              <textarea data-id="note-1"><!--Rellenar con JS-->
+                <!--User text here-->
+              </textarea>
+            </div>
+          </div>
+        </section>
+        <section class="newNoteContainer">
+          <header class="newNoteHeader">
+            <button class="backButton">
+              <img src="./assets/images/icon-arrow-left.svg" alt="" />
+              <span class="backButtonText"> Go Back </span>
+            </button>
+            <button class="newNoteCancelButton">Cancel</button>
+            <button class="newNoteSaveButton">Save Note</button>
+          </header>
+          <hr>
+          <div class="newNoteDetailsContainer">
+            <div class="newNoteTitlecontainer">
+              <input type="text" class="newTitleInput" placeholder="Enter a Title">
+            </div>
+            <div class="newNoteInfoContainer">
+              <div class="newNoteTopContainer">
+                <img src="./assets/images/icon-tag.svg" alt="" />
+                <div class="newNoteTagsTextContainer">
+                  <input type="text" class="newTagsInput" placeholder="Add tags separated by commas (e.g. Work, Planning)">
+                </div>
+              </div>
+              <div class="newNoteBottomContainer">
+                <img src="./assets/images/icon-clock.svg" alt="" />
+                <div class="newNoteLastEditedTextContainer">
+                  <p>
+                    Not yet saved
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="newNoteTextContentContainer">
+            <textarea placeholder="Start typing your note here..."></textarea>
+          </div>
+        </section>
+      </div>
+      <footer>
+        <button type="button" class="footerButton"><!--allNotesContainer-->
+          <img src="./assets/images/icon-home.svg" alt="" />
+        </button>
+        <button type="button" class="footerButton"><!--?-->
+          <img src="./assets/images/icon-search.svg" alt="" />
+        </button>
+        <button type="button" class="footerButton"><!--?-->
+          <img src="./assets/images/icon-archive.svg" alt="" />
+        </button>
+        <button type="button" class="footerButton"><!--?-->
+          <img src="./assets/images/icon-tag.svg" alt="" />
+        </button>
+        <a href="settings.html" class="footerButton"><!--settings.html-->
+          <img src="./assets/images/icon-settings.svg" alt="" />
+        </a>
+      </footer>
+    </main>
+    <script src="main.js"></script>
+  </body>
 </html>

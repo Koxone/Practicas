@@ -3,76 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/auth.css">
   
-  <title>Frontend Mentor | Note-taking web app</title>
+  <title>Note-taking web app | Settings</title>
 </head>
 <body>
-
-  All Notes
-  Archived Notes
-  Tags
-
-  Search by title, content, or tags
-
-  Color Theme
-  Font Theme
-  Change Password
-  Logout
-
-  <!-- Color theme content start -->
-
-  Color Theme
-  Choose your color theme:
-
-  Light Mode
-  Pick a clean and classic light theme
-
-  Dark Mode
-  Select a sleek and modern dark theme
-
-  System
-  Adapts to your device's theme
-
-  Apply Changes
-
-  <!-- Color theme content end -->
-
-  <!-- Font theme content start -->
-
-  Font Theme
-  Choose your font theme:
-
-  Sans-serif
-  Clean and modern, easy to read.
-
-  Serif
-  Classic and elegant for a timeless feel.
-
-  Monospace
-  Code-like, great for a technical vibe.
-
-  Apply Changes
-
-  <!-- Font theme content end -->
-
-  <!-- Change password content start -->
-
-  Change Password
-
-  Change Password
-
-  Old Password
-
-  New Password
-  At least 8 characters
-
-  Confirm New Password
-
-  Save Password
-
-  <!-- Change password content end -->
-
+  <main class="setMainContainer">
+    <header>
+      <div class="headerContainer">
+        <img src="assets/images/logo.svg" alt="">
+      </div>
+    </header>
+    <div class="setGeneralContainer">
+      <div class="setTitleContainer">
+        <h1 class="setTitleText">
+          Settings
+        </h1>
+      </div>
+      <nav class="settingsMenu">
+        <ul>
+          <li>
+            <button class="settingsButton" type="button" data-section="color">
+              <img src="./assets/images/icon-sun.svg" alt="">
+              <span class="settingsOptionText">
+                Color Theme
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="settingsButton" type="button" data-section="font">
+              <img src="./assets/images/icon-font.svg" alt="">
+              <span class="settingsOptionText">
+                Font Theme
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="settingsButton" type="button" data-section="changePassword">
+              <img src="./assets/images/icon-lock.svg" alt="">
+              <span class="settingsOptionText">
+                Change Password
+              </span>
+            </button>
+          </li>
+          <hr>
+          <li>
+            <button class="settingsButton" type="button" data-section="logout">
+              <img src="./assets/images/icon-logout.svg" alt="">
+              <span class="settingsOptionText">
+                Logout
+              </span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <footer>
+      <button type="button" class="footerButton">
+        <img src="./assets/images/icon-home.svg" alt="">
+      </button>
+      <button type="button" class="footerButton">
+        <img src="./assets/images/icon-search.svg" alt="">
+      </button>
+      <button type="button" class="footerButton">
+        <img src="./assets/images/icon-archive.svg" alt="">
+      </button>
+      <button type="button" class="footerButton">
+        <img src="./assets/images/icon-tag.svg" alt="">
+      </button>
+      <button type="button" class="footerButton">
+        <img src="./assets/images/icon-settings.svg" alt="">
+      </button>
+    </footer>
+  </main>
+  <script src="main.js"></script>
 </body>
 </html>

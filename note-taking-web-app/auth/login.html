@@ -3,29 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/auth.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Pacifico&display=swap" rel="stylesheet">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Note-taking web app</title>
+  <title>Note-taking web app | Login</title>
 </head>
 <body>
-
-  Welcome to Notes
-  Please log in to continue
-
-  Email Address
-  email@example.com
-
-  Password
-  Forgot
-
-  Login
-
-  Or log in with:
-
-  Google
-
-  No account yet? Sign Up
-
+  <main class="mainContainer">
+    <div class="generalContainer">
+      <div class="logoContainer">
+        <img src="../assets/images/Feather.png" alt=""><p class="logoText">KoxNotes</p>
+      </div>
+      <div class="titleContainer">
+        <h1 class="titleText">
+          Welcome to Note
+        </h1>
+        <p class="subtitleText">
+          Please log in to continue
+        </p>
+      </div>
+      <div class="formContainer">
+        <form action="/login" method="post">
+          <div class="inputWrapper">
+            <label for="loginMail">
+              Email Address
+            </label>
+            <input id="loginMail" type="email" placeholder="email@example.com" required>
+          </div>
+          <div class="inputWrapper">
+            <div class="loginTopContainer">
+              <label for="loginPassword">
+                Password
+              </label>
+              <a href="forgot-password.html" class="forgotPassword">
+                Forgot
+              </a>
+            </div>
+            <input type="password" id="loginPassword" required>
+            <img src="../assets/images/icon-show-password.svg" alt="">
+          </div>
+          <button class="mainButton" type="submit">
+            Login
+          </button>
+        </form>
+        <div class="spacer"></div>
+      </div>
+      <section class="socialMediaLogin">
+        <p class="subtitleText">
+          Or log in with:
+        </p>
+        <button class="socialButton">
+          <img src="../assets/images/icon-google.svg" alt="">
+          <span class="socialButtonText">Google</span>
+        </button>
+      </section>
+      <div class="spacer"></div>
+      <section class="notYet">
+        <p class="subtitleText">
+          No account yet?
+        </p>
+        <a href="signup.html" class="goToText">
+          Sign Up
+        </a>
+      </section>
+    </div>
+  </main>
+  <script src="../authJS/auth.js"></script>
 </body>
 </html>

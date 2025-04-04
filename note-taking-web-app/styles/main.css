@@ -1,0 +1,300 @@
+:root {
+    /* Neutral */
+    --neutral-950: #0e1218;
+    --neutral-900: #191e25;
+    --neutral-800: #232530;
+    --neutral-700: #2a3038;
+    --neutral-600: #525866;
+    --neutral-500: #717784;
+    --neutral-400: #a9a9ae;
+    --neutral-300: #cacfd8;
+    --neutral-200: #e0e4ea;
+    --neutral-100: #f3f5f8;
+    --neutral-50:  #f5f7fa;
+    --neutral-0:   #ffffff;
+  
+    /* Blue */
+    --blue-700: #2547d0;
+    --blue-500: #335cff;
+    --blue-50:  #ebf1ff;
+  
+    /* Green */
+    --green-500: #21c16b;
+    --green-100: #dff8e9;
+  
+    /* Red */
+    --red-500: #fb3848;
+    --red-100: #ffd5d8;
+}
+
+:root {
+    /* Inter font family */
+    --font-inter-regular: 'Inter-Regular';
+    --font-inter-medium: 'Inter-Medium';
+    --font-inter-semibold: 'Inter-SemiBold';
+    --font-inter-bold: 'Inter-Bold';
+  
+    /* Noto Serif font family */
+    --font-notoserif-regular: 'NotoSerif-Regular';
+    --font-notoserif-medium: 'NotoSerif-Medium';
+    --font-notoserif-semibold: 'NotoSerif-SemiBold';
+    --font-notoserif-bold: 'NotoSerif-Bold';
+  
+    /* Source Code Pro font family */
+    --font-sourcecodepro-regular: 'SourceCodePro-Regular';
+    --font-sourcecodepro-medium: 'SourceCodePro-Medium';
+    --font-sourcecodepro-semibold: 'SourceCodePro-SemiBold';
+    --font-sourcecodepro-bold: 'SourceCodePro-Bold';
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    background-color: var(--neutral-700);
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.generalContainer {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    border-radius: 16px;
+    padding: 48px 16px;
+    background-color: var(--neutral-950);
+}
+
+.logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    height: 36px;
+    margin-bottom: 16px;
+}
+
+.logoText {
+    line-height: 1;
+    font-size: 23px;
+    font-family: Pacifico;
+    color: white;
+    margin: 0%;
+    padding: 0%;
+}
+
+.titleContainer {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.titleText {
+    color: white;
+    font-size: 24px;
+    font-family: 'Inter';
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: -0.5px;
+    display: inline;
+}
+
+.subtitleText {
+    color: white;
+    font-size: 14px;
+    font-family: 'Inter';
+    font-weight: 200;
+    line-height: 130%;
+    letter-spacing: -0.2px;
+    text-align: center;
+    display: inline;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    gap: 16px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+}
+
+.inputWrapper label {
+    color: white;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    letter-spacing: -0.2px;
+}
+
+.inputWrapper input {
+    all: unset;
+    border-radius: 8px;
+    padding: 12px 16px;
+    border: 1px solid var(--neutral-600);
+    color: white;
+}
+
+.inputWrapper input::placeholder {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Inter';
+    line-height: 130%;
+    letter-spacing: -0.2px;
+}
+
+.inputWrapper img {
+    position: absolute;
+    top: 33px;
+    right: 12px;
+    cursor: pointer;
+}
+
+.loginTopContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.forgotPassword {
+    text-decoration: none;
+    font-size: 12px;
+    font-family: 'Inter';
+    line-height: 140%;
+    color: var(--neutral-400);
+    cursor: pointer;
+}
+
+.forgotPassword:hover {
+    color: var(--blue-500);
+}
+
+.mainButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    line-height: 120%;
+    letter-spacing: -0.3px;
+    padding: 12.5px 134.5px;
+    background-color: var(--blue-500);
+    border: none;
+    cursor: pointer;
+}
+
+.mainButton:hover {
+    background-color: var(--blue-700);
+}
+
+.socialMediaLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 24px 0 0 0;
+    gap: 16px;
+}
+
+.socialButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 113.5px;
+    border-radius: 12px;
+    background-color: none;
+    background: none;
+    border: 1px solid var(--neutral-600);
+    color: white;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: -0.3px;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.socialButton:hover {
+    background-color: var(--neutral-800);
+}
+
+.notYet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 16px;
+}
+
+.goToText {
+    text-decoration: none;
+    font-family: 'Inter';
+    color: var(--neutral-300);
+    cursor: pointer;
+}
+
+.goToText:hover {
+    color: var(--blue-500);
+}
+
+.spacer {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--neutral-800);
+    margin-top: 16px;
+}
+
+.minimumWrapper {
+    position: relative;
+}
+
+.minimumWrapper img {
+    position: absolute;
+    top: 5%;
+    left: 0%;
+    width: 16px;
+}
+
+.minimumWrapper .smText {
+    margin-left: 24px;
+}
+
+.smText {
+    color: white;
+    font-family: 'Inter';
+    font-size: 14px;
+    line-height: 120%;
+    letter-spacing: -0.2px;
+}
+  
+  

@@ -3,29 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/auth.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Pacifico&display=swap" rel="stylesheet">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   
-  <title>Frontend Mentor | Note-taking web app</title>
+  <title>Note-taking web app | Sign Up</title>
 </head>
 <body>
-
-  Create Your Account
-  Sign up to start organizing your notes and boost your productivity.
-
-  Email Address
-  email@example.com
-
-  Password
-  At least 8 characters
-
-  Sign Up
-
-  Or log in with:
-
-  Google
-
-  Already have an account? Login
-
+  <main class="mainContainer">
+    <div class="generalContainer">
+      <div class="logoContainer">
+        <img src="../assets/images/Feather.png" alt=""><p class="logoText">KoxNotes</p>
+      </div>
+      <div class="titleContainer">
+        <h1 class="titleText">
+          Create Your Account
+        </h1>
+        <p class="subtitleText">
+          Sign up to start organizing your notes and boost <br> your productivity.
+        </p>
+      </div>
+      <div class="formContainer">
+        <form action="/signup" method="post">
+          <div class="inputWrapper">
+            <label for="signUpMail">
+              Email Address
+            </label>
+            <input id="signUpMail" type="email" placeholder="email@example.com" required>
+          </div>
+          <div class="inputWrapper">
+            <label for="signUpPassword">
+              Password
+            </label>
+            <input type="password" id="signUpPassword" required>
+            <img src="../assets/images/icon-show-password.svg" alt="">
+            <div class="minimumWrapper">
+              <img src="../assets/images/icon-info.svg" alt="">
+              <p class="smText">
+                At least 8 characters
+              </p>
+            </div>
+          </div>
+          <button class="mainButton" type="submit">
+            Sign up
+          </button>
+        </form>
+        <div class="spacer"></div>
+      </div>
+      <section class="socialMediaLogin">
+        <p class="subtitleText">
+          Or log in with:
+        </p>
+        <button class="socialButton">
+          <img src="../assets/images/icon-google.svg" alt="">
+          <span class="socialButtonText">Google</span>
+        </button>
+      </section>
+      <div class="spacer"></div>
+      <section class="notYet">
+        <p class="subtitleText">
+          Already have an account?
+        </p>
+        <a href="login.html" class="goToText">
+          Login
+        </a>
+      </section>
+    </div>
+  </main>
+  <script src="../authJS/auth.js"></script>
 </body>
 </html>
