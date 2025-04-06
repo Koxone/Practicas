@@ -63,14 +63,36 @@ body {
 }
 
 .mainContainer {
+    display: flex; 
+    flex-direction: column; 
+    width: 100%; 
+    min-height: 100vh;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.generalContainer {
+    display: flex; 
+    flex-direction: column; 
+    width: 100%; 
+    flex: 1; 
+    overflow-y: auto; 
+    padding: 16px 16px 0 16px; 
+}
+
+footer {
+    display: flex; 
+    padding: 12px 32px; 
+    justify-content: space-between; 
+    background-color: var(--neutral-950); 
+    width: 100%; 
+    position: sticky; 
+    bottom: 0;
+}
+
+.logoContainer {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh; /* Back to fixed height */
-    max-height: 100vh; /* Re-add max-height */
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Prevent scrolling at this level */
+    gap: 10px;
 }
 
 header {
@@ -81,36 +103,12 @@ header {
     padding: 13px 16px;
     background-color: var(--neutral-800);
 }
-
-.logoContainer {
-    display: flex;
-    gap: 10px;
-}
   
 .logoText {
     line-height: 1;
     font-size: 23px;
     font-family: Pacifico;
     color: white;
-}
-
-.generalContainer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    flex: 1;
-    overflow-y: hidden;
-    padding: 16px 16px 0 16px;
-}
-
-footer {
-    display: flex;
-    padding: 12px 32px;
-    justify-content: space-between;
-    background-color: var(--neutral-950);
-    width: 100%;
-    position: sticky;
-    bottom: 0;
 }
 
 .footerButton {
