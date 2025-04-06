@@ -1,5 +1,7 @@
 //Global Variables
-let userCredentials = []
+let userCredentials = [];
+let errorFound = false;
+let accessGranted = false;
 
 //Local Storage Variables
 let savedCredentials = localStorage.getItem('Credentials') || ''
@@ -88,7 +90,6 @@ function errorHandler() {
 
   mainButtons.forEach((button) => {
     button.addEventListener('click', (event) => {
-      let hasError = false
 
       inputs.forEach((input) => {
         const errorMessage = input.nextElementSibling
@@ -104,14 +105,15 @@ function errorHandler() {
           input.classList.add('error')
           errorMessage.style.display = 'block'
           button.style.marginTop = '8px'
-          hasError = true
+          errorFound = true
         }
       })
 
-      if (hasError === true) {
+      if (errorFound === true) {
         event.preventDefault()
         return
       } else {
+        console.log('No errors found')
         // window.location.href = '../index.html'
       }
     })
@@ -119,27 +121,48 @@ function errorHandler() {
 }
 errorHandler()
 
+//Function to stop default action of form
+function stopForm() {
+    const loginForm = document.getElementById('formLogin');
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            return;
+        })
+    }
+}
+stopForm()
+
 //Function to handle login with Local Storage Credentials
 function loginHandler() {
     const loginButton = document.getElementById('loginButton')
   
     if (loginButton) {
       loginButton.addEventListener('click', (event) => {
-        event.preventDefault()
         const mailInput = document.getElementById('loginMail')
         const passwordInput = document.getElementById('loginPassword')
   
         if (mailInput.value !== '' && passwordInput.value !== '') {
-          let mailValue = mailInput.value;
-          let passValue = passwordInput.value;
-
-          const foundUSer = userCredentials.find((userObj) => 
-            userObj.user === mailValue && userObj.password === passValue);
-
-          if (foundUSer) {
-            window.location.href = '../index.html'
+          let mailValue = mailInput.value
+          let passValue = passwordInput.value
+  
+          const userExists = userCredentials.find(
+            (userObj) => userObj.user === mailValue
+          )
+  
+          if (userExists) {
+            const passworsIsCorrect = userExists.password === passValue
+  
+            if (passworsIsCorrect) {
+              console.log('Login Granted: User and Password are correct')
+              window.location.href = '../index.html';
+            } else {
+              console.log('Wrong Password')
+              return;
+            }
           } else {
-            console.log('FAIL!')
+              console.log('User not found')
+              return;
           }
         }
       })
