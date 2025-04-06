@@ -213,6 +213,22 @@ form {
   bottom: 6px;
 }
 
+.wrongMailOrPassword {
+  display: none;
+  color: red;
+  font-family: 'Inter';
+  font-size: 12px;
+  margin-bottom: -2px;
+}
+
+.emailExistsErrorMessage {
+  display: none;
+  color: red;
+  font-family: 'Inter';
+  font-size: 12px;
+  margin-bottom: -2px;
+}
+
 .inputWrapper input::placeholder {
   font-size: 14px;
   font-weight: 400;

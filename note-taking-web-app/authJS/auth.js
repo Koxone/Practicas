@@ -7,10 +7,27 @@ let accessGranted = false;
 let savedCredentials = localStorage.getItem('Credentials') || ''
 
 //Quick Test Section
-console.log('Prueba Credentials:', userCredentials)
 console.log('Prueba Credentials Local Storage:', savedCredentials)
 
 //Functions Section
+
+//Function to add error classs
+function addError() {
+  const inputs = document.querySelectorAll('#signUpMail, #signUpPassword, #loginMail, #loginPassword, #newPassword, #confirmNewPassword');
+  inputs.forEach(input => {
+      const errorMailOrPass = document.querySelectorAll('.wrongMailOrPassword');
+      const errorMessage = input.nextElementSibling;
+      
+      if (!input.classList.contains('error')) {
+          input.classList.add('error');
+
+          errorMailOrPass.forEach((message) => {
+              message.style.display = 'block'
+          })
+          errorMessage.style.display = 'none'
+      }
+  });
+}
 
 //Function to save user and password
 function saveSignUpCredentials() {
@@ -29,10 +46,8 @@ function saveSignUpCredentials() {
       input.addEventListener('input', (event) => {
         if (event.target.id === 'signUpMail') {
           user = event.target.value
-          console.log('Prueba User:', user)
         } else if (event.target.id === 'signUpPassword') {
           password = event.target.value
-          console.log('Prueba Password:', password)
         }
       })
     }
@@ -40,13 +55,90 @@ function saveSignUpCredentials() {
 
   if (signUpButton) {
     signUpButton.addEventListener('click', (event) => {
+      const userExists = userCredentials.some(
+        (credential) => credential.user === user
+      )
+      if (userExists) {
+        console.log('Email already exists')
+        return
+      }
+
+      if (user === savedCredentials.user) {
+        console.log('User already exists')
+        return
+      }
+
       if (user !== '' && password !== '') {
         userCredentials.push({
           user: user,
           password: password,
         })
         localStorage.setItem('Credentials', JSON.stringify(userCredentials))
-        console.log('Prueba Credentials:', userCredentials)
+        window.location.href = '../index.html'
+      } else {
+        console.log('There is a field empty')
+        event.preventDefault()
+        return
+      }
+    })
+  }
+}
+saveSignUpCredentials()
+
+//Function to save user and password
+function saveSignUpCredentials() {
+  const inputs = document.querySelectorAll('#signUpMail, #signUpPassword')
+  const signUpButton = document.getElementById('signUpButton')
+  let user = ''
+  let password = ''
+
+  const localStoredCredentials = localStorage.getItem('Credentials')
+  if (localStoredCredentials) {
+    userCredentials = JSON.parse(localStoredCredentials)
+  }
+
+  inputs.forEach((input) => {
+    if (input) {
+      input.addEventListener('input', (event) => {
+        if (event.target.id === 'signUpMail') {
+          user = event.target.value
+        } else if (event.target.id === 'signUpPassword') {
+          password = event.target.value
+        }
+      })
+    }
+  })
+
+  if (signUpButton) {
+    signUpButton.addEventListener('click', (event) => {
+      const userExists = userCredentials.some(
+        (credential) => credential.user === user
+      )
+      if (userExists) {
+        const emailDuplicated = document.getElementById('emailExistsErrorMessage');
+        const hideEmptyError = document.querySelectorAll('#errorEmptyEmail, #errorEmptyPassword')
+        addError()
+        hideEmptyError.forEach((error) => {
+            error.style.display = 'none'
+        })
+        emailDuplicated.style.display = 'block'
+        console.log('Email already exists')
+        return
+      }
+
+      if (user === savedCredentials.user) {
+        addError()
+        console.log('User already exists')
+        return
+      }
+
+      if (user !== '' && password !== '') {
+        userCredentials.push({
+          user: user,
+          password: password,
+        })
+        localStorage.setItem('Credentials', JSON.stringify(userCredentials))
+        window.location.href = '../index.html'
       } else {
         console.log('There is a field empty')
         event.preventDefault()
@@ -73,7 +165,6 @@ function showPassword() {
         } else {
           input.type = 'password'
           button.setAttribute('src', '../assets/images/icon-hide-password.svg')
-          console.log('no funciona')
         }
       })
     })
@@ -112,9 +203,6 @@ function errorHandler() {
       if (errorFound === true) {
         event.preventDefault()
         return
-      } else {
-        console.log('No errors found')
-        // window.location.href = '../index.html'
       }
     })
   })
@@ -158,10 +246,12 @@ function loginHandler() {
               window.location.href = '../index.html';
             } else {
               console.log('Wrong Password')
+              addError()
               return;
             }
           } else {
               console.log('User not found')
+              addError()
               return;
           }
         }
