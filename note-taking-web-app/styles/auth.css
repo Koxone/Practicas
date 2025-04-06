@@ -66,8 +66,8 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
-    max-height: 100vh;
+    min-height: 100vh; /* Changed from height: 100vh */
+    /* Removed max-height: 100vh */
     justify-content: center;
     align-items: center;
 }
@@ -97,10 +97,8 @@ header {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: auto;
-    flex: 1 1 auto;
-    overflow-y: auto;
-    border: 1px solid white;
+    flex: 1;
+    overflow-y: auto; /* Changed from overflow: hidden */
     padding: 16px 16px 0 16px;
 }
 
@@ -109,6 +107,9 @@ footer {
     padding: 12px 32px;
     justify-content: space-between;
     background-color: var(--neutral-950);
+    width: 100%;
+    position: sticky;
+    bottom: 0;
 }
 
 .footerButton {
