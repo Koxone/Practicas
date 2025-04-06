@@ -66,10 +66,11 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 100vh; /* Changed from height: 100vh */
-    /* Removed max-height: 100vh */
+    height: 100vh; /* Back to fixed height */
+    max-height: 100vh; /* Re-add max-height */
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* Prevent scrolling at this level */
 }
 
 header {
