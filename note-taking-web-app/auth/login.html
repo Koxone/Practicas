@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles/main.css">
-  <link rel="stylesheet" href="../styles/auth.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -35,6 +34,9 @@
               Email Address
             </label>
             <input id="loginMail" type="email" placeholder="email@example.com" required>
+            <div id="errorEmptyEmailL" class="errorEmptyEmail">
+              Cannot be empty
+            </div>
           </div>
           <div class="inputWrapper">
             <div class="loginTopContainer">
@@ -46,9 +48,12 @@
               </a>
             </div>
             <input type="password" id="loginPassword" required>
-            <img src="../assets/images/icon-show-password.svg" alt="">
+            <div id="errorEmptyPasswordL" class="errorEmptyPassword">
+              Cannot be empty
+            </div>
+            <img id="showPassword" src="../assets/images/icon-hide-password.svg" alt="">
           </div>
-          <button class="mainButton" type="submit">
+          <button id="loginButton" class="mainButton">
             Login
           </button>
         </form>
@@ -75,5 +80,6 @@
     </div>
   </main>
   <script src="../authJS/auth.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,460 @@
+:root {
+    /* Neutral */
+    --neutral-950: #0e1218;
+    --neutral-900: #191e25;
+    --neutral-800: #232530;
+    --neutral-700: #2a3038;
+    --neutral-600: #525866;
+    --neutral-500: #717784;
+    --neutral-400: #a9a9ae;
+    --neutral-300: #cacfd8;
+    --neutral-200: #e0e4ea;
+    --neutral-100: #f3f5f8;
+    --neutral-50: #f5f7fa;
+    --neutral-0: #ffffff;
+  
+    /* Blue */
+    --blue-700: #2547d0;
+    --blue-500: #335cff;
+    --blue-50: #ebf1ff;
+  
+    /* Green */
+    --green-500: #21c16b;
+    --green-100: #dff8e9;
+  
+    /* Red */
+    --red-500: #fb3848;
+    --red-100: #ffd5d8;
+}
+  
+:root {
+    /* Inter font family */
+    --font-inter-regular: 'Inter-Regular';
+    --font-inter-medium: 'Inter-Medium';
+    --font-inter-semibold: 'Inter-SemiBold';
+    --font-inter-bold: 'Inter-Bold';
+  
+    /* Noto Serif font family */
+    --font-notoserif-regular: 'NotoSerif-Regular';
+    --font-notoserif-medium: 'NotoSerif-Medium';
+    --font-notoserif-semibold: 'NotoSerif-SemiBold';
+    --font-notoserif-bold: 'NotoSerif-Bold';
+  
+    /* Source Code Pro font family */
+    --font-sourcecodepro-regular: 'SourceCodePro-Regular';
+    --font-sourcecodepro-medium: 'SourceCodePro-Medium';
+    --font-sourcecodepro-semibold: 'SourceCodePro-SemiBold';
+    --font-sourcecodepro-bold: 'SourceCodePro-Bold';
+}
+  
+* {
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    background-color: var(--neutral-950);
+}
+ 
+.noteDetailContainer, 
+.newNoteContainer { /*Change with Javascript*/
+    display: none;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    justify-content: left;
+    align-items: center;
+    padding: 13px 16px;
+    background-color: var(--neutral-800);
+}
+
+.logoContainer {
+    display: flex;
+    gap: 10px;
+}
+  
+.logoText {
+    line-height: 1;
+    font-size: 23px;
+    font-family: Pacifico;
+    color: white;
+}
+
+.generalContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    overflow: hidden;
+    padding: 16px 16px 0 16px;
+}
+
+footer {
+    display: flex;
+    padding: 12px 32px;
+    justify-content: space-between;
+    background-color: var(--neutral-950);
+}
+
+.footerButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 19.1px;
+    background-color: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.footerButton:hover {
+    background: var(--neutral-700);
+    border-radius: 4px;
+}
+
+.footerButton:hover svg path { /*Change home and search fill with Javascript*/
+    stroke: var(--blue-500);
+}
+
+.spacer {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--neutral-800);
+}
+
+.titleText {
+    color: white;
+    font-size: 24px;
+    line-height: 120%;
+    letter-spacing: -0.5px;
+    font-family: 'Inter';
+}
+
+.allNotesContainer { /*Change height to auto once everything is done*/
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: 100%;
+    padding: 8px 8px 0 8px;
+    margin-top: 24px;
+    overflow-y: auto;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+    margin-bottom: 4.5px;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+}
+
+.mainNewNoteButton {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 12%;
+    right: 6%;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--blue-500);
+    border: none;
+    cursor: pointer;
+}
+
+.noteTags {
+    display: flex;
+    gap: 4px;
+}
+
+li {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background-color: var(--neutral-600);
+    padding: 2px 6px;
+    color: white;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 120%;
+    letter-spacing: -0.2px;
+}
+
+h2 {
+    color: white;
+    font-weight: 600;
+    font-family: 'Inter';
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: -0.3px;
+}
+
+time {
+    color: white;
+    font-weight: 200;
+    font-family: 'Inter';
+    font-size: 12px;
+    line-height: 120%;
+    letter-spacing: -0.2px;
+    margin-bottom: 12px;
+}
+
+/*---------------------------------------------------------------------------------Note Detail Screen--------------------------------------------------------------*/
+
+.noteDetailContainer {
+    display: none; /*Use Javascript to change*/
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    overflow: hidden;
+}
+
+.noteDetailHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    background-color: unset;
+    padding: 0 0 12px 0;
+}
+
+.newNoteHeader .backButton {
+    margin-right: auto;
+}
+
+.newNoteCancelButton {
+    margin-right: 16px;
+}
+
+.newNoteHeader {
+    background-color: unset;
+    padding: 0px 16px 13px 0;
+}
+
+.backButton, 
+.noteDetailDeleteButton, 
+.noteDetailArchiveButton, 
+.noteDetailCancelButton, 
+.noteDetailSaveButton, 
+.newNoteCancelButton, 
+.newNoteSaveButton {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 200;
+    line-height: 130%;
+    letter-spacing: -0.2px;
+    font-family: 'Inter';
+    cursor: pointer;
+}
+
+.noteDetailSaveButton, 
+.newNoteSaveButton {
+    color: var(--blue-500);
+}
+
+.noteDetailTitleContainer {
+    margin-top: 12px;
+}
+
+.noteDetailContentContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 12px;
+}
+
+.noteDetailTitle {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: white;
+}
+
+.innerInfoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15.5px;
+}
+
+.innerTopContainer, 
+.innerBottomContainer, 
+.newNoteTopContainer, 
+.newNoteBottomContainer {
+    display: flex;
+    color: white;
+    font-family: 'Inter';
+}
+
+.innerTopContainer span,
+.innerBottomContainer span, 
+.noteDetailTagsTextContainer, 
+.noteDetailEditedTextContainer, 
+.newNoteTopContainer span, 
+.newNoteBottomContainer span, 
+.newNoteBottomContainer p {
+    display: flex;
+    gap: 6px;
+    font-weight: 200;
+}
+
+.innerTopContainer {
+    gap: 96px;
+}
+
+.innerBottomContainer {
+    gap: 49px;
+}
+
+.noteDetailTextContentContainer, 
+.newNoteTextContentContainer {
+    display: flex;
+    height: 100%;
+}
+
+.noteDetailTextContentContainer textarea, 
+.newNoteTextContentContainer textarea { /*Use Javascript to make it work*/
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    padding: 0px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+    line-height: 1;
+    color: white;
+    background-color: transparent;
+    text-align: left;
+    vertical-align: top;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    overflow: auto;
+}
+
+.noteDetailTextContentContainer textarea:focus {
+    outline: none;
+}
+
+textarea::-webkit-scrollbar {
+    display: none;
+}
+
+/*---------------------------------------------------------------------------------New Note Screen--------------------------------------------------------------*/
+
+.newNoteContainer { /*Change with Javascript*/
+    flex-direction: column;
+}
+
+.newNoteTitlecontainer input, 
+.newNoteInfoContainer input {
+    all: unset;
+}
+
+.newNoteTopContainer, 
+.newNoteBottomContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.newNoteTagsTextContainer input {
+    all: unset;
+    padding: 0px 0px 20px 0px;
+}
+
+.newNoteTagsTextContainer .newTagsInput::placeholder {
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: -0.5px;
+    font-weight: 300;
+    white-space: pre-line;
+    text-align: top;
+}
+
+.newNoteTitlecontainer {
+    height: auto;
+    margin-bottom: 12px;
+}
+
+.newNoteTitlecontainer .newTitleInput {
+    height: 29px;
+    color: white;
+    font-family: 'Inter';
+    font-size: 24px;
+}
+
+.newNoteTitlecontainer .newTitleInput::placeholder {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Inter';
+}
+
+.newNoteDetailsContainer {
+    margin: 12px 0 12px 0;
+}
+
+.newNoteTextContentContainer {
+    margin-top: 12px;
+}
+
+.newNoteContainer {
+    height: 100%;
+}
+
+/*---------------------------------------------------------------------------------Settings Screen--------------------------------------------------------------*/
+
+.settingsSpacer {
+    margin: 17.5px 0 17.5px 0;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--neutral-800);
+}
+
+.settingsUl li {
+    background: none;
+    border: none;
+    background-color: unset;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.settingsButton {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.stitleContainer {
+    margin-bottom: 24px;
+}
