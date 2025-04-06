@@ -99,7 +99,7 @@ header {
     flex-direction: column;
     width: 100%;
     flex: 1;
-    overflow-y: auto; /* Changed from overflow: hidden */
+    overflow-y: hidden;
     padding: 16px 16px 0 16px;
 }
 
