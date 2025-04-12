@@ -1,198 +1,187 @@
-//Function to handle login with Local Storage Credentials
-function loginHandler() {
-  const loginButton = document.getElementById('loginButton')
+//Function to load notes from wwith login
+function loadInitialState() {
+  window.addEventListener('DOMContentLoaded', () => {
+    const allNotesContainer = document.getElementById('allNotesContainer');
+    const titleContainer = document.getElementById('titleContainer');
+    const openNotes = document.querySelectorAll('.openNoteContainer');
+    const archivedNotesScreen = document.querySelector('.archivedNotesContainer');
+    const subtitle = document.querySelector('.archivedNotesSubtitle');
+    const logoText = document.querySelector('.logoText');
+    const elements = document.querySelectorAll(
+      'body, .mainContainer, .generalContainer, .backButtonText, li, .imgContainer, header, .spacer, .settingsButton, .backIcon'
+    );
 
-  if (loginButton) {
-    loginButton.addEventListener('click', (event) => {
-      event.preventDefault()
-      const mailInput = document.getElementById('loginMail')
-      const passwordInput = document.getElementById('loginPassword')
+    const arrow = document.querySelector('.backToSettingsButton');
+    const leftArrow = arrow ? arrow.querySelector('img') : null;
+    const settingsButtons = document.querySelectorAll('.settingsButton');
+    const optionsIcons = document.querySelectorAll('#option1Img, #option2Img, #option3Img');
 
-      if (mailInput.value !== '' && passwordInput.value !== '') {
-        let mailValue = mailInput.value
-        let passValue = passwordInput.value
-
-        const foundUSer = userCredentials.find(
-          (userObj) =>
-            userObj.user === mailValue && userObj.password === passValue
-        )
-
-        if (foundUSer) {
-          console.log('SUCCESS!')
-        } else {
-          console.log('FAIL!')
-        }
-      }
-    })
-  }
-}
-loginHandler()
-
-//Function for error state
-function errorHandler() {
-  const inputs = document.querySelectorAll(
-    '#signUpMail, #signUpPassword, #loginMail, #loginPassword, #newPassword, #confirmNewPassword'
-  )
-  const mainButtons = document.querySelectorAll('.mainButton')
-
-  mainButtons.forEach((button) => {
-    button.addEventListener('click', (event) => {
-      inputs.forEach((input) => {
-        const errorMessage = input.nextElementSibling
-
-        input.addEventListener('input', () => {
-          if (input.classList.contains('error')) {
-            input.classList.remove('error')
-            errorMessage.style.display = 'none'
-          }
-        })
-
-        if (input.value === '') {
-          input.classList.add('error')
-          errorMessage.style.display = 'block'
-          button.style.marginTop = '8px'
-          errorFound = true
-        }
-      })
-
-      if (errorFound === true) {
-        event.preventDefault()
-        return
-      } else {
-        console.log('No errors found')
-        //   window.location.href = '../index.html'
-      }
-    })
-  })
-}
-errorHandler()
-
-//Function to add error classs
-function addError() {
-  const inputs = document.querySelectorAll(
-    '#signUpMail, #signUpPassword, #loginMail, #loginPassword, #newPassword, #confirmNewPassword'
-  )
-  inputs.forEach((input) => {
-    const errorMailOrPass = document.querySelectorAll('.wrongMailOrPassword')
-    const errorMessage = input.nextElementSibling
-
-    if (!input.classList.contains('error')) {
-      input.classList.add('error')
-
-      errorMailOrPass.forEach((message) => {
-        message.style.display = 'block'
-      })
-      errorMessage.style.display = 'none'
+    if (allNotesContainer) {
+      allNotesContainer.style.display = 'flex'; //flex
+      titleContainer.style.display = 'flex'; //flex
+      titleContainer.style.flexDirection = 'unset'; //unset
     }
-  })
-}
 
-//Function to handle login with Local Storage Credentials
-function loginHandler() {
-  const loginButton = document.getElementById('loginButton')
+    if (elements) {
+      elements.forEach((element) => {
+        if (currentColorTheme === 'lightMode') {
+          element.classList.add('lightMode');
+          if (backIcon) {
+            backIcon.forEach((icon) => {
+              changeSrc(icon);
+            });
+          }
 
-  if (loginButton) {
-    loginButton.addEventListener('click', (event) => {
-      const mailInput = document.getElementById('loginMail')
-      const passwordInput = document.getElementById('loginPassword')
+          if (optionsIcons) {
+            optionsIcons.forEach((icon) => {
+              changeSrc(icon);
+            });
+          }
 
-      if (mailInput.value !== '' && passwordInput.value !== '') {
-        let mailValue = mailInput.value
-        let passValue = passwordInput.value
+          if (settingsButtons) {
+            settingsButtons.forEach((button) => {
+              const img = button.querySelector('img');
+              const imgSrc = img.getAttribute('src');
+              const newSrc = imgSrc.replace('darkMode', 'lightMode');
+              img.setAttribute('src', newSrc);
+            });
+          }
 
-        const userExists = userCredentials.find(
-          (userObj) => userObj.user === mailValue
-        )
-
-        if (userExists) {
-          const passworsIsCorrect = userExists.password === passValue
-
-          if (passworsIsCorrect) {
-            console.log('Login Granted: User and Password are correct')
-            window.location.href = '../index.html'
-          } else {
-            console.log('Wrong Password')
-            addError()
-            return
+          if (arrow && leftArrow) {
+            leftArrow.src = './assets/images/icon-arrow-left-lightMode.svg';
           }
         } else {
-          console.log('User not found')
-          addError()
-          return
+          element.classList.remove('lightMode');
         }
-      }
-    })
-  }
-}
-loginHandler()
-
-//Function to save user and password
-function saveSignUpCredentials() {
-  const inputs = document.querySelectorAll('#signUpMail, #signUpPassword')
-  const signUpButton = document.getElementById('signUpButton')
-  let user = ''
-  let password = ''
-
-  const localStoredCredentials = localStorage.getItem('Credentials')
-  if (localStoredCredentials) {
-    userCredentials = JSON.parse(localStoredCredentials)
-  }
-
-  inputs.forEach((input) => {
-    if (input) {
-      input.addEventListener('input', (event) => {
-        if (event.target.id === 'signUpMail') {
-          user = event.target.value
-          console.log('Prueba User:', user)
-        } else if (event.target.id === 'signUpPassword') {
-          password = event.target.value
-          console.log('Prueba Password:', password)
-        }
-      })
+      });
     }
-  })
 
-  if (signUpButton) {
-    signUpButton.addEventListener('click', (event) => {
-      const userExists = userCredentials.some(
-        (credential) => credential.user === user
+    if (logoText) {
+      logoText.style.fontFamily = 'Pacifico';
+    }
+
+    if (openNotes) {
+      openNotes.forEach((note) => {
+        note.style.display = 'none';
+      });
+    }
+
+    if (archivedNotesScreen) {
+      archivedNotesScreen.style.display = 'none'; //none
+      subtitle.style.display = 'none'; //none
+    }
+
+    document.body.style.fontFamily = `${currentFontFamily}`;
+  });
+}
+loadInitialState();
+
+//Function to change Font Theme
+function changeFontOrColorTheme() {
+  const applyButton = document.getElementById('applyButton');
+  const resetButton = document.getElementById('resetButton');
+  const elements = document.querySelectorAll(
+    'body, .backButtonText, .generalContainer, .imgContainer, .mainContainer, header, .spacer, li, .settingsButton'
+  );
+
+  let fontFamilyselection = undefined;
+  let colorThemeSelection = undefined;
+
+  document.addEventListener('click', (event) => {
+    let label = event.target.closest('label');
+    let innerText = label.querySelector('.top');
+    if (
+      !(
+        (event.target.closest('label') && event.target.closest('.font')) ||
+        (event.target.closest('label') && event.target.closest('.color'))
       )
-      if (userExists) {
-        console.log('Email already exists')
-        return
+    ) {
+      return;
+    }
+
+    //Change Font Theme
+    if (event.target.closest('label') && event.target.closest('.font')) {
+      if (innerText.textContent === 'Sans-serif') {
+        fontFamilyselection = 'Open Sans, sans-serif';
+      } else if (innerText.textContent === 'Serif') {
+        fontFamilyselection = 'PT Serif, serif';
+      } else if (innerText.textContent === 'Monospace') {
+        fontFamilyselection = 'Space Mono, monospace';
       }
 
-      if (user === savedCredentials.user) {
-        const emailDuplicated = document.querySelector('.emailExistsErrorMessage');
-        emailDuplicated.style.display = 'block'
-        console.log('User already exists')
-        return
-      }
+      //Switch Color Theme
+    } else if (event.target.closest('label') && event.target.closest('.color')) {
+      //Light Mode
+      if (innerText.textContent === 'Light Mode') {
+        colorThemeSelection = 'lightMode';
 
-      if (user !== '' && password !== '') {
-        userCredentials.push({
-          user: user,
-          password: password,
-        })
-        localStorage.setItem('Credentials', JSON.stringify(userCredentials))
-        console.log('Prueba Credentials:', userCredentials)
-        window.location.href = '../index.html'
-      } else {
-        console.log('There is a field empty')
-        event.preventDefault()
-        return
+        //Dark Mode
+      } else if (innerText.textContent === 'Dark Mode') {
+        colorThemeSelection = 'darkMode';
       }
-    })
+    } else {
+      return;
+    }
+  });
+
+  if (applyButton && resetButton) {
+    applyButton.addEventListener('click', () => {
+      if (openSettingsScreen.classList.contains('colorSettings')) {
+        localStorage.setItem('currentColorTheme', colorThemeSelection);
+      } else if (openSettingsScreen.classList.contains('fontSettings')) {
+        localStorage.setItem('currentFontFamily', fontFamilyselection);
+      }
+    });
+
+    resetButton.addEventListener('click', () => {
+      elements.forEach((element) => {
+        element.classList.remove('lightMode');
+      });
+      localStorage.setItem('currentFontFamily', 'Inter');
+      document.body.style.fontFamily = 'Inter';
+      console.log('Font Family went back to Inter');
+    });
   }
 }
-saveSignUpCredentials()
+changeFontOrColorTheme();
 
+// const settingsButtons = document.querySelectorAll('.settingsButton');
+// const openSettingsScreen = document.querySelector('.openSettingContainer');
+// const backIcon = document.querySelectorAll('.backIcon');
+// const optionsIcons = document.querySelectorAll('#option1Img, #option2Img, #option3Img');
+// const arrow = document.querySelector('.backToSettingsButton');
+// const leftArrow = arrow.querySelector('img');
+// const images = document.querySelectorAll('#option1Img, #option2Img, #option3Img');
 
-const emailDuplicated = document.getElementById('emailExistsErrorMessage');
-const hideEmptyError = document.querySelectorAll('#errorEmptyEmail, #errorEmptyPassword')
-addError()
-hideEmptyError.forEach((error) => {
-    error.style.display = 'none'
-})
-emailDuplicated.style.display = 'block'
+// if (innerText.textContent === 'Sans-serif') {
+//   document.body.style.fontFamily = 'Open Sans, sans-serif';
+//   fontFamilyselection = 'Open Sans, sans-serif';
+// } else if (innerText.textContent === 'Serif') {
+//   document.body.style.fontFamily = 'PT Serif, serif';
+//   fontFamilyselection = 'PT Serif, serif';
+// } else if (innerText.textContent === 'Monospace') {
+//   document.body.style.fontFamily = 'Space Mono, monospace';
+//   fontFamilyselection = 'Space Mono, monospace';
+// }
 
+/*
+Cambio de SRC:
+
+src
+*/
+
+/*
+Cambio de Color Fuente:
+color
+*/
+
+/*
+Cambio de Color Background:
+footer
+*/
+
+/*
+Cambio de Color Fill:
+fill
+stroke
+*/

@@ -5,6 +5,7 @@ let accessGranted = false;
 
 //Local Storage Variables
 let savedCredentials = localStorage.getItem('Credentials') || '';
+let currentUser = undefined;
 
 //Quick Test Section
 console.log('Prueba Credentials Local Storage:', savedCredentials);
@@ -144,6 +145,7 @@ function saveSignUpCredentials() {
           password: password,
         });
         localStorage.setItem('Credentials', JSON.stringify(userCredentials));
+        localStorage.setItem('currentUser', JSON.stringify(user));
         window.location.href = '../index.html';
       } else {
         console.log('There is a field empty');
@@ -167,10 +169,10 @@ function showPassword() {
       inputPassword.forEach((input) => {
         if (input.type === 'password') {
           input.type = 'text';
-          button.setAttribute('src', '../assets/images/icon-show-password.svg');
+          button.setAttribute('src', '../assets/images/icon-show-password-darkMode.svg');
         } else {
           input.type = 'password';
-          button.setAttribute('src', '../assets/images/icon-hide-password.svg');
+          button.setAttribute('src', '../assets/images/icon-hide-password-darkMode.svg');
         }
       });
     });
@@ -240,14 +242,15 @@ function loginHandler() {
         let passValue = passwordInput.value;
 
         const userExists = userCredentials.find(
-          (userObj) => userObj.user === mailValue
-        );
+          (userObj) => userObj.user === mailValue);
 
         if (userExists) {
           const passworsIsCorrect = userExists.password === passValue;
 
           if (passworsIsCorrect) {
+            currentUser = userExists.user;
             console.log('Login Granted: User and Password are correct');
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
             window.location.href = '../index.html';
           } else {
             console.log('Wrong Password');
