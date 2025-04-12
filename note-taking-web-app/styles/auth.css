@@ -168,9 +168,9 @@ header {
   border-radius: 4px;
 }
 
-.footerButton:hover svg path {
-  /*Change home and search fill with Javascript*/
-  stroke: var(--blue-500);
+.footerButton.lightMode:hover {
+  background: var(--neutral-500);
+  border-radius: 4px;
 }
 
 .spacer {

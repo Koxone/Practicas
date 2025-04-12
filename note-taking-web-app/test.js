@@ -15,6 +15,7 @@ function loadInitialState() {
     const leftArrow = arrow ? arrow.querySelector('img') : null;
     const settingsButtons = document.querySelectorAll('.settingsButton');
     const optionsIcons = document.querySelectorAll('#option1Img, #option2Img, #option3Img');
+    const elementsForLightMode = document.querySelectorAll('.color, .src, footer, .fill, .stroke');
 
     if (allNotesContainer) {
       allNotesContainer.style.display = 'flex'; //flex
@@ -22,9 +23,28 @@ function loadInitialState() {
       titleContainer.style.flexDirection = 'unset'; //unset
     }
 
-    if (elements) {
+    if (elementsForLightMode) {
+      elementsForLightMode.forEach((element) => {
+        if ((currentColorTheme === 'lightMode' && element.classList.contains('color'))) {
+          element.style.color = 'black';
+          element.classList.add('lightMode');
+        } else if ((currentColorTheme === 'lightMode' && element.classList.contains('src'))) {
+          changeSrc(element);
+        } else if ((currentColorTheme === 'lightMode' && element.classList.contains('fill') || element.classList.contains('stroke'))) {
+          element.style.fill = 'black';
+        } else if ((currentColorTheme === 'lightMode' && element.tagName === 'footer')) {
+          element.style.backgroundColor = 'white';
+        } else if (element.classList.contains('spacer') && element.classList.contains('lightMode')) {
+          element.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+        }
+      })
+    }
+
+    /*
+        if (elements) {
       elements.forEach((element) => {
         if (currentColorTheme === 'lightMode') {
+
           element.classList.add('lightMode');
           if (backIcon) {
             backIcon.forEach((icon) => {
@@ -55,6 +75,7 @@ function loadInitialState() {
         }
       });
     }
+    */
 
     if (logoText) {
       logoText.style.fontFamily = 'Pacifico';
@@ -88,8 +109,7 @@ function changeFontOrColorTheme() {
   let colorThemeSelection = undefined;
 
   document.addEventListener('click', (event) => {
-    let label = event.target.closest('label');
-    let innerText = label.querySelector('.top');
+    
     if (
       !(
         (event.target.closest('label') && event.target.closest('.font')) ||
@@ -98,6 +118,10 @@ function changeFontOrColorTheme() {
     ) {
       return;
     }
+
+    let label = event.target.closest('label');
+    let innerText = label.querySelector('.top');
+    const openSettingContainer = document.querySelector('.openSettingContainer');
 
     //Change Font Theme
     if (event.target.closest('label') && event.target.closest('.font')) {
@@ -126,9 +150,9 @@ function changeFontOrColorTheme() {
 
   if (applyButton && resetButton) {
     applyButton.addEventListener('click', () => {
-      if (openSettingsScreen.classList.contains('colorSettings')) {
+      if (openSettingContainer.classList.contains('colorSettings')) {
         localStorage.setItem('currentColorTheme', colorThemeSelection);
-      } else if (openSettingsScreen.classList.contains('fontSettings')) {
+      } else if (openSettingContainer.classList.contains('fontSettings')) {
         localStorage.setItem('currentFontFamily', fontFamilyselection);
       }
     });
@@ -166,13 +190,12 @@ changeFontOrColorTheme();
 
 /*
 Cambio de SRC:
-
-src
+.src
 */
 
 /*
 Cambio de Color Fuente:
-color
+.color
 */
 
 /*
@@ -182,6 +205,11 @@ footer
 
 /*
 Cambio de Color Fill:
-fill
-stroke
+.fill
+.stroke
+*/
+
+/*
+Cambio de Background Color RGB:
+.spacer.lightMode
 */
