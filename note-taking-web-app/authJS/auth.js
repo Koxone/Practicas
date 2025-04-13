@@ -10,6 +10,12 @@ let currentUser = undefined;
 //Quick Test Section
 console.log('Prueba Credentials Local Storage:', savedCredentials);
 
+//Import & Export Section
+import { revertSrc } from '../main.js';
+import { changeSrc } from '../main.js';
+import { loadInitialState } from '../main.js';
+import { applyThemeToDynamicContent } from '../main.js';
+
 //Functions Section
 
 //Function to add error classs
@@ -32,61 +38,61 @@ function addError() {
   });
 }
 
-//Function to save user and password
-function saveSignUpCredentials() {
-  const inputs = document.querySelectorAll('#signUpMail, #signUpPassword');
-  const signUpButton = document.getElementById('signUpButton');
-  let user = '';
-  let password = '';
+// //Function to save user and password
+// function saveSignUpCredentials() {
+//   const inputs = document.querySelectorAll('#signUpMail, #signUpPassword');
+//   const signUpButton = document.getElementById('signUpButton');
+//   let user = '';
+//   let password = '';
 
-  const localStoredCredentials = localStorage.getItem('Credentials');
-  if (localStoredCredentials) {
-    userCredentials = JSON.parse(localStoredCredentials);
-  }
+//   const localStoredCredentials = localStorage.getItem('Credentials');
+//   if (localStoredCredentials) {
+//     userCredentials = JSON.parse(localStoredCredentials);
+//   }
 
-  inputs.forEach((input) => {
-    if (input) {
-      input.addEventListener('input', (event) => {
-        if (event.target.id === 'signUpMail') {
-          user = event.target.value;
-        } else if (event.target.id === 'signUpPassword') {
-          password = event.target.value;
-        }
-      });
-    }
-  });
+//   inputs.forEach((input) => {
+//     if (input) {
+//       input.addEventListener('input', (event) => {
+//         if (event.target.id === 'signUpMail') {
+//           user = event.target.value;
+//         } else if (event.target.id === 'signUpPassword') {
+//           password = event.target.value;
+//         }
+//       });
+//     }
+//   });
 
-  if (signUpButton) {
-    signUpButton.addEventListener('click', (event) => {
-      const userExists = userCredentials.some(
-        (credential) => credential.user === user
-      );
-      if (userExists) {
-        console.log('Email already exists');
-        return;
-      }
+//   if (signUpButton) {
+//     signUpButton.addEventListener('click', (event) => {
+//       const userExists = userCredentials.some(
+//         (credential) => credential.user === user
+//       );
+//       if (userExists) {
+//         console.log('Email already exists');
+//         return;
+//       }
 
-      if (user === savedCredentials.user) {
-        console.log('User already exists');
-        return;
-      }
+//       if (user === savedCredentials.user) {
+//         console.log('User already exists');
+//         return;
+//       }
 
-      if (user !== '' && password !== '') {
-        userCredentials.push({
-          user: user,
-          password: password,
-        });
-        localStorage.setItem('Credentials', JSON.stringify(userCredentials));
-        window.location.href = '../index.html';
-      } else {
-        console.log('There is a field empty');
-        event.preventDefault();
-        return;
-      }
-    });
-  }
-}
-saveSignUpCredentials();
+//       if (user !== '' && password !== '') {
+//         userCredentials.push({
+//           user: user,
+//           password: password,
+//         });
+//         localStorage.setItem('Credentials', JSON.stringify(userCredentials));
+//         window.location.href = '../index.html';
+//       } else {
+//         console.log('There is a field empty');
+//         event.preventDefault();
+//         return;
+//       }
+//     });
+//   }
+// }
+// saveSignUpCredentials();
 
 //Function to save user and password
 function saveSignUpCredentials() {

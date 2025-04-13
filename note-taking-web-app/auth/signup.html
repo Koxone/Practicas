@@ -16,25 +16,25 @@
 </head>
 <body>
   <main class="mainContainer">
-    <div class="generalContainer">
+    <div class="generalContainer border">
       <div class="logoContainer">
-        <img src="../assets/images/Feather.png" alt=""><p class="logoText">KoxNotes</p>
+        <img src="../assets/images/Feather.png" alt=""><p class="logoText color">KoxNotes</p>
       </div>
       <div class="titleContainer">
-        <h1 class="titleText">
+        <h1 class="titleText color">
           Create Your Account
         </h1>
-        <p class="subtitleText">
+        <p class="subtitleText color">
           Sign up to start organizing your notes and boost <br> your productivity.
         </p>
       </div>
       <div class="formContainer">
         <form action="/signup" method="post" novalidate>
           <div class="inputWrapper">
-            <label for="signUpMail">
+            <label class="color" for="signUpMail">
               Email Address
             </label>
-            <input id="signUpMail" type="email" placeholder="email@example.com" required>
+            <input class="color" id="signUpMail" type="email" placeholder="email@example.com" required>
             <div id="errorEmptyEmail" class="errorEmptyEmail">
               Cannot be empty
             </div>
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="inputWrapper">
-            <label for="signUpPassword">
+            <label class="color" for="signUpPassword">
               Password
             </label>
             <input type="password" id="signUpPassword" required>
@@ -52,38 +52,38 @@
             </div>
             <img id="showPassword" src="../assets/images/icon-hide-password-darkMode.svg" alt="">
             <div class="minimumWrapper">
-              <img src="../assets/images/icon-info-darkMode.svg" alt="">
-              <p class="smText">
+              <img class="src" src="../assets/images/icon-info-darkMode.svg" alt="">
+              <p class="smText color">
                 At least 8 characters
               </p>
             </div>
           </div>
-          <button type="button" id="signUpButton" class="mainButton" >
+          <button type="button" id="signUpButton" class="mainButton color" >
             Sign up
           </button>
         </form>
         <div class="spacer"></div>
       </div>
       <section class="socialMediaLogin">
-        <p class="subtitleText">
+        <p class="subtitleText color">
           Or log in with:
         </p>
         <button class="socialButton">
-          <img src="../assets/images/icon-google-darkMode.svg" alt="">
-          <span class="socialButtonText">Google</span>
+          <img class="src" src="../assets/images/icon-google-darkMode.svg" alt="">
+          <span class="socialButtonText color">Google</span>
         </button>
       </section>
       <div class="spacer"></div>
       <section class="notYet">
-        <p class="subtitleText">
+        <p class="subtitleText color">
           Already have an account?
         </p>
-        <a href="login.html" class="goToText">
+        <a href="login.html" class="goToText color">
           Login
         </a>
       </section>
     </div>
   </main>
-  <script src="../authJS/auth.js"></script>
+  <script type="module" src="../authJS/auth.js"></script>
 </body>
 </html>

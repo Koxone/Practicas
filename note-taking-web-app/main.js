@@ -69,7 +69,7 @@ function footerHandler() {
 footerHandler();
 
 //Function to change SRC
-function changeSrc(element) {
+export function changeSrc(element) {
   const toChangeSrc = element;
   const elementSrc = toChangeSrc.getAttribute('src');
   const newSrc = elementSrc.replace('darkMode', 'lightMode');
@@ -77,7 +77,7 @@ function changeSrc(element) {
 }
 
 //Function to revert SRC
-function revertSrc(element) {
+export function revertSrc(element) {
   const toChangeSrc = element;
   const elementSrc = toChangeSrc.getAttribute('src');
   const newSrc = elementSrc.replace('lightMode', 'darkMode');
@@ -85,9 +85,9 @@ function revertSrc(element) {
 }
 
 //Function for dinamic created elements
-function applyThemeToDynamicContent(theme) {
+export function applyThemeToDynamicContent(theme) {
   const elementsForLightMode = document.querySelectorAll(
-    '.color, .background, .imgContainer, .src, textarea, .fill, img, .stroke, footer, li, .footerButton, body, .spacer, .generalContainer, .mainContainer, header, .noteCard'
+    '.color, .background, .imgContainer, .src, textarea, .fill, .border, img, .stroke, footer, li, .footerButton, body, .spacer, .generalContainer, .mainContainer, .mainHeader, .noteCard'
   );
 
   if (theme === 'lightMode') {
@@ -156,6 +156,10 @@ function applyThemeToDynamicContent(theme) {
         case element.tagName === 'IMG' && element.classList.contains('src'):
           changeSrc(element);
           break;
+
+        case element.classList.contains('border'): 
+        element.style.border = '1px solid #e0e4ea';
+        break;
       }
     });
   } else if (theme === 'darkMode') {
@@ -194,7 +198,7 @@ function applyThemeToDynamicContent(theme) {
           element.style.color = 'white';
           break;
 
-        case element.tagName === 'HEADER':
+        case element.classList.contains('mainContainer'):
           element.style.backgroundColor = '#232530';
           break;
 
@@ -218,12 +222,12 @@ function applyThemeToDynamicContent(theme) {
           element.style.backgroundColor = '#0e1218';
           break;
       }
-    })
+    });
   }
 }
 
 //Function to load notes from wwith login
-function loadInitialState() {
+export function loadInitialState() {
   window.addEventListener('DOMContentLoaded', () => {
     const allNotesContainer = document.getElementById('allNotesContainer');
     const titleContainer = document.getElementById('titleContainer');
@@ -232,12 +236,8 @@ function loadInitialState() {
     const subtitle = document.querySelector('.archivedNotesSubtitle');
     const logoText = document.querySelector('.logoText');
 
-    const arrow = document.querySelector('.backToSettingsButton');
-    const leftArrow = arrow ? arrow.querySelector('img') : null;
-    const settingsButtons = document.querySelectorAll('.settingsButton');
-    const optionsIcons = document.querySelectorAll('#option1Img, #option2Img, #option3Img');
     const elementsForLightMode = document.querySelectorAll(
-      '.color, .src, footer, .footerButton, .fill, .background, .imgContainer, img, .newNoteHeader, .stroke, body, .spacer, .generalContainer, .mainContainer, header, .noteCard'
+      '.color, .src, footer, .footerButton, .border, .fill, .background, .imgContainer, img, .newNoteHeader, .stroke, body, .spacer, .generalContainer, .mainContainer, .mainHeader, .noteCard'
     );
 
     if (allNotesContainer) {
@@ -275,7 +275,16 @@ function loadInitialState() {
               element.style.background = 'rgba(224, 228, 234)';
               break;
 
-            case element.classList.contains('mainContainer') || element.classList.contains('generalContainer'):
+            case element.classList.contains('mainContainer'):
+              element.style.backgroundColor = 'white';
+              break;
+
+            case element.classList.length === 1 && element.classList.contains('generalContainer'): 
+              element.style.backgroundColor = 'white';
+              break;
+
+            case element.classList.length === 2 && element.classList.contains('generalContainer') && element.classList.contains('border'):
+              element.style.border = '1px solid black';
               element.style.backgroundColor = 'white';
               break;
 
@@ -301,6 +310,10 @@ function loadInitialState() {
 
             case element.classList.contains('imgContainer'):
               element.style.backgroundColor = 'white';
+              break;
+
+            case element.classList.contains('border'): 
+              element.style.border = '1px solid black';
               break;
           }
         } else if (currentColorTheme === 'darkMode') {
@@ -338,7 +351,7 @@ function loadInitialState() {
               element.style.color = 'white';
               break;
 
-            case element.tagName === 'HEADER':
+            case element.classList.contains('mainHeader'):
               element.style.backgroundColor = '#232530';
               break;
 
@@ -382,7 +395,7 @@ function loadInitialState() {
 loadInitialState();
 
 //Function to change Font Theme
-function changeFontOrColorTheme() {
+export function changeFontOrColorTheme() {
   const applyButton = document.getElementById('applyButton');
   const resetButton = document.getElementById('resetButton');
   const elements = document.querySelectorAll(
@@ -409,10 +422,13 @@ function changeFontOrColorTheme() {
     if (event.target.closest('label') && event.target.closest('.font')) {
       if (innerText.textContent === 'Sans-serif') {
         fontFamilyselection = 'Open Sans, sans-serif';
+        document.body.style.fontFamily = 'Open Sans, sans-serif';
       } else if (innerText.textContent === 'Serif') {
         fontFamilyselection = 'PT Serif, serif';
+        document.body.style.fontFamily = 'PT Serif, serif';
       } else if (innerText.textContent === 'Monospace') {
         fontFamilyselection = 'Space Mono, monospace';
+        document.body.style.fontFamily = 'Space Mono, monospace';
       }
 
       //Switch Color Theme
@@ -449,13 +465,10 @@ function changeFontOrColorTheme() {
       const openSettingContainer = document.querySelector('.openSettingContainer');
 
       if (openSettingContainer.classList.contains('colorSettings')) {
-
         currentColorTheme = colorThemeSelection;
         localStorage.setItem('currentColorTheme', 'darkMode');
         location.reload();
-
       } else if (openSettingContainer.classList.contains('fontSettings')) {
-
         localStorage.setItem('currentFontFamily', 'Inter');
         currentFontFamily = 'Inter';
         document.body.style.fontFamily = 'Inter';
@@ -787,7 +800,9 @@ function deleteAndArchiveNotes() {
       if (targetNote) {
         let noteToDelete = targetNote.getAttribute('data-id');
 
-        let userConfirmation = confirm('You are about to delete this note, this action cannot be undone, are you sure?');
+        let userConfirmation = confirm(
+          'You are about to delete this note, this action cannot be undone, are you sure?'
+        );
         if (userConfirmation) {
           currentUserNotes = currentUserNotes.filter((note) => note.id !== noteToDelete);
           localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
