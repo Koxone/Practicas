@@ -323,6 +323,10 @@ form {
   background-color: var(--neutral-800);
 }
 
+.socialButton.hover:hover {
+  background-color: var(--neutral-500);
+}
+
 .notYet {
   display: flex;
   justify-content: center;
@@ -335,6 +339,13 @@ form {
   text-decoration: none;
   font-family: 'Inter';
   color: var(--neutral-300);
+  cursor: pointer;
+}
+
+.goToText.lightMode {
+  text-decoration: none;
+  font-family: 'Inter';
+  color: var(--neutral-950);
   cursor: pointer;
 }
 

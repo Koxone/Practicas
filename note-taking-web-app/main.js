@@ -9,12 +9,15 @@ let currentUserNotes = JSON.parse(localStorage.getItem('currentUserNotes')) || [
 let currentUserArchivedNotes = JSON.parse(localStorage.getItem('currentUserArchivedNotes')) || [];
 
 //Quick Test Section
+function quickTest() {
 console.log('Current User:', currentUser);
 console.log('Saved Notes:', currentUserNotes);
 console.log('Saved Notes Number:', currentUserNotes.length);
 console.log('Archived Notes:', currentUserArchivedNotes);
 console.log('Current Font Family:', currentFontFamily);
 console.log('Current Color Theme:', currentColorTheme);
+}
+quickTest();
 
 //Event Listeners Section
 
@@ -269,6 +272,7 @@ export function loadInitialState() {
 
             case element.tagName === 'FOOTER':
               element.style.backgroundColor = 'white';
+              element.style.boxShadow = 'none';
               break;
 
             case element.classList.contains('spacer'):
@@ -614,8 +618,13 @@ function saveNewNote() {
         event.preventDefault();
         return;
       }
-
-      let nextIdNumber = currentUserNotes.length + 1;
+      
+      const noteNumbers = currentUserNotes.map(note => {
+        return parseInt(note.id.split('-')[1], 10);
+      })
+      
+      const highestNumber = Math.max(...noteNumbers);
+      let nextIdNumber = highestNumber + 1;
 
       const newNote = {
         user: currentUser,
@@ -770,7 +779,6 @@ function noteOpenHandler() {
   const closeNote = document.querySelectorAll('.noteCard');
   closeNote.forEach((note) => {
     note.addEventListener('click', (event) => {
-      console.log('Prueba Data ID:', event.target.getAttribute('data-id'));
       const allNotesScreen = document.getElementById('allNotesContainer');
       const titleContainer = document.getElementById('titleContainer');
       let dataId = note.getAttribute('data-id').trim();
@@ -845,7 +853,7 @@ function showArchivedNotesScreen() {
         const titleText = document.getElementById('titleText');
         const spacers = document.querySelectorAll('.spacer');
         spacers.forEach((spacer) => {
-          spacer.style.display = 'none';
+          spacer.style.display = 'block';
         });
 
         allArchivedNotesContainer.style.display = 'flex';
@@ -1075,3 +1083,43 @@ function showSettingsOptions() {
   });
 }
 showSettingsOptions();
+
+//Function edit and save existing notes
+function editAndSaveNotes() {
+  let content = '';
+  let noteId = '';
+
+  document.addEventListener('click', (event) => {
+    const noteCardClicked = event.target.closest('.noteCard');
+
+    if (noteCardClicked) {
+      noteId = noteCardClicked.getAttribute('data-id');
+      const textarea = document.querySelector(`textarea[data-id="${noteId}"]`);
+
+      if (textarea) {
+        textarea.addEventListener('input', (event) => {
+          content = event.target.value;
+        })
+      }
+    } else {
+      console.log('Click inservible');
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('saveButton')) {
+      if (noteId && content !== '') {
+        const noteToEdit = currentUserNotes.find(note => note.id === noteId);
+  
+        if (noteToEdit) {
+          noteToEdit.content = content;
+          localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
+          console.log('Nota Actualizada:', noteToEdit)
+        }
+      }
+    } else {
+      console.log('No es')
+    }
+  })
+}
+editAndSaveNotes()

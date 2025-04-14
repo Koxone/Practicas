@@ -129,6 +129,7 @@ footer {
   width: 100%;
   position: sticky;
   bottom: 0;
+  box-shadow: 0px -4px 10px -2px rgba(42, 42, 43, 0.9);
 }
 
 .logoContainer,
