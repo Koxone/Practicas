@@ -495,6 +495,7 @@ noteMenuButtonsHandler();
 //Function to update UI
 function updateUi() {
   const allNotesContainer = document.getElementById('allNotesContainer');
+  const allArchivedNotesContainer = document.querySelector('.allArchivedNotesContainer');
 
   if (allNotesContainer) {
     allNotesContainer.innerHTML = '';
@@ -541,6 +542,55 @@ function updateUi() {
       article.appendChild(time);
 
       allNotesContainer.appendChild(article);
+    });
+  }
+
+  if (allArchivedNotesContainer) {
+    allArchivedNotesContainer.innerHTML = '';
+
+    currentUserArchivedNotes.forEach((note) => {
+      const article = document.createElement('article');
+      article.classList.add('noteCard');
+      article.classList.add('archivedNoteCard');
+      article.setAttribute('data-id', note.id);
+
+      const title = document.createElement('h2');
+      title.classList.add('noteTitleText');
+      title.innerText = note.title;
+
+      const tags = document.createElement('ul');
+      tags.classList.add('noteTags');
+
+      const tagsArray = note.tags ? note.tags.split(',') : [];
+
+      tagsArray.forEach((tagText, index) => {
+        const li = document.createElement('li');
+        const span = document.createElement('span');
+        li.classList.add('background');
+        span.classList.add('tag');
+        span.setAttribute('data-tag', 'tagNumber-' + (index + 1));
+        span.innerText = tagText.trim();
+        li.appendChild(span);
+        tags.appendChild(li);
+      });
+
+      const time = document.createElement('time');
+      time.classList.add('noteTimeTag');
+      time.setAttribute('data-time', note.createdAt);
+
+      const date = new Date(note.createdAt);
+      const formattedDate = date.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+      });
+      time.innerText = formattedDate;
+
+      article.appendChild(title);
+      article.appendChild(tags);
+      article.appendChild(time);
+
+      allArchivedNotesContainer.appendChild(article);
     });
   }
 }
@@ -869,6 +919,33 @@ function showArchivedNotesScreen() {
 }
 showArchivedNotesScreen();
 
+//Function to open an Archive Note
+function openArchivedNote() {
+  document.addEventListener('click', (event) => {
+
+    if (!event.target.closest('button')) {
+      console.log('Freno Funciona');
+      return;
+    }
+    
+    const archiveButton = event.target.closest('button').classList.contains('footerButton');
+    const archiveButtonId = event.target.closest('button').id;
+
+    if (!(archiveButton && archiveButtonId)) {
+      console.log('Freno Dos Funciona')
+      return;
+    }
+
+    if (archiveButton && archiveButtonId) {
+      console.log('Archive Button BIEN')
+    } else {
+      console.log('Archive Button MAL');
+      return;
+    }
+  })
+}
+openArchivedNote();
+
 //Function for Go back to Settings Button
 function goBackToSettingsButton() {
   const backToSettingsButton = document.querySelector('.backToSettingsButton');
@@ -1101,8 +1178,6 @@ function editAndSaveNotes() {
           content = event.target.value;
         })
       }
-    } else {
-      console.log('Click inservible');
     }
   });
 
@@ -1117,8 +1192,6 @@ function editAndSaveNotes() {
           console.log('Nota Actualizada:', noteToEdit)
         }
       }
-    } else {
-      console.log('No es')
     }
   })
 }
