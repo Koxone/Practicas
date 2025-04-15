@@ -296,6 +296,7 @@ time {
 .cancelButton,
 .saveButton,
 .archiveButton,
+.restore,
 .backToSettingsButton {
   display: flex;
   align-items: center;
@@ -306,6 +307,11 @@ time {
   line-height: 130%;
   letter-spacing: -0.2px;
   cursor: pointer;
+}
+
+.saveButton:disabled,
+.archiveButton:disabled {
+  cursor: not-allowed;
 }
 
 .noteDetailSaveButton,
@@ -341,7 +347,8 @@ time {
 .openNoteTagsContainer,
 .openNoteDateContainer,
 .newNoteTopContainer,
-.newNoteBottomContainer {
+.newNoteBottomContainer, 
+.statusContainer {
   display: flex;
 }
 
@@ -351,7 +358,9 @@ time {
 .openNoteDateTextContainer,
 .newNoteTopContainer span,
 .newNoteBottomContainer span,
-.newNoteBottomContainer p {
+.newNoteBottomContainer p, 
+.statusContainer span, 
+.statusContainer div {
   display: flex;
   gap: 6px;
   font-weight: 200;
@@ -359,6 +368,10 @@ time {
 
 .openNoteTagsContainer {
   gap: 96px;
+}
+
+.statusContainer {
+  gap: 86px;
 }
 
 .openNoteDateContainer {
@@ -657,3 +670,129 @@ li.lightMode {
     background-color: var(--neutral-200);
 }
  
+/*-------------------------------------------------------------------------------Modal--------------------------------------------------------------*/
+
+.layout {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.modal {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 343px;
+  height: 193px;
+  border-radius: 12px;
+  background-color: var(--neutral-700);
+}
+
+.modalTopContainer {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+}
+
+.modalTextContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 247px;
+}
+
+.modalTextTop {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: -0.3px;
+}
+
+.modalTextBottom {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+
+.modalImgContainer {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: var(--neutral-600);
+}
+
+.modalBottomContainer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  justify-content: right;
+  gap: 16px;
+}
+
+.modalCancelButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 78px;
+  height: 41px;
+  border-radius: 8px;
+  background-color: var(--neutral-500);
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: -0.2px;
+  cursor: pointer;
+}
+
+.modalCancelButton:hover {
+  background-color: var(--neutral-600);
+}
+
+.modalDeleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 41px;
+  border-radius: 8px;
+  background-color: var(--red-500);
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: -0.2px;
+  cursor: pointer;
+}
+
+.modalArchiveButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 117px;
+  height: 41px;
+  border-radius: 8px;
+  background-color: var(--blue-500);
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: -0.2px;
+  cursor: pointer;
+}
+
+.modalArchiveButton:hover {
+  background-color: var(--blue-700);
+}

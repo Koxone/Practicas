@@ -12,6 +12,7 @@
   </head>
   <body>
     <main class="mainContainer">
+      <div class="layout"></div>
       <header class="mainHeader">
         <div class="logoContainer">
           <img src="./assets/images/Feather.png" alt="" />
@@ -30,7 +31,7 @@
           </p>
         </div>
         <section id="allNotesContainer" class="allNotesContainer"></section>
-        <section class="allArchivedNotesContainer">
+        <section class="allArchivedNotesContainer" id="allArchivedNotesContainer">
           <article class="noteCard" data-id="note-2">
             <h2 class="noteTitleText">Prueba 2</h2>
             <ul class="noteTags">
@@ -100,6 +101,30 @@
             ></textarea>
           </div>
         </section>
+        <div class="modal">
+          <div class="modalTopContainer">
+            <div class="modalImgContainer">
+              <img id="modalImg" class="src" src="./assets/images/icon-delete-darkMode.svg" alt="">
+            </div>
+            <div class="modalTextContainer">
+              <span class="modalTextTop color">
+                Delete Note
+              </span>
+              <span class="modalTextBottom color">
+                Are you sure you want to permanently delete this note? This action cannot be undone.
+              </span>
+            </div>
+          </div>
+          <div class="spacer"></div>
+          <div class="modalBottomContainer">
+            <button class="modalCancelButton">
+              Cancel
+            </button>
+            <button class="modalRightButton">
+              Delete Note
+            </button>
+          </div>
+        </div>
       </div>
       <div class="spacer"></div>
       <footer>

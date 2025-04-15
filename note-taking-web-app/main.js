@@ -28,12 +28,16 @@ function resetUi() {
   const allNotesScreen = document.getElementById('allNotesContainer');
   const newNoteScreen = document.getElementById('newNoteContainer');
   const titleContainer = document.getElementById('titleContainer');
+  const titleText = titleContainer.querySelector('.titleText');
   const openNotesContainer = document.getElementById('openNotesContainer');
+  const allArchivedNotesContainer = document.getElementById('allArchivedNotesContainer');
+  const subtitle = document.querySelector('.archivedNotesSubtitle');
 
   allNotesScreen.style.display = 'flex';
   titleContainer.style.display = 'flex';
   newNoteScreen.style.display = 'none';
   openNotesContainer.style.display = 'none';
+  allArchivedNotesContainer.style.display = 'none';
 }
 
 //Function Footer Buttons Handler
@@ -483,14 +487,38 @@ export function changeFontOrColorTheme() {
 changeFontOrColorTheme();
 
 //Function to handle New Note Header Buttons
-function noteMenuButtonsHandler() {
+function backAndCancelButtonHandler() {
+  const archivedNotesContainer = document.getElementById('allArchivedNotesContainer');
+  const allNotesContainer = document.getElementById('allNotesContainer');
+  const openNotesContainer = document.getElementById('openNotesContainer');
+  const titleContainer = document.getElementById('titleContainer');
+
   document.addEventListener('click', (event) => {
-    if (event.target.closest('.backButton, .cancelButton, .saveButton')) {
-      resetUi();
+    const backOrCancel = event.target.closest('.backButton, .cancelButton');
+
+    if (!backOrCancel) return;
+
+    titleContainer.style.display = 'flex';
+    const container = event.target.closest('.openArchivedNoteContainer, .openNoteContainer');
+
+    switch (true) {
+
+      case container?.classList.contains('openArchivedNoteContainer'):
+        archivedNotesContainer.style.display = 'flex';
+        openNotesContainer.style.display = 'none';
+        break;
+
+      case container?.classList.contains('openNoteContainer'):
+        allNotesContainer.style.display = 'flex';
+        openNotesContainer.style.display = 'none';
+        break;
+
+      default:
+        console.log('noteMenuButtonsHandler is not working');
     }
   });
 }
-noteMenuButtonsHandler();
+backAndCancelButtonHandler();
 
 //Function to update UI
 function updateUi() {
@@ -503,6 +531,7 @@ function updateUi() {
     currentUserNotes.forEach((note) => {
       const article = document.createElement('article');
       article.classList.add('noteCard');
+      article.classList.add('regularNote');
       article.setAttribute('data-id', note.id);
 
       const title = document.createElement('h2');
@@ -673,7 +702,7 @@ function saveNewNote() {
         return parseInt(note.id.split('-')[1], 10);
       })
       
-      const highestNumber = Math.max(...noteNumbers);
+      const highestNumber = noteNumbers.length > 0 ? Math.max(...noteNumbers) : 0;
       let nextIdNumber = highestNumber + 1;
 
       const newNote = {
@@ -699,147 +728,178 @@ function saveNewNote() {
 saveNewNote();
 
 //Function for Opening Notes
-function openNotes() {
-  const openNotesContainer = document.getElementById('openNotesContainer'); //Contenedor padre
+function openNotes(category) {
+  const openNotesContainer = document.getElementById('openNotesContainer');
+  const isArchived = category === currentUserArchivedNotes;
 
-  if (openNotesContainer) {
-    openNotesContainer.innerHTML = ''; //Vaciamos contenedor padre
-    openNotesContainer.style.display = 'flex';
+  openNotesContainer.innerHTML = '';
+  openNotesContainer.style.display = 'flex';
 
-    currentUserNotes.forEach((note) => {
-      const openNoteContainer = document.createElement('div'); //Contenedor Hijo, contiene header con botones, spacer y openNote
-      openNoteContainer.classList.add('openNoteContainer');
-      openNoteContainer.setAttribute('data-id', note.id);
-      openNoteContainer.style.display = 'none';
+  category.forEach((note) => {
+    const openNoteContainer = document.createElement('div');
+    openNoteContainer.classList.add(isArchived ? 'openArchivedNoteContainer' : 'openNoteContainer');
+    openNoteContainer.setAttribute('data-id', note.id);
+    openNoteContainer.style.display = 'none';
 
-      const header = document.createElement('header');
-      header.classList.add('openNoteHeader');
+    const header = document.createElement('header');
+    header.classList.add('openNoteHeader');
 
-      const backButton = document.createElement('button');
-      backButton.classList.add('backButton');
-      backButton.innerHTML = `
-            <img class="lightMode src" src="./assets/images/icon-arrow-left-darkMode.svg" alt="">
-            <span class="backButtonText color"> Go Back </span>
-        `;
+    const backButton = document.createElement('button');
+    backButton.classList.add('backButton');
+    backButton.innerHTML = `
+      <img class="lightMode src" src="./assets/images/icon-arrow-left-darkMode.svg" alt="">
+      <span class="backButtonText color"> Go Back </span>
+    `;
 
-      const openNoteDeleteButton = document.createElement('button');
-      openNoteDeleteButton.classList.add('deleteButton');
-      openNoteDeleteButton.innerHTML = `
-                <img class="lightMode src" src="./assets/images/icon-delete-darkMode.svg" alt="">
-        `;
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('deleteButton');
+    deleteButton.innerHTML = `
+      <img class="lightMode src" src="./assets/images/icon-delete-darkMode.svg" alt="">
+    `;
 
-      const openNoteArchiveButton = document.createElement('button');
-      openNoteArchiveButton.classList.add('archiveButton');
-      openNoteArchiveButton.innerHTML = `
-              <img class="lightMode src"
-                    class="lightMode src"
-                    src="./assets/images/icon-archive-darkMode.svg"
-                    alt=""
-                  /> 
-        `;
-
-      const openNoteCancelButton = document.createElement('button');
-      openNoteCancelButton.classList.add('cancelButton');
-      openNoteCancelButton.classList.add('color');
-      openNoteCancelButton.innerText = 'Cancel';
-
-      const openNoteSaveButton = document.createElement('button');
-      openNoteSaveButton.classList.add('saveButton');
-      openNoteSaveButton.innerText = 'Save Note';
-
-      const spacer = document.createElement('div');
-      spacer.classList.add('spacer');
-
-      const openNote = document.createElement('div'); //Contenedor con contenedores de titulo,
-      openNote.classList.add('openNote');
-
-      const openNoteTitleContainer = document.createElement('div');
-      openNoteTitleContainer.classList.add('openNoteTitleContainer');
-
-      const h2 = document.createElement('h2');
-      h2.classList.add('openNoteTitle');
-      h2.innerText = note.title;
-
-      const openNoteTagsAndDateContainer = document.createElement('div');
-      openNoteTagsAndDateContainer.classList.add('openNoteTagsAndDateContainer');
-
-      const openNoteTagsContainer = document.createElement('div');
-      openNoteTagsContainer.classList.add('openNoteTagsContainer');
-
-      const tagsIconSpan = document.createElement('span');
-      tagsIconSpan.innerHTML = `
-                    <img
-                    class="lightMode src"
-                    src="./assets/images/icon-tag-darkMode.svg"
-                    alt=""
-                  />
-                    <p>Tags</p>
+    const archiveButton = document.createElement('button');
+    archiveButton.classList.add('archiveButton');
+    archiveButton.innerHTML = `
+      <img class="lightMode src" src="./assets/images/icon-archive-darkMode.svg" alt="" />
+    `;
+    if (isArchived) {
+      archiveButton.classList.remove('archiveButton');
+      archiveButton.classList.add('restore');
+      archiveButton.innerHTML = `
+        <img class="lightMode src" src="./assets/images/icon-restore-darkMode.svg" alt="" />
       `;
+    }
 
-      const openNoteTagTextContainer = document.createElement('div');
-      openNoteTagTextContainer.classList.add('openNoteTagTextContainer');
+    const cancelButton = document.createElement('button');
+    cancelButton.classList.add('cancelButton');
+    cancelButton.classList.add('color');
+    cancelButton.innerText = 'Cancel';
 
-      let tagsArray = note.tags.split(',');
-      tagsArray.forEach((tagText, index) => {
-        let tagSpan = document.createElement('span');
-        tagSpan.setAttribute('data-tag', 'tagNumber-' + (index + 1));
-        tagSpan.innerText = tagText.trim();
-        openNoteTagTextContainer.appendChild(tagSpan);
-      });
+    const saveButton = document.createElement('button');
+    saveButton.classList.add('saveButton');
+    saveButton.innerText = 'Save Note';
+    if (isArchived) saveButton.disabled = true;
 
-      const openNoteDateContainer = document.createElement('div');
-      openNoteDateContainer.classList.add('openNoteDateContainer');
-      openNoteDateContainer.innerHTML = `
-              <span class="last">
-          <img
-                    class="lightMode src"
-                    src="./assets/images/icon-clock-darkMode.svg"
-                    alt=""
-                  />
-          <p>Last Edited</p>
-        </span>
-        <div class="openNoteDateTextContainer">
-          <span data-time="${note.id}">${new Date(note.createdAt).toLocaleDateString('en-GB')}</span>
-        </div>
-      `;
+    const spacer = document.createElement('div');
+    spacer.classList.add('spacer');
 
-      const spacer2 = document.createElement('div');
-      spacer2.classList.add('spacer');
+    const openNote = document.createElement('div');
+    openNote.classList.add('openNote');
+    if (isArchived) {
+      openNote.classList.add('openArchivedNote');
+    }
 
-      const openNoteTextAreaContainer = document.createElement('div');
-      openNoteTextAreaContainer.classList.add('openNoteTextAreaContainer');
-      openNoteTextAreaContainer.innerHTML = `
-      <textarea class="lightMode color" data-id="${note.id}">${note.content || ''}</textarea>
-      `;
+    const openNoteTitleContainer = document.createElement('div');
+    openNoteTitleContainer.classList.add('openNoteTitleContainer');
 
-      openNoteTitleContainer.appendChild(h2);
-      openNoteTagsContainer.append(tagsIconSpan, openNoteTagTextContainer);
-      openNoteTagsAndDateContainer.append(openNoteTagsContainer, openNoteDateContainer);
-      openNote.append(openNoteTitleContainer, openNoteTagsAndDateContainer, spacer2, openNoteTextAreaContainer);
-      header.append(backButton, openNoteDeleteButton, openNoteArchiveButton, openNoteCancelButton, openNoteSaveButton);
-      openNoteContainer.append(header, spacer, openNote);
-      openNotesContainer.appendChild(openNoteContainer);
-      applyThemeToDynamicContent(currentColorTheme);
+    const h2 = document.createElement('h2');
+    h2.classList.add('openNoteTitle');
+    h2.innerText = note.title;
+
+    const openNoteTagsAndDateContainer = document.createElement('div');
+    openNoteTagsAndDateContainer.classList.add('openNoteTagsAndDateContainer');
+
+    const openNoteTagsContainer = document.createElement('div');
+    openNoteTagsContainer.classList.add('openNoteTagsContainer');
+
+    const tagsIconSpan = document.createElement('span');
+    tagsIconSpan.innerHTML = `
+      <img class="lightMode src" src="./assets/images/icon-tag-darkMode.svg" alt="" />
+      <p>Tags</p>
+    `;
+
+    const openNoteTagTextContainer = document.createElement('div');
+    openNoteTagTextContainer.classList.add('openNoteTagTextContainer');
+
+    let tagsArray = note.tags.split(',');
+    tagsArray.forEach((tagText, index) => {
+      let tagSpan = document.createElement('span');
+      tagSpan.setAttribute('data-tag', 'tagNumber-' + (index + 1));
+      tagSpan.innerText = tagText.trim();
+      openNoteTagTextContainer.appendChild(tagSpan);
     });
-  }
+
+    openNoteTagsContainer.append(tagsIconSpan, openNoteTagTextContainer);
+
+    if (isArchived) {
+      const statusContainer = document.createElement('div');
+      statusContainer.classList.add('statusContainer');
+
+      const statusIcon = document.createElement('span');
+      statusIcon.classList.add('statusIcon');
+      statusIcon.innerHTML = `
+        <img class="lightMode src" src="./assets/images/icon-status-darkMode.svg" alt="" />
+        <p>Status</p>
+      `;
+
+      const statusTextContainer = document.createElement('div');
+      statusTextContainer.classList.add('statusTextContainer');
+      statusTextContainer.textContent = 'Archived';
+
+      statusContainer.append(statusIcon, statusTextContainer);
+      openNoteTagsAndDateContainer.append(openNoteTagsContainer, statusContainer);
+    } else {
+      openNoteTagsAndDateContainer.append(openNoteTagsContainer);
+    }
+
+    const openNoteDateContainer = document.createElement('div');
+    openNoteDateContainer.classList.add('openNoteDateContainer');
+    openNoteDateContainer.innerHTML = `
+      <span class="last">
+        <img class="lightMode src" src="./assets/images/icon-clock-darkMode.svg" alt="" />
+        <p>Last Edited</p>
+      </span>
+      <div class="openNoteDateTextContainer">
+        <span data-time="${note.id}">${new Date(note.createdAt).toLocaleDateString('en-GB')}</span>
+      </div>
+    `;
+
+    openNoteTagsAndDateContainer.append(openNoteDateContainer);
+
+    const spacer2 = document.createElement('div');
+    spacer2.classList.add('spacer');
+
+    const openNoteTextAreaContainer = document.createElement('div');
+    openNoteTextAreaContainer.classList.add('openNoteTextAreaContainer');
+    openNoteTextAreaContainer.innerHTML = `
+      <textarea class="lightMode color" data-id="${note.id}" ${isArchived ? 'disabled' : ''}>${note.content || ''}</textarea>
+    `;
+
+    openNoteTitleContainer.appendChild(h2);
+    openNote.append(openNoteTitleContainer, openNoteTagsAndDateContainer, spacer2, openNoteTextAreaContainer);
+    header.append(backButton, deleteButton, archiveButton, cancelButton, saveButton);
+    openNoteContainer.append(header, spacer, openNote);
+    openNotesContainer.appendChild(openNoteContainer);
+
+    applyThemeToDynamicContent(currentColorTheme);
+  });
 }
 
 //Function to Open Notes
 function noteOpenHandler() {
   const closeNote = document.querySelectorAll('.noteCard');
+
   closeNote.forEach((note) => {
     note.addEventListener('click', (event) => {
       const allNotesScreen = document.getElementById('allNotesContainer');
+      const allArchivedNotesContainer = document.getElementById('allArchivedNotesContainer');
       const titleContainer = document.getElementById('titleContainer');
       let dataId = note.getAttribute('data-id').trim();
-      openNotes();
+
+      const isArchived = note.classList.contains('archivedNoteCard');
+      const category = isArchived ? currentUserArchivedNotes : currentUserNotes;
+      const selector = isArchived ? '.openArchivedNoteContainer' : '.openNoteContainer';
+
+      openNotes(category);
 
       setTimeout(() => {
-        let target = document.querySelector(`.openNoteContainer[data-id='${dataId}']`);
+        let target = document.querySelector(`${selector}[data-id="${dataId}"]`);
         if (target) {
           allNotesScreen.style.display = 'none';
+          allArchivedNotesContainer.style.display = 'none';
           titleContainer.style.display = 'none';
           target.style.display = 'flex';
+          target.style.flexDirection = 'column';
         }
       }, 0);
     });
@@ -847,40 +907,105 @@ function noteOpenHandler() {
 }
 noteOpenHandler();
 
+
 //Function for Delete and Archive Button
 function deleteAndArchiveNotes() {
+
   document.addEventListener('click', (event) => {
     const clickedButton = event.target.closest('.deleteButton');
     const clickedArchiveButton = event.target.closest('.archiveButton');
+    const clickedRestoreButton = event.target.closest('.restore');
+    const modalImg = document.getElementById('modalImg');
 
+    const modal = document.querySelector('.modal');
+    const modalCancelButton = document.querySelector('.modalCancelButton');
+    const modalRightButton = document.querySelector('.modalRightButton');
+    const modalTextTop = document.querySelector('.modalTextTop');
+    const modalTextBottom = document.querySelector('.modalTextBottom');
+
+    //DELETE
     if (clickedButton && clickedButton.classList.contains('deleteButton')) {
       const targetNote = clickedButton.closest('[data-id]');
       if (targetNote) {
         let noteToDelete = targetNote.getAttribute('data-id');
 
-        let userConfirmation = confirm(
-          'You are about to delete this note, this action cannot be undone, are you sure?'
-        );
-        if (userConfirmation) {
+        modal.style.display = 'flex';
+        modalRightButton.classList.add('modalDeleteButton');
+
+        modalRightButton.addEventListener('click', () => {
           currentUserNotes = currentUserNotes.filter((note) => note.id !== noteToDelete);
+          currentUserArchivedNotes = currentUserArchivedNotes.filter((note) => note.id !== noteToDelete);
           localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
+          localStorage.setItem('currentUserArchivedNotes', JSON.stringify(currentUserArchivedNotes));
           console.log('Nota Eliminada:', noteToDelete);
+          window.location.href = 'index.html';
+          modal.style.display = 'none';
+          modalRightButton.classList.remove('modalDeleteButton');
           updateUi();
-          resetUi();
-        }
+        });
+
+        modalCancelButton.addEventListener('click', () => {
+          modal.style.display = 'none'
+        });
       }
+      //ARCHIVE
     } else if (clickedArchiveButton && clickedArchiveButton.classList.contains('archiveButton')) {
       const targetNote = clickedArchiveButton.closest('[data-id]');
       if (targetNote) {
         let noteToArchive = targetNote.getAttribute('data-id');
 
-        let userConfirmation = confirm('Are you shure you want to archive this note?');
-        if (userConfirmation) {
-          currentUserArchivedNotes = currentUserNotes.filter((note) => note.id === noteToArchive);
+        modal.style.display = 'flex';
+        modalRightButton.classList.add('modalArchiveButton');
+        modalRightButton.textContent = 'Archive Note';
+        modalTextTop.textContent = 'Archive Note';
+        modalTextBottom.textContent = 'Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.';
+        modalImg.setAttribute('src', './assets/images/icon-archive-lightMode.svg');
+
+        modalRightButton.addEventListener('click', () => {
+          let archivedNote = currentUserNotes.find((note) => {
+            return note.id === noteToArchive;
+          });
+
+          if (archivedNote) {
+            currentUserArchivedNotes.push(archivedNote);
+          }
+
+          currentUserNotes = currentUserNotes.filter((note) => note.id !== noteToArchive);
+
           localStorage.setItem('currentUserArchivedNotes', JSON.stringify(currentUserArchivedNotes));
+          localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
           console.log('Nota Eliminada:', noteToArchive);
+          window.location.href = 'index.html';
           updateUi();
-          resetUi();
+        });
+
+        modalCancelButton.addEventListener('click', () => {
+          modal.style.display = 'none'
+        });
+      }
+      //RESTORE
+    } else if (clickedRestoreButton && clickedRestoreButton.classList.contains('restore')) { 
+      const targetNote = clickedRestoreButton.closest('[data-id]');
+      if (targetNote) {
+        let noteToRestore = targetNote.getAttribute('data-id');
+
+        let userConfirmation = confirm('Are you sure you want to restore thi note to All Notes Section?');
+        if (userConfirmation) {
+          let restoredNote = currentUserArchivedNotes.find((note) => {
+            return note.id === noteToRestore;
+          });
+
+          if (restoredNote) {
+            currentUserNotes.push(restoredNote);
+          }
+
+          currentUserArchivedNotes = currentUserArchivedNotes.filter((note) => note.id !== noteToRestore);
+
+          localStorage.setItem('currentUserArchivedNotes', JSON.stringify(currentUserArchivedNotes));
+          localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
+          console.log('Note Restore:', noteToRestore);
+          window.location.href = 'index.html';
+          updateUi();
         }
       }
     }
@@ -924,7 +1049,6 @@ function openArchivedNote() {
   document.addEventListener('click', (event) => {
 
     if (!event.target.closest('button')) {
-      console.log('Freno Funciona');
       return;
     }
     
@@ -932,14 +1056,12 @@ function openArchivedNote() {
     const archiveButtonId = event.target.closest('button').id;
 
     if (!(archiveButton && archiveButtonId)) {
-      console.log('Freno Dos Funciona')
       return;
     }
 
     if (archiveButton && archiveButtonId) {
       console.log('Archive Button BIEN')
     } else {
-      console.log('Archive Button MAL');
       return;
     }
   })
@@ -1189,6 +1311,7 @@ function editAndSaveNotes() {
         if (noteToEdit) {
           noteToEdit.content = content;
           localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
+          window.location.href = 'index.html';
           console.log('Nota Actualizada:', noteToEdit)
         }
       }

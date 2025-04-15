@@ -1,409 +1,104 @@
-//Function to Save New Note
-function saveNewNote() {
-  const requiredInputs = document.querySelectorAll('.newTitleInput, .newTagsInput');
-  const inputsToSave = document.querySelectorAll('.newTitleInput, .newTagsInput, #newNoteTextArea');
-  const newNoteSaveButton = document.getElementById('newNoteSaveButton');
+//Function for Delete and Archive Button
+function deleteAndArchiveNotes() {
 
-  if (newNoteSaveButton) {
-    newNoteSaveButton.addEventListener('click', (event) => {
-      let title = '';
-      let tags = '';
-      let content = '';
-
-      let hasError = false;
-
-      requiredInputs.forEach((required) => {
-        if (required.value === '') {
-          hasError = true;
-        }
-      });
-
-      if (hasError) {
-        alert('Title and Tags cannot be empty');
-        return;
-      }
-
-      inputsToSave.forEach((input) => {
-        if (input.classList.contains('newTitleInput')) {
-          title = input.value;
-        }
-
-        if (input.classList.contains('newTagsInput')) {
-          let inputValue = input.value;
-          if (inputValue.includes(',') && inputValue.split(',').every((word) => word.trim() !== '')) {
-            tags = input.value;
-          } else {
-            alert('Tags must be separated by commas');
-            event.preventDefault();
-            return;
-          }
-        }
-
-        if (input.id === 'newNoteTextArea') {
-          content = input.value;
-        }
-      });
-
-      if (hasError) {
-        event.preventDefault();
-        return;
-      }
-      
-      const noteNumbers = currentUserNotes.map(note => {
-        return parseInt(note.id.split('-')[1], 10);
-      })
-      
-      const highestNumber = Math.max(...noteNumbers);
-      let nextIdNumber = highestNumber + 1;
-
-      const newNote = {
-        user: currentUser,
-        id: 'note-' + nextIdNumber,
-        title: title,
-        tags: tags,
-        content: content,
-        createdAt: new Date().toISOString(),
-      };
-
-      currentUserNotes.push(newNote);
-      localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
-      updateUi();
-      inputsToSave.forEach((input) => {
-        input.value = '';
-      });
-      console.log('Nota Guardada en Local Storage:', newNote);
-      window.location.href = 'index.html';
-    });
-  }
-}
-saveNewNote();
-
-//Function edit and save existing notes
-function editAndSaveNotes() {
   document.addEventListener('click', (event) => {
-    let content = '';
-    const noteCardClicked = event.target.closest('.noteCard');
+    const clickedButton = event.target.closest('.deleteButton');
+    const clickedArchiveButton = event.target.closest('.archiveButton');
+    const clickedRestoreButton = event.target.closest('.restore');
+    const modalImg = document.getElementById('modalImg');
 
-    if (noteCardClicked) {
-      const noteId = noteCardClicked.getAttribute('data-id');
-      const textarea = document.querySelector(`textarea[data-id="${noteId}"]`);
+    const modal = document.querySelector('.modal');
+    const modalCancelButton = document.querySelector('.modalCancelButton');
+    const modalRightButton = document.querySelector('.modalRightButton');
+    const modalTextTop = document.querySelector('.modalTextTop');
+    const modalTextBottom = document.querySelector('.modalTextBottom');
 
-      if (textarea) {
-        textarea.addEventListener('input', (event) => {
-          content = event.target.value;
-          console.log('Prueba Input:', content);
-        })
+    //DELETE
+    if (clickedButton && clickedButton.classList.contains('deleteButton')) {
+      const targetNote = clickedButton.closest('[data-id]');
+      if (targetNote) {
+        let noteToDelete = targetNote.getAttribute('data-id');
+
+        modal.style.display = 'flex';
+        modalRightButton.classList.add('modalDeleteButton');
+
+        modalRightButton.addEventListener('click', () => {
+          currentUserNotes = currentUserNotes.filter((note) => note.id !== noteToDelete);
+          currentUserArchivedNotes = currentUserArchivedNotes.filter((note) => note.id !== noteToDelete);
+          localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
+          localStorage.setItem('currentUserArchivedNotes', JSON.stringify(currentUserArchivedNotes));
+          console.log('Nota Eliminada:', noteToDelete);
+          window.location.href = 'index.html';
+          modal.style.display = 'none';
+          modalRightButton.classList.remove('modalDeleteButton');
+          updateUi();
+        });
+
+        modalCancelButton.addEventListener('click', () => {
+          modal.style.display = 'none'
+        });
       }
-    } else {
-      console.log('Click inservible');
+      //ARCHIVE
+    } else if (clickedArchiveButton && clickedArchiveButton.classList.contains('archiveButton')) {
+      const targetNote = clickedArchiveButton.closest('[data-id]');
+      if (targetNote) {
+        let noteToArchive = targetNote.getAttribute('data-id');
+
+        modal.style.display = 'flex';
+        modalRightButton.classList.add('modalArchiveButton');
+        modalRightButton.textContent = 'Archive Note';
+        modalTextTop.textContent = 'Archive Note';
+        modalTextBottom.textContent = 'Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.';
+        modalImg.setAttribute('src', './assets/images/icon-archive-lightMode.svg');
+
+        modalRightButton.addEventListener('click', () => {
+          let archivedNote = currentUserNotes.find((note) => {
+            return note.id === noteToArchive;
+          });
+
+          if (archivedNote) {
+            currentUserArchivedNotes.push(archivedNote);
+          }
+
+          currentUserNotes = currentUserNotes.filter((note) => note.id !== noteToArchive);
+
+          localStorage.setItem('currentUserArchivedNotes', JSON.stringify(currentUserArchivedNotes));
+          localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
+          console.log('Nota Eliminada:', noteToArchive);
+          window.location.href = 'index.html';
+          updateUi();
+        });
+
+        modalCancelButton.addEventListener('click', () => {
+          modal.style.display = 'none'
+        });
+      }
+      //RESTORE
+    } else if (clickedRestoreButton && clickedRestoreButton.classList.contains('restore')) { 
+      const targetNote = clickedRestoreButton.closest('[data-id]');
+      if (targetNote) {
+        let noteToRestore = targetNote.getAttribute('data-id');
+
+        let userConfirmation = confirm('Are you sure you want to restore thi note to All Notes Section?');
+        if (userConfirmation) {
+          let restoredNote = currentUserArchivedNotes.find((note) => {
+            return note.id === noteToRestore;
+          });
+
+          if (restoredNote) {
+            currentUserNotes.push(restoredNote);
+          }
+
+          currentUserArchivedNotes = currentUserArchivedNotes.filter((note) => note.id !== noteToRestore);
+
+          localStorage.setItem('currentUserArchivedNotes', JSON.stringify(currentUserArchivedNotes));
+          localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
+          console.log('Note Restore:', noteToRestore);
+          window.location.href = 'index.html';
+          updateUi();
+        }
+      }
     }
-  })
+  });
 }
-editAndSaveNotes()
-
-//Function to update UI
-function updateUi() {
-  const allArchivedNotesContainer = document.querySelector('.allArchivedNotesContainer');
-
-  if (allArchivedNotesContainer) {
-    allArchivedNotesContainer.innerHTML = '';
-
-    currentUserArchivedNotes.forEach((note) => {
-      const article = document.createElement('article');
-      article.classList.add('noteCard');
-      article.classList.add('archivedNoteCard');
-      article.setAttribute('data-id', note.id);
-
-      const title = document.createElement('h2');
-      title.classList.add('noteTitleText');
-      title.innerText = note.title;
-
-      const tags = document.createElement('ul');
-      tags.classList.add('noteTags');
-
-      const tagsArray = note.tags ? note.tags.split(',') : [];
-
-      tagsArray.forEach((tagText, index) => {
-        const li = document.createElement('li');
-        const span = document.createElement('span');
-        li.classList.add('background');
-        span.classList.add('tag');
-        span.setAttribute('data-tag', 'tagNumber-' + (index + 1));
-        span.innerText = tagText.trim();
-        li.appendChild(span);
-        tags.appendChild(li);
-      });
-
-      const time = document.createElement('time');
-      time.classList.add('noteTimeTag');
-      time.setAttribute('data-time', note.createdAt);
-
-      const date = new Date(note.createdAt);
-      const formattedDate = date.toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-      });
-      time.innerText = formattedDate;
-
-      article.appendChild(title);
-      article.appendChild(tags);
-      article.appendChild(time);
-
-      allArchivedNotesContainer.appendChild(article);
-    });
-  }
-}
-updateUi();
-
-//Function for Opening Notes
-function openNotes(category) {
-  const openNotesContainer = document.getElementById('openNotesContainer'); //Contenedor padre
-  category = currentUserNotes || currentUserArchivedNotes;
-
-  if (category === currentUserNotes) {
-    openNotesContainer.innerHTML = ''; //Vaciamos contenedor padre
-    openNotesContainer.style.display = 'flex';
-
-    currentUserNotes.forEach((note) => {
-      const openNoteContainer = document.createElement('div'); //Contenedor Hijo, contiene header con botones, spacer y openNote
-      openNoteContainer.classList.add('openNoteContainer');
-      openNoteContainer.setAttribute('data-id', note.id);
-      openNoteContainer.style.display = 'none';
-
-      const header = document.createElement('header');
-      header.classList.add('openNoteHeader');
-
-      const backButton = document.createElement('button');
-      backButton.classList.add('backButton');
-      backButton.innerHTML = `
-            <img class="lightMode src" src="./assets/images/icon-arrow-left-darkMode.svg" alt="">
-            <span class="backButtonText color"> Go Back </span>
-        `;
-
-      const openNoteDeleteButton = document.createElement('button');
-      openNoteDeleteButton.classList.add('deleteButton');
-      openNoteDeleteButton.innerHTML = `
-                <img class="lightMode src" src="./assets/images/icon-delete-darkMode.svg" alt="">
-        `;
-
-      const openNoteArchiveButton = document.createElement('button');
-      openNoteArchiveButton.classList.add('archiveButton');
-      openNoteArchiveButton.innerHTML = `
-              <img class="lightMode src"
-                    class="lightMode src"
-                    src="./assets/images/icon-archive-darkMode.svg"
-                    alt=""
-                  /> 
-        `;
-
-      const openNoteCancelButton = document.createElement('button');
-      openNoteCancelButton.classList.add('cancelButton');
-      openNoteCancelButton.classList.add('color');
-      openNoteCancelButton.innerText = 'Cancel';
-
-      const openNoteSaveButton = document.createElement('button');
-      openNoteSaveButton.classList.add('saveButton');
-      openNoteSaveButton.innerText = 'Save Note';
-
-      const spacer = document.createElement('div');
-      spacer.classList.add('spacer');
-
-      const openNote = document.createElement('div'); //Contenedor con contenedores de titulo,
-      openNote.classList.add('openNote');
-
-      const openNoteTitleContainer = document.createElement('div');
-      openNoteTitleContainer.classList.add('openNoteTitleContainer');
-
-      const h2 = document.createElement('h2');
-      h2.classList.add('openNoteTitle');
-      h2.innerText = note.title;
-
-      const openNoteTagsAndDateContainer = document.createElement('div');
-      openNoteTagsAndDateContainer.classList.add('openNoteTagsAndDateContainer');
-
-      const openNoteTagsContainer = document.createElement('div');
-      openNoteTagsContainer.classList.add('openNoteTagsContainer');
-
-      const tagsIconSpan = document.createElement('span');
-      tagsIconSpan.innerHTML = `
-                    <img
-                    class="lightMode src"
-                    src="./assets/images/icon-tag-darkMode.svg"
-                    alt=""
-                  />
-                    <p>Tags</p>
-      `;
-
-      const openNoteTagTextContainer = document.createElement('div');
-      openNoteTagTextContainer.classList.add('openNoteTagTextContainer');
-
-      let tagsArray = note.tags.split(',');
-      tagsArray.forEach((tagText, index) => {
-        let tagSpan = document.createElement('span');
-        tagSpan.setAttribute('data-tag', 'tagNumber-' + (index + 1));
-        tagSpan.innerText = tagText.trim();
-        openNoteTagTextContainer.appendChild(tagSpan);
-      });
-
-      const openNoteDateContainer = document.createElement('div');
-      openNoteDateContainer.classList.add('openNoteDateContainer');
-      openNoteDateContainer.innerHTML = `
-              <span class="last">
-          <img
-                    class="lightMode src"
-                    src="./assets/images/icon-clock-darkMode.svg"
-                    alt=""
-                  />
-          <p>Last Edited</p>
-        </span>
-        <div class="openNoteDateTextContainer">
-          <span data-time="${note.id}">${new Date(note.createdAt).toLocaleDateString('en-GB')}</span>
-        </div>
-      `;
-
-      const spacer2 = document.createElement('div');
-      spacer2.classList.add('spacer');
-
-      const openNoteTextAreaContainer = document.createElement('div');
-      openNoteTextAreaContainer.classList.add('openNoteTextAreaContainer');
-      openNoteTextAreaContainer.innerHTML = `
-      <textarea class="lightMode color" data-id="${note.id}">${note.content || ''}</textarea>
-      `;
-
-      openNoteTitleContainer.appendChild(h2);
-      openNoteTagsContainer.append(tagsIconSpan, openNoteTagTextContainer);
-      openNoteTagsAndDateContainer.append(openNoteTagsContainer, openNoteDateContainer);
-      openNote.append(openNoteTitleContainer, openNoteTagsAndDateContainer, spacer2, openNoteTextAreaContainer);
-      header.append(backButton, openNoteDeleteButton, openNoteArchiveButton, openNoteCancelButton, openNoteSaveButton);
-      openNoteContainer.append(header, spacer, openNote);
-      openNotesContainer.appendChild(openNoteContainer);
-      applyThemeToDynamicContent(currentColorTheme);
-    });
-  } else if (category === currentUserArchivedNotes) {
-
-    openNotesContainer.innerHTML = ''; //Vaciamos contenedor padre
-    openNotesContainer.style.display = 'flex';
-
-    currentUserArchivedNotes.forEach((note) => {
-      const openNoteContainer = document.createElement('div'); //Contenedor Hijo, contiene header con botones, spacer y openNote
-      openNoteContainer.classList.add('openNoteContainer');
-      openNoteContainer.classList.add('openArchivedNoteContainer');
-      openNoteContainer.setAttribute('data-id', note.id);
-      openNoteContainer.style.display = 'none';
-
-      const header = document.createElement('header');
-      header.classList.add('openNoteHeader');
-
-      const backButton = document.createElement('button');
-      backButton.classList.add('backButton');
-      backButton.innerHTML = `
-            <img class="lightMode src" src="./assets/images/icon-arrow-left-darkMode.svg" alt="">
-            <span class="backButtonText color"> Go Back </span>
-        `;
-
-      const openNoteDeleteButton = document.createElement('button');
-      openNoteDeleteButton.classList.add('deleteButton');
-      openNoteDeleteButton.innerHTML = `
-                <img class="lightMode src" src="./assets/images/icon-delete-darkMode.svg" alt="">
-        `;
-
-      const openNoteArchiveButton = document.createElement('button');
-      openNoteArchiveButton.disabled = true;
-      openNoteArchiveButton.classList.add('archiveButton');
-      openNoteArchiveButton.innerHTML = `
-              <img class="lightMode src"
-                    class="lightMode src"
-                    src="./assets/images/icon-archive-darkMode.svg"
-                    alt=""
-                  /> 
-        `;
-
-      const openNoteCancelButton = document.createElement('button');
-      openNoteCancelButton.classList.add('cancelButton');
-      openNoteCancelButton.classList.add('color');
-      openNoteCancelButton.innerText = 'Cancel';
-
-      const openNoteSaveButton = document.createElement('button');
-      openNoteSaveButton.disabled = true;
-      openNoteSaveButton.classList.add('saveButton');
-      openNoteSaveButton.innerText = 'Save Note';
-
-      const spacer = document.createElement('div');
-      spacer.classList.add('spacer');
-
-      const openNote = document.createElement('div'); //Contenedor con contenedores de titulo,
-      openNote.classList.add('openNote');
-      openNote.classList.add('openArchivedNote');
-
-      const openNoteTitleContainer = document.createElement('div');
-      openNoteTitleContainer.classList.add('openNoteTitleContainer');
-
-      const h2 = document.createElement('h2');
-      h2.classList.add('openNoteTitle');
-      h2.innerText = note.title;
-
-      const openNoteTagsAndDateContainer = document.createElement('div');
-      openNoteTagsAndDateContainer.classList.add('openNoteTagsAndDateContainer');
-
-      const openNoteTagsContainer = document.createElement('div');
-      openNoteTagsContainer.classList.add('openNoteTagsContainer');
-
-      const tagsIconSpan = document.createElement('span');
-      tagsIconSpan.innerHTML = `
-                    <img
-                    class="lightMode src"
-                    src="./assets/images/icon-tag-darkMode.svg"
-                    alt=""
-                  />
-                    <p>Tags</p>
-      `;
-
-      const openNoteTagTextContainer = document.createElement('div');
-      openNoteTagTextContainer.classList.add('openNoteTagTextContainer');
-
-      let tagsArray = note.tags.split(',');
-      tagsArray.forEach((tagText, index) => {
-        let tagSpan = document.createElement('span');
-        tagSpan.setAttribute('data-tag', 'tagNumber-' + (index + 1));
-        tagSpan.innerText = tagText.trim();
-        openNoteTagTextContainer.appendChild(tagSpan);
-      });
-
-      const openNoteDateContainer = document.createElement('div');
-      openNoteDateContainer.classList.add('openNoteDateContainer');
-      openNoteDateContainer.innerHTML = `
-              <span class="last">
-          <img
-                    class="lightMode src"
-                    src="./assets/images/icon-clock-darkMode.svg"
-                    alt=""
-                  />
-          <p>Last Edited</p>
-        </span>
-        <div class="openNoteDateTextContainer">
-          <span data-time="${note.id}">${new Date(note.createdAt).toLocaleDateString('en-GB')}</span>
-        </div>
-      `;
-
-      const spacer2 = document.createElement('div');
-      spacer2.classList.add('spacer');
-
-      const openNoteTextAreaContainer = document.createElement('div');
-      openNoteTextAreaContainer.classList.add('openNoteTextAreaContainer');
-      openNoteTextAreaContainer.innerHTML = `
-      <textarea class="lightMode color" data-id="${note.id}">${note.content || ''}</textarea>
-      `;
-
-      openNoteTitleContainer.appendChild(h2);
-      openNoteTagsContainer.append(tagsIconSpan, openNoteTagTextContainer);
-      openNoteTagsAndDateContainer.append(openNoteTagsContainer, openNoteDateContainer);
-      openNote.append(openNoteTitleContainer, openNoteTagsAndDateContainer, spacer2, openNoteTextAreaContainer);
-      header.append(backButton, openNoteDeleteButton, openNoteArchiveButton, openNoteCancelButton, openNoteSaveButton);
-      openNoteContainer.append(header, spacer, openNote);
-      openNotesContainer.appendChild(openNoteContainer);
-      applyThemeToDynamicContent(currentColorTheme);
-    });
-  }
-}
-
+deleteAndArchiveNotes();
