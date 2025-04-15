@@ -115,7 +115,7 @@ textarea {
   flex-direction: column;
   width: 100%;
   flex: 1;
-  overflow-y: hidden;
+  overflow-y: scroll;
   padding: 16px 16px 0 16px;
   background-color: var(--neutral-950);
   border-radius: 24px 24px 0 0;
