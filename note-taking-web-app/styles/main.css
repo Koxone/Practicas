@@ -29,22 +29,22 @@
 
 :root {
   /* Inter font family */
-  --font-inter-regular: 'Inter-Regular';
-  --font-inter-medium: 'Inter-Medium';
-  --font-inter-semibold: 'Inter-SemiBold';
-  --font-inter-bold: 'Inter-Bold';
+  --font-inter-regular: "Inter-Regular";
+  --font-inter-medium: "Inter-Medium";
+  --font-inter-semibold: "Inter-SemiBold";
+  --font-inter-bold: "Inter-Bold";
 
   /* Noto Serif font family */
-  --font-notoserif-regular: 'NotoSerif-Regular';
-  --font-notoserif-medium: 'NotoSerif-Medium';
-  --font-notoserif-semibold: 'NotoSerif-SemiBold';
-  --font-notoserif-bold: 'NotoSerif-Bold';
+  --font-notoserif-regular: "NotoSerif-Regular";
+  --font-notoserif-medium: "NotoSerif-Medium";
+  --font-notoserif-semibold: "NotoSerif-SemiBold";
+  --font-notoserif-bold: "NotoSerif-Bold";
 
   /* Source Code Pro font family */
-  --font-sourcecodepro-regular: 'SourceCodePro-Regular';
-  --font-sourcecodepro-medium: 'SourceCodePro-Medium';
-  --font-sourcecodepro-semibold: 'SourceCodePro-SemiBold';
-  --font-sourcecodepro-bold: 'SourceCodePro-Bold';
+  --font-sourcecodepro-regular: "SourceCodePro-Regular";
+  --font-sourcecodepro-medium: "SourceCodePro-Medium";
+  --font-sourcecodepro-semibold: "SourceCodePro-SemiBold";
+  --font-sourcecodepro-bold: "SourceCodePro-Bold";
 }
 
 * {
@@ -57,8 +57,12 @@ body,
 html {
   background-color: var(--neutral-800);
   overflow: hidden;
-  font-family: 'Inter';
+  font-family: "Inter";
   color: white;
+  /* Fix for mobile viewport height issues */
+  height: 100%;
+  width: 100%;
+  position: fixed;
 }
 
 button {
@@ -73,6 +77,7 @@ textarea {
   /*Change with Javascript*/
   display: none;
   flex-direction: column;
+  height: 100%;
 }
 
 .allNotesContainer {
@@ -103,10 +108,11 @@ textarea {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
-  min-height: 100vh;
-  justify-content: center;
+  height: 100%;
+  /* Changed from 100vh to 100% to account for mobile browser bars */
+  justify-content: flex-start; /* Changed from center to flex-start */
   align-items: center;
+  overflow: hidden;
 }
 
 .generalContainer {
@@ -115,7 +121,8 @@ textarea {
   flex-direction: column;
   width: 100%;
   flex: 1;
-  overflow-y: scroll;
+  /* Remove overflow-y: scroll from here */
+  overflow: hidden;
   padding: 16px 16px 0 16px;
   background-color: var(--neutral-950);
   border-radius: 24px 24px 0 0;
@@ -130,6 +137,7 @@ footer {
   position: sticky;
   bottom: 0;
   box-shadow: 0px -4px 10px -2px rgba(42, 42, 43, 0.9);
+  z-index: 10;
 }
 
 .logoContainer,
@@ -188,13 +196,15 @@ header {
   letter-spacing: -0.5px;
 }
 
+/* Make only these containers scrollable */
 .allNotesContainer,
 .allArchivedNotesContainer {
   flex-direction: column;
-  height: 100%;
+  height: calc(100% - 24px); /* Adjust height to account for margin-top */
   padding: 8px 8px 0 8px;
   margin-top: 24px;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
 }
 
 article {
@@ -223,6 +233,7 @@ article {
   background-color: var(--blue-500);
   border: none;
   cursor: pointer;
+  z-index: 5;
 }
 
 .noteTags {
@@ -262,11 +273,11 @@ time {
 /*---------------------------------------------------------------------------------Note Detail Screen--------------------------------------------------------------*/
 
 .openNotesContainer {
-  position: absolut;
-  top: 0%;
+  position: absolute;
+  top: 0;
   flex-direction: column;
   width: 100%;
-  flex: 1;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -328,6 +339,7 @@ time {
   flex-direction: column;
   height: 100%;
   gap: 12px;
+  overflow: hidden;
 }
 
 .openNoteTitle,
@@ -347,7 +359,7 @@ time {
 .openNoteTagsContainer,
 .openNoteDateContainer,
 .newNoteTopContainer,
-.newNoteBottomContainer, 
+.newNoteBottomContainer,
 .statusContainer {
   display: flex;
 }
@@ -358,8 +370,8 @@ time {
 .openNoteDateTextContainer,
 .newNoteTopContainer span,
 .newNoteBottomContainer span,
-.newNoteBottomContainer p, 
-.statusContainer span, 
+.newNoteBottomContainer p,
+.statusContainer span,
 .statusContainer div {
   display: flex;
   gap: 6px;
@@ -382,6 +394,8 @@ time {
 .newNoteTextContentContainer {
   display: flex;
   height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .openNoteTextAreaContainer textarea,
@@ -418,6 +432,8 @@ textarea::-webkit-scrollbar {
 .newNoteContainer {
   /*Change with Javascript*/
   flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
 .newNoteTitlecontainer input,
@@ -472,10 +488,9 @@ textarea::-webkit-scrollbar {
 
 .newNoteTextContentContainer {
   margin-top: 12px;
-}
-
-.newNoteContainer {
-  height: 100%;
+  flex: 1;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /*---------------------------------------------------------------------------------Settings Screen--------------------------------------------------------------*/
@@ -503,7 +518,7 @@ ul {
 }
 
 li.lightMode:hover {
-    border: 2px solid var(--neutral-500);
+  border: 2px solid var(--neutral-500);
 }
 
 .settingsButton {
@@ -522,8 +537,7 @@ li.lightMode:hover {
 }
 
 .settingsButton.lightMode:hover {
-    border: none;
-    
+  border: none;
 }
 
 .settingsOptionText {
@@ -538,11 +552,18 @@ li.lightMode:hover {
 
 .settingsMenu {
   display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .openSettingContainer {
   display: none;
   flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .openSettingHeader {
@@ -634,6 +655,11 @@ li.lightMode:hover {
   margin: 0%;
   position: absolute;
   top: 0%;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .archivedNotesSubtitle {
@@ -646,39 +672,40 @@ li.lightMode:hover {
 
 /*-------------------------------------------------------------------------------Light Mode--------------------------------------------------------------*/
 
-
-.generalContainer.lightMode, 
-header.lightMode, 
+.generalContainer.lightMode,
+header.lightMode,
 .mainContainer.lightMode {
-    background-color: white;
+  background-color: white;
 }
 
-body.lightMode, 
+body.lightMode,
 .backButtonText.lightMode {
-    color: black;
+  color: black;
 }
 
 .imgContainer.lightMode {
-    background-color: white;
+  background-color: white;
 }
 
 .spacer.lightMode {
-    background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 li.lightMode {
-    background-color: var(--neutral-200);
+  background-color: var(--neutral-200);
 }
- 
+
 /*-------------------------------------------------------------------------------Modal--------------------------------------------------------------*/
 
 .layout {
   display: none;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 2;
+  top: 0;
+  left: 0;
 }
 
 .modal {
@@ -686,7 +713,6 @@ li.lightMode {
   z-index: 3;
   top: 50%;
   left: 50%;
-  transform: translateY(-50%);
   transform: translate(-50%, -50%);
   display: none;
   flex-direction: column;
@@ -795,4 +821,17 @@ li.lightMode {
 
 .modalArchiveButton:hover {
   background-color: var(--blue-700);
+}
+
+/* Add viewport height fix for mobile browsers */
+@supports (-webkit-touch-callout: none) {
+  /* CSS specific to iOS devices */
+  .mainContainer {
+    height: -webkit-fill-available;
+  }
+
+  body,
+  html {
+    height: -webkit-fill-available;
+  }
 }
