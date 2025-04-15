@@ -283,10 +283,10 @@ time {
 
 .openNoteHeader {
   display: flex;
-  justify-content: space-between;
-  align-items: start;
+  align-items: center;
   background-color: unset;
   padding: 0 0 12px 0;
+  margin-top: 16px;
 }
 
 .newNoteHeader .backButton {
@@ -300,6 +300,16 @@ time {
 .newNoteHeader {
   background-color: unset;
   padding: 0px 16px 13px 0;
+}
+
+.backButton {
+  margin-right: 71px;
+}
+
+.deleteButton, 
+.archiveButton, 
+.restore {
+  margin-right: 16px;
 }
 
 .backButton,

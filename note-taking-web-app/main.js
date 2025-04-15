@@ -55,9 +55,11 @@ function footerHandler() {
           console.log('Search Button');
           break;
 
-        case 'archivedButton':
-          console.log('Archived Button');
-          break;
+          case 'archivedButton':
+            if (window.location.pathname.includes('settings.html')) {
+              window.location.href = 'index.html?from=settings';
+            }
+            break;
 
         case 'tagsButton':
           console.log('Tags Button');
@@ -74,6 +76,30 @@ function footerHandler() {
   });
 }
 footerHandler();
+
+//Function to show Archive Notes Screen
+function settingsArchivedButtonHandler() {
+  const allNotesContainer = document.getElementById('allNotesContainer');
+  const allArchivedNotesContainer = document.querySelector('.allArchivedNotesContainer');
+  const subtitle = document.querySelector('.archivedNotesSubtitle');
+  const titleContainer = document.getElementById('titleContainer');
+  
+  if (allNotesContainer) {
+    const titleText = document.getElementById('titleText');
+    const spacers = document.querySelectorAll('.spacer');
+    spacers.forEach((spacer) => {
+      spacer.style.display = 'block';
+    });
+  
+    allArchivedNotesContainer.style.display = 'flex';
+    titleText.textContent = 'Archived Notes';
+    titleContainer.style.flexDirection = 'column';
+    allNotesContainer.style.display = 'none';
+    subtitle.style.display = 'flex';
+  } else {
+    console.log('Algo no funciona');
+  }
+}
 
 //Function to change SRC
 export function changeSrc(element) {
@@ -244,7 +270,7 @@ export function loadInitialState() {
     const logoText = document.querySelector('.logoText');
 
     const elementsForLightMode = document.querySelectorAll(
-      '.color, .src, footer, .footerButton, .border, .fill, .background, .imgContainer, img, .newNoteHeader, .stroke, body, .spacer, .generalContainer, .mainContainer, .mainHeader, .noteCard'
+      '.color, .src, footer, .footerButton, .border, .backImgModal, .fill, .backgroundM, .background, .imgContainer, img, .newNoteHeader, .stroke, body, .spacer, .generalContainer, .mainContainer, .mainHeader, .noteCard'
     );
 
     if (allNotesContainer) {
@@ -323,8 +349,16 @@ export function loadInitialState() {
             case element.classList.contains('border'): 
               element.style.border = '1px solid black';
               break;
+
+            case element.classList.contains('backgroundM'):
+              element.style.backgroundColor = '#ffffff';
+              break;
+
+            case element.classList.contains('backImgModal'):
+              element.style.backgroundColor = '#ffffff';
           }
         } else if (currentColorTheme === 'darkMode') {
+
           switch (true) {
             case element.classList.contains('color'):
               element.style.color = 'white';
@@ -377,6 +411,10 @@ export function loadInitialState() {
             case element.classList.contains('background'):
               element.style.backgroundColor = '#525866';
               break;
+
+            case element.classList.contains('backgroundM'):
+              element.style.backgroundColor = '#2a3038';
+              break;
           }
         }
       });
@@ -398,6 +436,14 @@ export function loadInitialState() {
     }
 
     document.body.style.fontFamily = `${currentFontFamily}`;
+
+    const params = new URLSearchParams(window.location.search);
+    const from = params.get('from');
+
+    if (from === 'settings') {
+      console.log('Prueba 8 FUNCIONA')
+      settingsArchivedButtonHandler();
+    }
   });
 }
 loadInitialState();
@@ -641,8 +687,12 @@ function newNoteButton() {
       const allNotesScreen = document.getElementById('allNotesContainer');
       const newNoteScreen = document.getElementById('newNoteContainer');
       const titleContainer = document.getElementById('titleContainer');
+      const allArchivedNotesContainer = document.getElementById('allArchivedNotesContainer');
+      const openNotesContainer = document.getElementById('openNotesContainer');
       const archivedNotes = document.querySelector('.allArchivedNotesContainer');
 
+      openNotesContainer.style.display = 'none'
+      allArchivedNotesContainer.style.display = 'none';
       allNotesScreen.style.display = 'none';
       titleContainer.style.display = 'none';
       archivedNotes.style.display = 'none';
@@ -930,14 +980,21 @@ function deleteAndArchiveNotes() {
     const modalTextTop = document.querySelector('.modalTextTop');
     const modalTextBottom = document.querySelector('.modalTextBottom');
 
+    const overlay = document.getElementById('overlay');
+
     //DELETE
     if (clickedButton && clickedButton.classList.contains('deleteButton')) {
       const targetNote = clickedButton.closest('[data-id]');
       if (targetNote) {
         let noteToDelete = targetNote.getAttribute('data-id');
 
+        overlay.style.display = 'block';
         modal.style.display = 'flex';
+        modalRightButton.classList.remove('modalArchiveButton');
         modalRightButton.classList.add('modalDeleteButton');
+        modalRightButton.textContent = 'Delete Note';
+        modalTextTop.textContent = 'Delete Note';
+        modalTextBottom.textContent = 'Are you sure you want to permanently delete this note? This action cannot be undone.';
 
         modalRightButton.addEventListener('click', () => {
           currentUserNotes = currentUserNotes.filter((note) => note.id !== noteToDelete);
@@ -948,11 +1005,13 @@ function deleteAndArchiveNotes() {
           window.location.href = 'index.html';
           modal.style.display = 'none';
           modalRightButton.classList.remove('modalDeleteButton');
+          overlay.style.display = 'none';
           updateUi();
         });
 
         modalCancelButton.addEventListener('click', () => {
-          modal.style.display = 'none'
+          modal.style.display = 'none';
+          overlay.style.display = 'none';
         });
       }
       //ARCHIVE
@@ -961,7 +1020,9 @@ function deleteAndArchiveNotes() {
       if (targetNote) {
         let noteToArchive = targetNote.getAttribute('data-id');
 
+        overlay.style.display = 'block';
         modal.style.display = 'flex';
+        modalRightButton.classList.remove('modalDeleteButton');
         modalRightButton.classList.add('modalArchiveButton');
         modalRightButton.textContent = 'Archive Note';
         modalTextTop.textContent = 'Archive Note';

@@ -1,39 +1,24 @@
-//Function to handle New Note Header Buttons
-function backAndCancelButtonHandler() {
-  const archivedNotesContainer = document.getElementById('allArchivedNotesContainer');
+//Function to show Archive Notes Screen
+function prueba8() {
   const allNotesContainer = document.getElementById('allNotesContainer');
-  const openNotesContainer = document.getElementById('openNotesContainer');
-  const newNoteContainer = document.getElementById('newNoteContainer');
+  const allArchivedNotesContainer = document.querySelector('.allArchivedNotesContainer');
+  const subtitle = document.querySelector('.archivedNotesSubtitle');
   const titleContainer = document.getElementById('titleContainer');
-
-  document.addEventListener('click', (event) => {
-    const backOrCancel = event.target.closest('.backButton, .cancelButton');
-
-    if (!backOrCancel) return;
-
-    titleContainer.style.display = 'flex';
-    const container = event.target.closest('.openArchivedNoteContainer, .openNoteContainer, .newNoteContainer');
-
-    switch (true) {
-
-      case container?.classList.contains('openArchivedNoteContainer'):
-        archivedNotesContainer.style.display = 'flex';
-        openNotesContainer.style.display = 'none';
-        break;
-
-      case container?.classList.contains('openNoteContainer'):
-        allNotesContainer.style.display = 'flex';
-        openNotesContainer.style.display = 'none';
-        break;
-
-      case container?.classList.contains('newNoteContainer'):
-        newNoteContainer.style.display = 'flex';
-        openNotesContainer.style.display = 'none';
-        break;
-
-      default:
-        console.log('noteMenuButtonsHandler is not working');
-    }
-  });
+  
+  if (allNotesContainer) {
+    const titleText = document.getElementById('titleText');
+    const spacers = document.querySelectorAll('.spacer');
+    spacers.forEach((spacer) => {
+      spacer.style.display = 'block';
+    });
+  
+    allArchivedNotesContainer.style.display = 'flex';
+    titleText.textContent = 'Archived Notes';
+    titleContainer.style.flexDirection = 'column';
+    allNotesContainer.style.display = 'none';
+    subtitle.style.display = 'flex';
+  } else {
+    console.log('Algo no funciona');
+  }
 }
-backAndCancelButtonHandler();
+prueba8();
