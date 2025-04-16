@@ -1,5 +1,5 @@
 //Global Variables
-let currentUser = localStorage.getItem('currentUser');
+export let currentUser = localStorage.getItem('currentUser');
 let currentFontFamily = localStorage.getItem('currentFontFamily') || 'Inter';
 let currentColorTheme = localStorage.getItem('currentColorTheme') || 'Dark Mode';
 
@@ -1110,7 +1110,12 @@ deleteAndArchiveNotes();
 //Function to show Archive Notes Screen
 function showArchivedNotesScreen() {
   document.addEventListener('click', (event) => {
+    if (!event.target.closest('#archivedButton')) return;
+    
     const closest = event.target.closest('#archivedButton');
+
+    const newNoteButton = document.getElementById('newNoteButton');
+    newNoteButton.style.display = 'none';
 
     if (closest) {
       const allNotesContainer = document.getElementById('allNotesContainer');
