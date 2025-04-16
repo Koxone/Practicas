@@ -250,25 +250,27 @@ function changePassword() {
     });
   }
 
-  resetButton.addEventListener('click', () => {
-    if (newValue === confirmValue) {
-      const parseSavedCredentials = JSON.parse(savedCredentials);
-      const userEmail = JSON.parse(currentUserReset);
-      const userIndex = parseSavedCredentials.findIndex((note) => note.user === userEmail);
-
-      if (userIndex === -1) {
-        console.log('Usuario no encontrado');
-        return;
+  if (resetButton) {
+    resetButton.addEventListener('click', () => {
+      if (newValue === confirmValue) {
+        const parseSavedCredentials = JSON.parse(savedCredentials);
+        const userEmail = JSON.parse(currentUserReset);
+        const userIndex = parseSavedCredentials.findIndex((note) => note.user === userEmail);
+  
+        if (userIndex === -1) {
+          console.log('Usuario no encontrado');
+          return;
+        }
+  
+        const hashedPassword = CryptoJS.SHA256(newValue).toString();
+  
+        parseSavedCredentials[userIndex].password = hashedPassword;
+        localStorage.setItem('Credentials', JSON.stringify(parseSavedCredentials));
+        window.location.href = '../settings.html'
+        console.log('Contrase;a Cambiada', );
       }
-
-      const hashedPassword = CryptoJS.SHA256(newValue).toString();
-
-      parseSavedCredentials[userIndex].password = hashedPassword;
-      localStorage.setItem('Credentials', JSON.stringify(parseSavedCredentials));
-      window.location.href = '../settings.html'
-      console.log('Contrase;a Cambiada', );
-    }
-  });
+    });
+  }
 }
 changePassword();
 
@@ -276,8 +278,10 @@ changePassword();
 function goBackToSettings() {
   const goBackToSettings = document.querySelector('.goBackToSettings');
 
-  goBackToSettings.addEventListener('click', () => {
-    window.location.href = '../settings.html';
-  })
+  if (goBackToSettings) {
+    goBackToSettings.addEventListener('click', () => {
+      window.location.href = '../settings.html';
+    })
+  }
 }
 goBackToSettings();

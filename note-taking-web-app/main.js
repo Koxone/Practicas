@@ -1077,8 +1077,16 @@ function deleteAndArchiveNotes() {
       if (targetNote) {
         let noteToRestore = targetNote.getAttribute('data-id');
 
-        let userConfirmation = confirm('Are you sure you want to restore thi note to All Notes Section?');
-        if (userConfirmation) {
+        overlay.style.display = 'block';
+        modal.style.display = 'flex';
+        modalRightButton.classList.remove('modalArchiveButton');
+        modalRightButton.classList.remove('modalDeleteButton');
+        modalRightButton.classList.add('modalRestoreButton');
+        modalRightButton.textContent = 'Restore Note';
+        modalTextTop.textContent = 'Restore Note';
+        modalTextBottom.textContent = 'Are you sure you want to restore thi note to All Notes Section?';
+
+        modalRightButton.addEventListener('click', () => {
 
           let noteStatus = currentUserArchivedNotes.find((note) => note.id === noteToRestore);
 
@@ -1100,7 +1108,12 @@ function deleteAndArchiveNotes() {
           console.log('Note Restore:', noteToRestore);
           window.location.href = 'index.html';
           updateUi();
-        }
+        });
+
+        modalCancelButton.addEventListener('click', () => {
+          modal.style.display = 'none';
+          overlay.style.display = 'none';
+        });
       }
     }
   });

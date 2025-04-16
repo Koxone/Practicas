@@ -813,7 +813,8 @@ li.lightMode {
   cursor: pointer;
 }
 
-.modalArchiveButton {
+.modalArchiveButton, 
+.modalRestoreButton {
   display: flex;
   align-items: center;
   justify-content: center;
