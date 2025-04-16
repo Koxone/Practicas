@@ -10,12 +10,12 @@ let currentUserArchivedNotes = JSON.parse(localStorage.getItem('currentUserArchi
 
 //Quick Test Section
 function quickTest() {
-console.log('Current User:', currentUser);
-console.log('Saved Notes:', currentUserNotes);
-console.log('Saved Notes Number:', currentUserNotes.length);
-console.log('Archived Notes:', currentUserArchivedNotes);
-console.log('Current Font Family:', currentFontFamily);
-console.log('Current Color Theme:', currentColorTheme);
+  console.log('Current User:', currentUser);
+  console.log('Saved Notes:', currentUserNotes);
+  console.log('Saved Notes Number:', currentUserNotes.length);
+  console.log('Archived Notes:', currentUserArchivedNotes);
+  console.log('Current Font Family:', currentFontFamily);
+  console.log('Current Color Theme:', currentColorTheme);
 }
 quickTest();
 
@@ -55,11 +55,11 @@ function footerHandler() {
           console.log('Search Button');
           break;
 
-          case 'archivedButton':
-            if (window.location.pathname.includes('settings.html')) {
-              window.location.href = 'index.html?from=settings';
-            }
-            break;
+        case 'archivedButton':
+          if (window.location.pathname.includes('settings.html')) {
+            window.location.href = 'index.html?from=settings';
+          }
+          break;
 
         case 'tagsButton':
           console.log('Tags Button');
@@ -83,14 +83,14 @@ function settingsArchivedButtonHandler() {
   const allArchivedNotesContainer = document.querySelector('.allArchivedNotesContainer');
   const subtitle = document.querySelector('.archivedNotesSubtitle');
   const titleContainer = document.getElementById('titleContainer');
-  
+
   if (allNotesContainer) {
     const titleText = document.getElementById('titleText');
     const spacers = document.querySelectorAll('.spacer');
     spacers.forEach((spacer) => {
       spacer.style.display = 'block';
     });
-  
+
     allArchivedNotesContainer.style.display = 'flex';
     titleText.textContent = 'Archived Notes';
     titleContainer.style.flexDirection = 'column';
@@ -190,9 +190,9 @@ export function applyThemeToDynamicContent(theme) {
           changeSrc(element);
           break;
 
-        case element.classList.contains('border'): 
-        element.style.border = '1px solid #e0e4ea';
-        break;
+        case element.classList.contains('border'):
+          element.style.border = '1px solid #e0e4ea';
+          break;
       }
     });
   } else if (theme === 'darkMode') {
@@ -313,7 +313,7 @@ export function loadInitialState() {
               element.style.backgroundColor = 'white';
               break;
 
-            case element.classList.length === 1 && element.classList.contains('generalContainer'): 
+            case element.classList.length === 1 && element.classList.contains('generalContainer'):
               element.style.backgroundColor = 'white';
               break;
 
@@ -346,7 +346,7 @@ export function loadInitialState() {
               element.style.backgroundColor = 'white';
               break;
 
-            case element.classList.contains('border'): 
+            case element.classList.contains('border'):
               element.style.border = '1px solid black';
               break;
 
@@ -358,7 +358,6 @@ export function loadInitialState() {
               element.style.backgroundColor = '#ffffff';
           }
         } else if (currentColorTheme === 'darkMode') {
-
           switch (true) {
             case element.classList.contains('color'):
               element.style.color = 'white';
@@ -435,20 +434,26 @@ export function loadInitialState() {
       subtitle.style.display = 'none'; //none
     }
 
+    if (currentFontFamily === 'Space Mono, monospace') {
+      const modalFont = document.querySelector('.modalTextBottom ');
+      if (modalFont) {
+        modalFont.style.fontSize = '11px';
+      }
+    }
     document.body.style.fontFamily = `${currentFontFamily}`;
 
     const params = new URLSearchParams(window.location.search);
     const from = params.get('from');
 
     if (from === 'settings') {
-      console.log('Prueba 8 FUNCIONA')
+      console.log('Prueba 8 FUNCIONA');
       settingsArchivedButtonHandler();
     }
   });
 }
 loadInitialState();
 
-//Function to change Font Theme
+//Function to change Font And Color Theme
 export function changeFontOrColorTheme() {
   const applyButton = document.getElementById('applyButton');
   const resetButton = document.getElementById('resetButton');
@@ -490,12 +495,12 @@ export function changeFontOrColorTheme() {
       //Light Mode
       if (innerText.textContent === 'Light Mode') {
         colorThemeSelection = 'lightMode';
-        applyThemeToDynamicContent('lightMode');
+        // applyThemeToDynamicContent('lightMode');
 
         //Dark Mode
       } else if (innerText.textContent === 'Dark Mode') {
         colorThemeSelection = 'darkMode';
-        applyThemeToDynamicContent('darkMode');
+        // applyThemeToDynamicContent('darkMode');
       }
     } else {
       return;
@@ -505,9 +510,12 @@ export function changeFontOrColorTheme() {
   if (applyButton && resetButton) {
     applyButton.addEventListener('click', () => {
       const openSettingContainer = document.querySelector('.openSettingContainer');
+      const mainHeader = document.querySelector('.mainHeader');
+      mainHeader.style.backgroundColor = 'rgb(35, 37, 48)';
       if (openSettingContainer.classList.contains('colorSettings')) {
         localStorage.setItem('currentColorTheme', colorThemeSelection);
         currentColorTheme = colorThemeSelection;
+        applyThemeToDynamicContent(colorThemeSelection);
       } else if (openSettingContainer.classList.contains('fontSettings')) {
         localStorage.setItem('currentFontFamily', fontFamilyselection);
         currentFontFamily = fontFamilyselection;
@@ -549,7 +557,6 @@ function backAndCancelButtonHandler() {
     const container = event.target.closest('.openArchivedNoteContainer, .openNoteContainer, .newNoteContainer');
 
     switch (true) {
-
       case container?.classList.contains('openArchivedNoteContainer'):
         archivedNotesContainer.style.display = 'flex';
         openNotesContainer.style.display = 'none';
@@ -581,102 +588,107 @@ function updateUi() {
   if (allNotesContainer) {
     allNotesContainer.innerHTML = '';
 
-    currentUserNotes.forEach((note) => {
-      const article = document.createElement('article');
-      article.classList.add('noteCard');
-      article.classList.add('regularNote');
-      article.setAttribute('data-id', note.id);
+    currentUserNotes
+      .filter((note) => note.user === currentUser)
+      .forEach((note) => {
+        const article = document.createElement('article');
+        article.classList.add('noteCard');
+        article.classList.add('regularNote');
+        article.setAttribute('data-id', note.id);
 
-      const title = document.createElement('h2');
-      title.classList.add('noteTitleText');
-      title.innerText = note.title;
+        const title = document.createElement('h2');
+        title.classList.add('noteTitleText');
+        title.innerText = note.title;
 
-      const tags = document.createElement('ul');
-      tags.classList.add('noteTags');
+        const tags = document.createElement('ul');
+        tags.classList.add('noteTags');
 
-      const tagsArray = note.tags ? note.tags.split(',') : [];
+        const tagsArray = note.tags ? note.tags.split(',') : [];
 
-      tagsArray.forEach((tagText, index) => {
-        const li = document.createElement('li');
-        const span = document.createElement('span');
-        li.classList.add('background');
-        span.classList.add('tag');
-        span.setAttribute('data-tag', 'tagNumber-' + (index + 1));
-        span.innerText = tagText.trim();
-        li.appendChild(span);
-        tags.appendChild(li);
+        tagsArray.forEach((tagText, index) => {
+          const li = document.createElement('li');
+          const span = document.createElement('span');
+          li.classList.add('background');
+          span.classList.add('tag');
+          span.setAttribute('data-tag', 'tagNumber-' + (index + 1));
+          span.innerText = tagText.trim();
+          li.appendChild(span);
+          tags.appendChild(li);
+        });
+
+        const time = document.createElement('time');
+        time.classList.add('noteTimeTag');
+        time.setAttribute('data-time', note.createdAt);
+
+        const date = new Date(note.createdAt);
+        const formattedDate = date.toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+        });
+        time.innerText = formattedDate;
+
+        article.appendChild(title);
+        article.appendChild(tags);
+        article.appendChild(time);
+
+        allNotesContainer.appendChild(article);
       });
-
-      const time = document.createElement('time');
-      time.classList.add('noteTimeTag');
-      time.setAttribute('data-time', note.createdAt);
-
-      const date = new Date(note.createdAt);
-      const formattedDate = date.toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-      });
-      time.innerText = formattedDate;
-
-      article.appendChild(title);
-      article.appendChild(tags);
-      article.appendChild(time);
-
-      allNotesContainer.appendChild(article);
-    });
   }
 
   if (allArchivedNotesContainer) {
     allArchivedNotesContainer.innerHTML = '';
 
-    currentUserArchivedNotes.forEach((note) => {
-      const article = document.createElement('article');
-      article.classList.add('noteCard');
-      article.classList.add('archivedNoteCard');
-      article.setAttribute('data-id', note.id);
+    currentUserArchivedNotes
+      .filter((note) => note.user === currentUser)
+      .forEach((note) => {
+        const article = document.createElement('article');
+        article.classList.add('noteCard');
+        article.classList.add('archivedNoteCard');
+        article.setAttribute('data-id', note.id);
 
-      const title = document.createElement('h2');
-      title.classList.add('noteTitleText');
-      title.innerText = note.title;
+        const title = document.createElement('h2');
+        title.classList.add('noteTitleText');
+        title.innerText = note.title;
 
-      const tags = document.createElement('ul');
-      tags.classList.add('noteTags');
+        const tags = document.createElement('ul');
+        tags.classList.add('noteTags');
 
-      const tagsArray = note.tags ? note.tags.split(',') : [];
+        const tagsArray = note.tags ? note.tags.split(',') : [];
 
-      tagsArray.forEach((tagText, index) => {
-        const li = document.createElement('li');
-        const span = document.createElement('span');
-        li.classList.add('background');
-        span.classList.add('tag');
-        span.setAttribute('data-tag', 'tagNumber-' + (index + 1));
-        span.innerText = tagText.trim();
-        li.appendChild(span);
-        tags.appendChild(li);
+        tagsArray.forEach((tagText, index) => {
+          const li = document.createElement('li');
+          const span = document.createElement('span');
+          li.classList.add('background');
+          span.classList.add('tag');
+          span.setAttribute('data-tag', 'tagNumber-' + (index + 1));
+          span.innerText = tagText.trim();
+          li.appendChild(span);
+          tags.appendChild(li);
+        });
+
+        const time = document.createElement('time');
+        time.classList.add('noteTimeTag');
+        time.setAttribute('data-time', note.createdAt);
+
+        const date = new Date(note.createdAt);
+        const formattedDate = date.toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+        });
+        time.innerText = formattedDate;
+
+        article.appendChild(title);
+        article.appendChild(tags);
+        article.appendChild(time);
+
+        allArchivedNotesContainer.appendChild(article);
       });
-
-      const time = document.createElement('time');
-      time.classList.add('noteTimeTag');
-      time.setAttribute('data-time', note.createdAt);
-
-      const date = new Date(note.createdAt);
-      const formattedDate = date.toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-      });
-      time.innerText = formattedDate;
-
-      article.appendChild(title);
-      article.appendChild(tags);
-      article.appendChild(time);
-
-      allArchivedNotesContainer.appendChild(article);
-    });
   }
 }
 updateUi();
+
 
 //Function for Create New Note
 function newNoteButton() {
@@ -691,7 +703,7 @@ function newNoteButton() {
       const openNotesContainer = document.getElementById('openNotesContainer');
       const archivedNotes = document.querySelector('.allArchivedNotesContainer');
 
-      openNotesContainer.style.display = 'none'
+      openNotesContainer.style.display = 'none';
       allArchivedNotesContainer.style.display = 'none';
       allNotesScreen.style.display = 'none';
       titleContainer.style.display = 'none';
@@ -754,11 +766,11 @@ function saveNewNote() {
         event.preventDefault();
         return;
       }
-      
-      const noteNumbers = currentUserNotes.map(note => {
+
+      const noteNumbers = currentUserNotes.map((note) => {
         return parseInt(note.id.split('-')[1], 10);
-      })
-      
+      });
+
       const highestNumber = noteNumbers.length > 0 ? Math.max(...noteNumbers) : 0;
       let nextIdNumber = highestNumber + 1;
 
@@ -769,6 +781,7 @@ function saveNewNote() {
         tags: tags,
         content: content,
         createdAt: new Date().toISOString(),
+        status: 'active',
       };
 
       currentUserNotes.push(newNote);
@@ -964,10 +977,8 @@ function noteOpenHandler() {
 }
 noteOpenHandler();
 
-
 //Function for Delete and Archive Button
 function deleteAndArchiveNotes() {
-
   document.addEventListener('click', (event) => {
     const clickedButton = event.target.closest('.deleteButton');
     const clickedArchiveButton = event.target.closest('.archiveButton');
@@ -997,6 +1008,7 @@ function deleteAndArchiveNotes() {
         modalTextBottom.textContent = 'Are you sure you want to permanently delete this note? This action cannot be undone.';
 
         modalRightButton.addEventListener('click', () => {
+
           currentUserNotes = currentUserNotes.filter((note) => note.id !== noteToDelete);
           currentUserArchivedNotes = currentUserArchivedNotes.filter((note) => note.id !== noteToDelete);
           localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
@@ -1026,13 +1038,20 @@ function deleteAndArchiveNotes() {
         modalRightButton.classList.add('modalArchiveButton');
         modalRightButton.textContent = 'Archive Note';
         modalTextTop.textContent = 'Archive Note';
-        modalTextBottom.textContent = 'Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.';
+        modalTextBottom.textContent =
+          'Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.';
         modalImg.setAttribute('src', './assets/images/icon-archive-lightMode.svg');
 
         modalRightButton.addEventListener('click', () => {
           let archivedNote = currentUserNotes.find((note) => {
             return note.id === noteToArchive;
           });
+
+          let noteStatus = currentUserNotes.find((note) =>  note.id === noteToArchive);
+
+          if (noteStatus) {
+            noteStatus.status = 'archived';
+          }
 
           if (archivedNote) {
             currentUserArchivedNotes.push(archivedNote);
@@ -1048,17 +1067,24 @@ function deleteAndArchiveNotes() {
         });
 
         modalCancelButton.addEventListener('click', () => {
-          modal.style.display = 'none'
+          modal.style.display = 'none';
+          overlay.style.display = 'none';
         });
       }
       //RESTORE
-    } else if (clickedRestoreButton && clickedRestoreButton.classList.contains('restore')) { 
+    } else if (clickedRestoreButton && clickedRestoreButton.classList.contains('restore')) {
       const targetNote = clickedRestoreButton.closest('[data-id]');
       if (targetNote) {
         let noteToRestore = targetNote.getAttribute('data-id');
 
         let userConfirmation = confirm('Are you sure you want to restore thi note to All Notes Section?');
         if (userConfirmation) {
+
+          let noteStatus = currentUserArchivedNotes.find((note) => note.id === noteToRestore);
+
+          if (noteStatus) {
+            noteStatus.status = 'active';
+          }
           let restoredNote = currentUserArchivedNotes.find((note) => {
             return note.id === noteToRestore;
           });
@@ -1115,11 +1141,10 @@ showArchivedNotesScreen();
 //Function to open an Archive Note
 function openArchivedNote() {
   document.addEventListener('click', (event) => {
-
     if (!event.target.closest('button')) {
       return;
     }
-    
+
     const archiveButton = event.target.closest('button').classList.contains('footerButton');
     const archiveButtonId = event.target.closest('button').id;
 
@@ -1128,11 +1153,11 @@ function openArchivedNote() {
     }
 
     if (archiveButton && archiveButtonId) {
-      console.log('Archive Button BIEN')
+      console.log('Archive Button BIEN');
     } else {
       return;
     }
-  })
+  });
 }
 openArchivedNote();
 
@@ -1366,7 +1391,7 @@ function editAndSaveNotes() {
       if (textarea) {
         textarea.addEventListener('input', (event) => {
           content = event.target.value;
-        })
+        });
       }
     }
   });
@@ -1374,16 +1399,32 @@ function editAndSaveNotes() {
   document.addEventListener('click', (event) => {
     if (event.target.classList.contains('saveButton')) {
       if (noteId && content !== '') {
-        const noteToEdit = currentUserNotes.find(note => note.id === noteId);
-  
+        const noteToEdit = currentUserNotes.find((note) => note.id === noteId);
+
         if (noteToEdit) {
           noteToEdit.content = content;
           localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
           window.location.href = 'index.html';
-          console.log('Nota Actualizada:', noteToEdit)
+          console.log('Nota Actualizada:', noteToEdit);
         }
       }
     }
+  });
+}
+editAndSaveNotes();
+
+//Function for showing User Notes
+function showCurrentUserNotes() {
+  const user  = currentUser;
+  const userNotes = currentUserNotes;
+  const userArchivedNotes = currentUserArchivedNotes;
+  const userNotesCombined = [...currentUserNotes, ...currentUserArchivedNotes];
+
+  userNotesCombined.forEach((note) => {
+    if (user === note.user) {
+
+      // console.log('FUNCIONA BITCH', note)
+    }
   })
 }
-editAndSaveNotes()
+showCurrentUserNotes();
