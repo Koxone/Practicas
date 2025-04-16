@@ -580,7 +580,7 @@ function backAndCancelButtonHandler() {
 }
 backAndCancelButtonHandler();
 
-//Function to update UI
+//Function to update UI depending on which user are logged in
 function updateUi() {
   const allNotesContainer = document.getElementById('allNotesContainer');
   const allArchivedNotesContainer = document.querySelector('.allArchivedNotesContainer');
@@ -1412,19 +1412,3 @@ function editAndSaveNotes() {
   });
 }
 editAndSaveNotes();
-
-//Function for showing User Notes
-function showCurrentUserNotes() {
-  const user  = currentUser;
-  const userNotes = currentUserNotes;
-  const userArchivedNotes = currentUserArchivedNotes;
-  const userNotesCombined = [...currentUserNotes, ...currentUserArchivedNotes];
-
-  userNotesCombined.forEach((note) => {
-    if (user === note.user) {
-
-      // console.log('FUNCIONA BITCH', note)
-    }
-  })
-}
-showCurrentUserNotes();

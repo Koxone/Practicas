@@ -1,108 +1,112 @@
-//Function to update UI
-function updateUi() {
-  const allNotesContainer = document.getElementById('allNotesContainer');
-  const allArchivedNotesContainer = document.querySelector('.allArchivedNotesContainer');
+//Function to save user and password
+function saveSignUpCredentials() {
+  const inputs = document.querySelectorAll('#signUpMail, #signUpPassword');
+  const signUpButton = document.getElementById('signUpButton');
+  let user = '';
+  let password = '';
 
-  if (allNotesContainer) {
-    allNotesContainer.innerHTML = '';
-
-    currentUserNotes
-      .filter((note) => note.user === currentUser)
-      .forEach((note) => {
-        const article = document.createElement('article');
-        article.classList.add('noteCard');
-        article.classList.add('regularNote');
-        article.setAttribute('data-id', note.id);
-
-        const title = document.createElement('h2');
-        title.classList.add('noteTitleText');
-        title.innerText = note.title;
-
-        const tags = document.createElement('ul');
-        tags.classList.add('noteTags');
-
-        const tagsArray = note.tags ? note.tags.split(',') : [];
-
-        tagsArray.forEach((tagText, index) => {
-          const li = document.createElement('li');
-          const span = document.createElement('span');
-          li.classList.add('background');
-          span.classList.add('tag');
-          span.setAttribute('data-tag', 'tagNumber-' + (index + 1));
-          span.innerText = tagText.trim();
-          li.appendChild(span);
-          tags.appendChild(li);
-        });
-
-        const time = document.createElement('time');
-        time.classList.add('noteTimeTag');
-        time.setAttribute('data-time', note.createdAt);
-
-        const date = new Date(note.createdAt);
-        const formattedDate = date.toLocaleDateString('en-GB', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-        });
-        time.innerText = formattedDate;
-
-        article.appendChild(title);
-        article.appendChild(tags);
-        article.appendChild(time);
-
-        allNotesContainer.appendChild(article);
-      });
+  const localStoredCredentials = localStorage.getItem('Credentials');
+  if (localStoredCredentials) {
+    userCredentials = JSON.parse(localStoredCredentials);
   }
 
-  if (allArchivedNotesContainer) {
-    allArchivedNotesContainer.innerHTML = '';
-
-    currentUserArchivedNotes
-      .filter((note) => note.user === currentUser)
-      .forEach((note) => {
-        const article = document.createElement('article');
-        article.classList.add('noteCard');
-        article.classList.add('archivedNoteCard');
-        article.setAttribute('data-id', note.id);
-
-        const title = document.createElement('h2');
-        title.classList.add('noteTitleText');
-        title.innerText = note.title;
-
-        const tags = document.createElement('ul');
-        tags.classList.add('noteTags');
-
-        const tagsArray = note.tags ? note.tags.split(',') : [];
-
-        tagsArray.forEach((tagText, index) => {
-          const li = document.createElement('li');
-          const span = document.createElement('span');
-          li.classList.add('background');
-          span.classList.add('tag');
-          span.setAttribute('data-tag', 'tagNumber-' + (index + 1));
-          span.innerText = tagText.trim();
-          li.appendChild(span);
-          tags.appendChild(li);
-        });
-
-        const time = document.createElement('time');
-        time.classList.add('noteTimeTag');
-        time.setAttribute('data-time', note.createdAt);
-
-        const date = new Date(note.createdAt);
-        const formattedDate = date.toLocaleDateString('en-GB', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-        });
-        time.innerText = formattedDate;
-
-        article.appendChild(title);
-        article.appendChild(tags);
-        article.appendChild(time);
-
-        allArchivedNotesContainer.appendChild(article);
+  inputs.forEach((input) => {
+    if (input) {
+      input.addEventListener('input', (event) => {
+        if (event.target.id === 'signUpMail') {
+          user = event.target.value;
+        } else if (event.target.id === 'signUpPassword') {
+          password = event.target.value;
+        }
       });
+    }
+  });
+
+  if (signUpButton) {
+    signUpButton.addEventListener('click', (event) => {
+      const userExists = userCredentials.some(
+        (credential) => credential.user === user
+      );
+      if (userExists) {
+        const emailDuplicated = document.getElementById(
+          'emailExistsErrorMessage'
+        );
+        const hideEmptyError = document.querySelectorAll(
+          '#errorEmptyEmail, #errorEmptyPassword'
+        );
+        addError();
+        hideEmptyError.forEach((error) => {
+          error.style.display = 'none';
+        });
+        emailDuplicated.style.display = 'block';
+        console.log('Email already exists');
+        return;
+      }
+
+      if (user === savedCredentials.user) {
+        addError();
+        console.log('User already exists');
+        return;
+      }
+
+      if (user !== '' && password !== '') {
+
+        const hashedPassword = CryptoJS.SHA256(password).toString();
+
+        userCredentials.push({
+          user: user,
+          password: hashedPassword,
+        });
+        localStorage.setItem('Credentials', JSON.stringify(userCredentials));
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        window.location.href = '../index.html';
+      } else {
+        console.log('There is a field empty');
+        event.preventDefault();
+        return;
+      }
+    });
   }
 }
-updateUi();
+saveSignUpCredentials();
+
+//Function to handle login with Local Storage Credentials
+function loginHandler() {
+  const loginButton = document.getElementById('loginButton');
+
+  if (loginButton) {
+    loginButton.addEventListener('click', (event) => {
+      const mailInput = document.getElementById('loginMail');
+      const passwordInput = document.getElementById('loginPassword');
+
+      if (mailInput.value !== '' && passwordInput.value !== '') {
+        let mailValue = mailInput.value;
+        let passValue = passwordInput.value;
+
+        const userExists = userCredentials.find(
+          (userObj) => userObj.user === mailValue);
+
+        if (userExists) {
+          const hashedLoginPassword = CryptoJS.SHA256(passValue).toString();
+          const passworsIsCorrect = userExists.password === hashedLoginPassword;
+
+          if (passworsIsCorrect) {
+            currentUser = userExists.user;
+            console.log('Login Granted: User and Password are correct');
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            window.location.href = '../index.html';
+          } else {
+            console.log('Wrong Password');
+            addError();
+            return;
+          }
+        } else {
+          console.log('User not found');
+          addError();
+          return;
+        }
+      }
+    });
+  }
+}
+loginHandler();

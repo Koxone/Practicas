@@ -1,7 +1,6 @@
 //Global Variables
 let userCredentials = [];
 let errorFound = false;
-let accessGranted = false;
 
 //Local Storage Variables
 let savedCredentials = localStorage.getItem('Credentials') || '';
@@ -37,62 +36,6 @@ function addError() {
     }
   });
 }
-
-// //Function to save user and password
-// function saveSignUpCredentials() {
-//   const inputs = document.querySelectorAll('#signUpMail, #signUpPassword');
-//   const signUpButton = document.getElementById('signUpButton');
-//   let user = '';
-//   let password = '';
-
-//   const localStoredCredentials = localStorage.getItem('Credentials');
-//   if (localStoredCredentials) {
-//     userCredentials = JSON.parse(localStoredCredentials);
-//   }
-
-//   inputs.forEach((input) => {
-//     if (input) {
-//       input.addEventListener('input', (event) => {
-//         if (event.target.id === 'signUpMail') {
-//           user = event.target.value;
-//         } else if (event.target.id === 'signUpPassword') {
-//           password = event.target.value;
-//         }
-//       });
-//     }
-//   });
-
-//   if (signUpButton) {
-//     signUpButton.addEventListener('click', (event) => {
-//       const userExists = userCredentials.some(
-//         (credential) => credential.user === user
-//       );
-//       if (userExists) {
-//         console.log('Email already exists');
-//         return;
-//       }
-
-//       if (user === savedCredentials.user) {
-//         console.log('User already exists');
-//         return;
-//       }
-
-//       if (user !== '' && password !== '') {
-//         userCredentials.push({
-//           user: user,
-//           password: password,
-//         });
-//         localStorage.setItem('Credentials', JSON.stringify(userCredentials));
-//         window.location.href = '../index.html';
-//       } else {
-//         console.log('There is a field empty');
-//         event.preventDefault();
-//         return;
-//       }
-//     });
-//   }
-// }
-// saveSignUpCredentials();
 
 //Function to save user and password
 function saveSignUpCredentials() {
@@ -146,9 +89,12 @@ function saveSignUpCredentials() {
       }
 
       if (user !== '' && password !== '') {
+
+        const hashedPassword = CryptoJS.SHA256(password).toString();
+
         userCredentials.push({
           user: user,
-          password: password,
+          password: hashedPassword,
         });
         localStorage.setItem('Credentials', JSON.stringify(userCredentials));
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -251,7 +197,8 @@ function loginHandler() {
           (userObj) => userObj.user === mailValue);
 
         if (userExists) {
-          const passworsIsCorrect = userExists.password === passValue;
+          const hashedLoginPassword = CryptoJS.SHA256(passValue).toString();
+          const passworsIsCorrect = userExists.password === hashedLoginPassword;
 
           if (passworsIsCorrect) {
             currentUser = userExists.user;
