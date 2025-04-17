@@ -44,6 +44,7 @@ function resetUi() {
 function footerHandler() {
   document.addEventListener('click', (event) => {
     const clickedButton = event.target.closest('.footerButton');
+    const searchEngineContainer = document.querySelector('.searchEngineContainer');
 
     if (clickedButton && clickedButton.classList.contains('footerButton')) {
       switch (clickedButton.id) {
@@ -53,6 +54,25 @@ function footerHandler() {
 
         case 'searchButton':
           console.log('Search Button');
+          const titleText = document.getElementById('titleText');
+          const titleContainer = document.getElementById('titleContainer');
+          const subtitleSearch = document.querySelector('.subtitleSearch');
+          const archivedNotesSubtitle = document.querySelector('.archivedNotesSubtitle');
+          const allNotesContainer = document.getElementById('allNotesContainer');
+          const newNoteButton = document.getElementById('newNoteButton');
+          const newNoteContainer = document.getElementById('newNoteContainer');
+          const allArchivedNotesContainer = document.getElementById('allArchivedNotesContainer');
+
+          allArchivedNotesContainer.style.display = 'none';
+          titleContainer.style.display = 'flex';
+          newNoteButton.style.display = 'none';
+          newNoteContainer.style.display = 'none';
+          allNotesContainer.style.display = 'flex';
+          archivedNotesSubtitle.style.display = 'none';
+          subtitleSearch.style.display = 'block';
+          titleText.textContent = 'Search';
+          searchEngineContainer.style.display = 'flex';
+          searchNotes();
           break;
 
         case 'archivedButton':
@@ -76,6 +96,24 @@ function footerHandler() {
   });
 }
 footerHandler();
+
+//Function for search engine
+function searchNotes() {
+  const searchEngine = document.getElementById('searchEngine');
+
+  searchEngine.addEventListener('input', (event) => {
+    const userSearch = event.target.value.toLowerCase().trim();
+    const searchedText = document.querySelector('.userSearch');
+    
+    if (searchedText) {
+      searchedText.textContent = `${event.target.value}`;
+    }
+
+    const filteredNotes = currentUserNotes.filter((note) => note.user === currentUser && note.title.toLowerCase().includes(userSearch));
+
+    renderSearchNotes(filteredNotes);
+  });
+}
 
 //Function to show Archive Notes Screen
 function settingsArchivedButtonHandler() {
@@ -276,7 +314,7 @@ export function loadInitialState() {
     if (allNotesContainer) {
       allNotesContainer.style.display = 'flex'; //flex
       titleContainer.style.display = 'flex'; //flex
-      titleContainer.style.flexDirection = 'unset'; //unset
+      titleContainer.style.flexDirection = 'column'; //unset
     }
 
     if (elementsForLightMode) {
@@ -493,6 +531,9 @@ export function changeFontOrColorTheme() {
       //Switch Color Theme
     } else if (event.target.closest('label') && event.target.closest('.color')) {
       //Light Mode
+
+      if (!innerText) return;
+      
       if (innerText.textContent === 'Light Mode') {
         colorThemeSelection = 'lightMode';
         // applyThemeToDynamicContent('lightMode');
@@ -581,14 +622,13 @@ function backAndCancelButtonHandler() {
 backAndCancelButtonHandler();
 
 //Function to update UI depending on which user are logged in
-function updateUi() {
+function renderSearchNotes(notesArray) {
   const allNotesContainer = document.getElementById('allNotesContainer');
-  const allArchivedNotesContainer = document.querySelector('.allArchivedNotesContainer');
 
   if (allNotesContainer) {
     allNotesContainer.innerHTML = '';
 
-    currentUserNotes
+    notesArray
       .filter((note) => note.user === currentUser)
       .forEach((note) => {
         const article = document.createElement('article');
@@ -634,6 +674,19 @@ function updateUi() {
 
         allNotesContainer.appendChild(article);
       });
+  }
+}
+
+//Function to update UI depending on which user are logged in
+function updateUi() {
+  const allNotesContainer = document.getElementById('allNotesContainer');
+  const allArchivedNotesContainer = document.querySelector('.allArchivedNotesContainer');
+
+  if (allNotesContainer) {
+    allNotesContainer.innerHTML = '';
+
+    const filteredNotes = currentUserNotes.filter((note) => note.user === currentUser);
+    renderSearchNotes(filteredNotes);
   }
 
   if (allArchivedNotesContainer) {
@@ -688,7 +741,6 @@ function updateUi() {
   }
 }
 updateUi();
-
 
 //Function for Create New Note
 function newNoteButton() {
@@ -1008,7 +1060,6 @@ function deleteAndArchiveNotes() {
         modalTextBottom.textContent = 'Are you sure you want to permanently delete this note? This action cannot be undone.';
 
         modalRightButton.addEventListener('click', () => {
-
           currentUserNotes = currentUserNotes.filter((note) => note.id !== noteToDelete);
           currentUserArchivedNotes = currentUserArchivedNotes.filter((note) => note.id !== noteToDelete);
           localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
@@ -1047,7 +1098,7 @@ function deleteAndArchiveNotes() {
             return note.id === noteToArchive;
           });
 
-          let noteStatus = currentUserNotes.find((note) =>  note.id === noteToArchive);
+          let noteStatus = currentUserNotes.find((note) => note.id === noteToArchive);
 
           if (noteStatus) {
             noteStatus.status = 'archived';
@@ -1087,7 +1138,6 @@ function deleteAndArchiveNotes() {
         modalTextBottom.textContent = 'Are you sure you want to restore thi note to All Notes Section?';
 
         modalRightButton.addEventListener('click', () => {
-
           let noteStatus = currentUserArchivedNotes.find((note) => note.id === noteToRestore);
 
           if (noteStatus) {
@@ -1124,7 +1174,7 @@ deleteAndArchiveNotes();
 function showArchivedNotesScreen() {
   document.addEventListener('click', (event) => {
     if (!event.target.closest('#archivedButton')) return;
-    
+
     const closest = event.target.closest('#archivedButton');
 
     const newNoteButton = document.getElementById('newNoteButton');
@@ -1136,6 +1186,10 @@ function showArchivedNotesScreen() {
       const subtitle = document.querySelector('.archivedNotesSubtitle');
       const titleContainer = document.getElementById('titleContainer');
 
+      const searchEngineContainer = document.getElementById('searchEngineContainer');
+      const subtitleSearch = document.getElementById('subtitleSearch');
+      const newNoteContainer = document.getElementById('newNoteContainer');
+
       if (allNotesContainer) {
         const titleText = document.getElementById('titleText');
         const spacers = document.querySelectorAll('.spacer');
@@ -1143,9 +1197,13 @@ function showArchivedNotesScreen() {
           spacer.style.display = 'block';
         });
 
+        newNoteContainer.style.display = 'none';
+        searchEngineContainer.style.display = 'none';
+        subtitleSearch.style.display = 'none';
         allArchivedNotesContainer.style.display = 'flex';
         titleText.textContent = 'Archived Notes';
         titleContainer.style.flexDirection = 'column';
+        titleContainer.style.display = 'flex';
         allNotesContainer.style.display = 'none';
         subtitle.style.display = 'flex';
       } else {
@@ -1430,5 +1488,3 @@ function editAndSaveNotes() {
   });
 }
 editAndSaveNotes();
-
-
