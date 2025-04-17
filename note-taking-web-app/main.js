@@ -533,7 +533,7 @@ export function changeFontOrColorTheme() {
       //Light Mode
 
       if (!innerText) return;
-      
+
       if (innerText.textContent === 'Light Mode') {
         colorThemeSelection = 'lightMode';
         // applyThemeToDynamicContent('lightMode');
@@ -674,6 +674,8 @@ function renderSearchNotes(notesArray) {
 
         allNotesContainer.appendChild(article);
       });
+
+      noteOpenHandler();
   }
 }
 
