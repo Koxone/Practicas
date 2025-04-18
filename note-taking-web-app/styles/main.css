@@ -193,7 +193,8 @@ header {
   font-family: Pacifico;
 }
 
-.footerButton {
+.footerButton, 
+.settingsFooterButton {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -204,12 +205,14 @@ header {
   cursor: pointer;
 }
 
-.footerButton:hover {
+.footerButton:hover,
+.settingsFooterButton:hover {
   background: var(--neutral-700);
   border-radius: 4px;
 }
 
-.footerButton.lightMode:hover {
+.footerButton.lightMode:hover, 
+.settingsFooterButton.lightMode:hover {
   background: var(--neutral-500);
   border-radius: 4px;
 }
@@ -900,7 +903,8 @@ li.lightMode {
   gap: 8px;
   padding: 14px;
   border: none;
-  border-bottom: 2px solid var(--neutral-800);
+  border-bottom: 1px solid var(--neutral-800);
+  border-radius: 0px;
   background: none;
   cursor: pointer;
 }
@@ -908,4 +912,49 @@ li.lightMode {
 .tagElement:hover {
   box-shadow: -6px 0px 6px -3px rgba(42, 42, 43, 0.9);
   color: #335cff;
+}
+/*-------------------------------------------------------------------------------Tag List--------------------------------------------------------------*/
+
+.toastContainer {
+  display: flex;
+  align-items: center;
+  background-color: var(--neutral-700);
+  padding: 8px;
+  border-radius: 8px;
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.toastContainer.active {
+  display: flex;
+  opacity: 1;
+  animation: glowEffect 0.5s ease;
+}
+
+@keyframes glowEffect {
+  0% {
+    box-shadow: 0 0 0 rgba(0, 123, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7), 0 0 20px rgba(0, 123, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(0, 123, 255, 0);
+  }
+}
+
+.toastContainer .src {
+  margin-right: 8px;
+}
+
+.toastContainer p.color {
+  margin-right: 10px;
+}
+
+#toastX {
+  cursor: pointer;
 }

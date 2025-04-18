@@ -23,7 +23,7 @@ quickTest();
 
 //Functions
 
-//Function to load notes from wwith login
+//Function to load notes from with login
 export function loadInitialState() {
   window.addEventListener('DOMContentLoaded', () => {
     const allNotesContainer = document.getElementById('allNotesContainer');
@@ -44,7 +44,9 @@ export function loadInitialState() {
       titleContainer.style.flexDirection = 'column'; //unset
     }
 
-    goBackToTags.style.display = 'none';
+    if (goBackToTags) {
+      goBackToTags.style.display = 'none';
+    }
 
     if (elementsForLightMode) {
       elementsForLightMode.forEach((element) => {
@@ -211,53 +213,185 @@ export function loadInitialState() {
 
     const params = new URLSearchParams(window.location.search);
     const from = params.get('from');
-
-    if (from === 'settings') {
-      settingsArchivedButtonHandler();
-    }
-  });
+    const section = params.get('section');
+    
+    setTimeout(() => {
+      if (from === 'settings') {
+        settingsFooterButtonsClickSimulator(section);
+      }
+    });
+    }, 50);
 }
 loadInitialState();
 
-//Function Footer Buttons Handler
-function footerHandler() {
+//Settings footer buttons handler
+function settingsFooterButtonsHandler() {
+
   document.addEventListener('click', (event) => {
-    const clickedButton = event.target.closest('.footerButton');
-    const searchEngineContainer = document.querySelector('.searchEngineContainer');
+    const clickedButton = event.target.closest('.settingsFooterButton');
+    if (!clickedButton || !clickedButton.classList.contains('settingsFooterButton')) return;
 
-    if (clickedButton && clickedButton.classList.contains('footerButton')) {
-      switch (clickedButton.id) {
-        case 'homeButton':
-          window.location.href = 'index.html';
-          break;
+    switch (clickedButton.id) {
+      case 'homeButton':
+        window.location.href = 'index.html';
+        break;
 
-        case 'searchButton':
-          if (window.location.pathname.includes('settings.html')) {
-            window.location.href = 'index.html?from=settings';
-          }
-          break;
+      case 'searchButton':
+        if (window.location.pathname.includes('settings.html')) {
+          window.location.href = 'index.html?from=settings&section=search';
+        }
+        break;
 
-        case 'archivedButton':
-          if (window.location.pathname.includes('settings.html')) {
-            window.location.href = 'index.html?from=settings';
-          }
-          break;
+      case 'archivedButton':
+        if (window.location.pathname.includes('settings.html')) {
+          window.location.href = 'index.html?from=settings&section=archive';
+        }
+        break;
 
-        case 'tagsButton':
-          console.log('Tags Button');
-          break;
+      case 'tagsButton':
+        if (window.location.pathname.includes('settings.html')) {
+          window.location.href = 'index.html?from=settings&section=tags';
+        }
+        break;
 
-        case 'settingsButton':
-          window.location.href = 'settings.html';
-          break;
+      case 'settingsButton':
+        console.log('Already in Settings');
+        break;
 
-        default:
-          console.log('Unkown Button');
-      }
+      default:
+        console.log('Unkown Button');
     }
   });
 }
-footerHandler();
+settingsFooterButtonsHandler();
+
+//Function to show Sections
+function showFooterSections(sectionId) {
+  const button = document.getElementById(sectionId);
+
+  if (!button) {
+    console.log('Error en showFooterSections');
+    return;
+  }
+
+  button.click();
+}
+
+//Function to show Archive Notes Screen
+function settingsFooterButtonsClickSimulator(section) {
+  switch (section) {
+    case 'archive':
+      showFooterSections('archivedButton');
+      break;
+
+    case 'search':
+      showFooterSections('searchButton');
+      break;
+
+    case 'tags':
+      showFooterSections('tagsButton');
+      break;
+
+    case 'home':
+      showFooterSections('homeButton');
+      break;
+  }
+}
+
+
+//Function to show Footer Buttons Screens
+function showMainFooterMenuScreens() {
+  document.addEventListener('click', (event) => {
+    if (
+      !(
+        event.target.closest('#searchButton') ||
+        event.target.closest('#tagsButton') ||
+        event.target.closest('#archivedButton') ||
+        event.target.closest('#goBackToTags') || 
+        event.target.closest('#homeButton')
+      )
+    )
+      return;
+
+    const titleText = document.getElementById('titleText');
+    const clickedButton = event.target.closest('.footerButton') || event.target.closest('#goBackToTags');
+
+    const elementsToHideSearch = document.querySelectorAll(
+      '.tagsListContainer, #openNotesContainer, #allArchivedNotesContainer, #newNoteButton, .archivedNotesSubtitle, #newNoteContainer'
+    );
+    const elementsToShowSearch = document.querySelectorAll('.subtitleSearch, #titleContainer, #allNotesContainer, .searchEngineContainer');
+
+    const elementsToShowTags = document.querySelectorAll('.tagsListContainer, #titleContainer');
+    const elementsToHideTags = document.querySelectorAll(
+      '#allNotesContainer, #openNotesContainer, #searchEngineContainer, #allArchivedNotesContainer, #goBackToTags, #newNoteButton, .archivedNotesSubtitle, #newNoteContainer'
+    );
+
+    const elementsToShowArchive = document.querySelectorAll('.allArchivedNotesContainer, .spacer, .archivedNotesSubtitle, #titleContainer, .spacer');
+    const elementsToHideArchive = document.querySelectorAll(
+      '#searchEngineContainer, #openNotesContainer, #subtitleSearch, #newNoteContainer, #allNotesContainer, #newNoteButton, .tagsListContainer'
+    );
+
+    if (!clickedButton) return;
+
+    const buttonId = clickedButton.id;
+
+    switch (buttonId) {
+
+      case 'searchButton':
+        elementsToHideSearch.forEach((element) => {
+          element.style.display = 'none';
+        });
+
+        elementsToShowSearch.forEach((element) => {
+          element.style.display = 'flex';
+        });
+
+        titleText.textContent = 'Search';
+        searchNotes();
+        break;
+
+      case 'homeButton':
+        window.location.href = 'index.html';
+        console.log('Search Works')
+        break;
+
+      case 'tagsButton':
+        elementsToHideTags.forEach((element) => {
+          element.style.display = 'none';
+        });
+        elementsToShowTags.forEach((element) => {
+          element.style.display = 'flex';
+        });
+        titleText.textContent = 'Tags';
+        break;
+
+      case 'goBackToTags':
+        elementsToHideTags.forEach((element) => {
+          element.style.display = 'none';
+        });
+        elementsToShowTags.forEach((element) => {
+          element.style.display = 'flex';
+        });
+        titleText.textContent = 'Tags';
+        break;
+
+      case 'archivedButton':
+        console.log('Funciona Archived Kox');
+        elementsToShowArchive.forEach((element) => {
+          element.style.display = 'flex';
+        });
+        elementsToHideArchive.forEach((element) => {
+          element.style.display = 'none';
+        });
+        titleText.textContent = 'Archived Notes';
+        break;
+
+      default:
+        console.log('Error en showFooterMenuScreens');
+    }
+  });
+}
+showMainFooterMenuScreens();
 
 //Function for search engine
 function searchNotes() {
@@ -275,30 +409,6 @@ function searchNotes() {
 
     renderSearchNotes(filteredNotes);
   });
-}
-
-//Function to show Archive Notes Screen
-function settingsArchivedButtonHandler() {
-  const allNotesContainer = document.getElementById('allNotesContainer');
-  const allArchivedNotesContainer = document.querySelector('.allArchivedNotesContainer');
-  const subtitle = document.querySelector('.archivedNotesSubtitle');
-  const titleContainer = document.getElementById('titleContainer');
-
-  if (allNotesContainer) {
-    const titleText = document.getElementById('titleText');
-    const spacers = document.querySelectorAll('.spacer');
-    spacers.forEach((spacer) => {
-      spacer.style.display = 'block';
-    });
-
-    allArchivedNotesContainer.style.display = 'flex';
-    titleText.textContent = 'Archived Notes';
-    titleContainer.style.flexDirection = 'column';
-    allNotesContainer.style.display = 'none';
-    subtitle.style.display = 'flex';
-  } else {
-    console.log('Algo no funciona');
-  }
 }
 
 //Function to change SRC
@@ -463,20 +573,13 @@ export function applyThemeToDynamicContent(theme) {
 export function changeFontOrColorTheme() {
   const applyButton = document.getElementById('applyButton');
   const resetButton = document.getElementById('resetButton');
-  const elements = document.querySelectorAll(
-    'body, .backButtonText, .generalContainer, .imgContainer, .mainContainer, header, .spacer, li, .settingsButton'
-  );
+  const elements = document.querySelectorAll('body, .backButtonText, .generalContainer, .imgContainer, .mainContainer, header, .spacer, li, .settingsButton');
 
   let fontFamilyselection = currentFontFamily;
   let colorThemeSelection = currentColorTheme;
 
   document.addEventListener('click', (event) => {
-    if (
-      !(
-        (event.target.closest('label') && event.target.closest('.font')) ||
-        (event.target.closest('label') && event.target.closest('.color'))
-      )
-    ) {
+    if (!((event.target.closest('label') && event.target.closest('.font')) || (event.target.closest('label') && event.target.closest('.color')))) {
       return;
     }
 
@@ -738,6 +841,34 @@ function newNoteButton() {
 }
 newNoteButton();
 
+//Function to show Toast
+function showToast(element) {
+  const toastContainer = document.querySelector('.toastContainer');
+  const toastText = toastContainer.querySelector('p');
+
+  switch (element) {
+    case 'newNote':
+      toastText.textContent = 'Note saved successfully!';
+      break;
+
+    case 'archived':
+      toastText.textContent = 'Note succesfully archived!';
+      break;
+
+    case 'delete':
+      toastText.textContent = 'Note succesfully deleted!';
+      break;
+
+    default:
+      console.log('Algo esta mal con showToast');
+  }
+
+  toastContainer.classList.add('active');
+  setTimeout(() => {
+    toastContainer.classList.remove('active');
+  }, 2000);
+}
+
 //Function to Save New Note
 function saveNewNote() {
   const requiredInputs = document.querySelectorAll('.newTitleInput, .newTagsInput');
@@ -813,8 +944,12 @@ function saveNewNote() {
       inputsToSave.forEach((input) => {
         input.value = '';
       });
+      showToast('newNote');
+
+      newNoteContainer.style.display = 'none';
+      allNotesContainer.style.display = 'flex';
+      titleContainer.style.display = 'flex';
       console.log('Nota Guardada en Local Storage:', newNote);
-      window.location.href = 'index.html';
     });
   }
 }
@@ -1000,37 +1135,64 @@ function noteOpenHandler() {
 }
 noteOpenHandler();
 
+//Function to close Modal
+function closeModal() {
+  const modal = document.querySelector('.modal');
+  const overlay = document.getElementById('overlay');
+  modal.style.display = 'none';
+  overlay.style.display = 'none';
+}
+
+//Function to show Modal
+function showModal({ type, topText, bottomText, buttonText, imgSrc }) {
+  const modal = document.querySelector('.modal');
+  const modalCancelButton = document.querySelector('.modalCancelButton');
+  const modalRightButton = document.querySelector('.modalRightButton');
+  const modalTextTop = document.querySelector('.modalTextTop');
+  const modalTextBottom = document.querySelector('.modalTextBottom');
+  const modalImg = document.getElementById('modalImg');
+  const overlay = document.getElementById('overlay');
+
+  overlay.style.display = 'block';
+  modal.style.display = 'flex';
+
+  modalRightButton.textContent = buttonText;
+  modalTextTop.textContent = topText;
+  modalTextBottom.textContent = bottomText;
+
+  modalImg.setAttribute('src', imgSrc);
+  if (currentColorTheme === 'lightMode') changeSrc(modalImg);
+
+  modalRightButton.className = 'modalRightButton';
+  modalRightButton.classList.add(`modal${type}Button`);
+
+  modalCancelButton.addEventListener('click', closeModal);
+
+  return modalRightButton;
+}
+
 //Function for Delete and Archive Button
 function deleteAndArchiveNotes() {
   document.addEventListener('click', (event) => {
     const clickedButton = event.target.closest('.deleteButton');
     const clickedArchiveButton = event.target.closest('.archiveButton');
     const clickedRestoreButton = event.target.closest('.restore');
-    const modalImg = document.getElementById('modalImg');
-
-    const modal = document.querySelector('.modal');
-    const modalCancelButton = document.querySelector('.modalCancelButton');
-    const modalRightButton = document.querySelector('.modalRightButton');
-    const modalTextTop = document.querySelector('.modalTextTop');
-    const modalTextBottom = document.querySelector('.modalTextBottom');
-
-    const overlay = document.getElementById('overlay');
 
     //DELETE
-    if (clickedButton && clickedButton.classList.contains('deleteButton')) {
+    if (clickedButton) {
       const targetNote = clickedButton.closest('[data-id]');
       if (targetNote) {
         let noteToDelete = targetNote.getAttribute('data-id');
 
-        overlay.style.display = 'block';
-        modal.style.display = 'flex';
-        modalRightButton.classList.remove('modalArchiveButton');
-        modalRightButton.classList.add('modalDeleteButton');
-        modalRightButton.textContent = 'Delete Note';
-        modalTextTop.textContent = 'Delete Note';
-        modalTextBottom.textContent = 'Are you sure you want to permanently delete this note? This action cannot be undone.';
+        const modalBtn = showModal({
+          type: 'Delete',
+          topText: 'Delete Note',
+          bottomText: 'Are you sure you want to permanently delete this note? This action cannot be undone.',
+          buttonText: 'Delete Note',
+          imgSrc: './assets/images/icon-delete-darkMode.svg',
+        });
 
-        modalRightButton.addEventListener('click', () => {
+        modalBtn.onclick = () => {
           currentUserNotes = currentUserNotes.filter((note) => note.id !== noteToDelete);
           currentUserArchivedNotes = currentUserArchivedNotes.filter((note) => note.id !== noteToDelete);
           localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
@@ -1041,30 +1203,24 @@ function deleteAndArchiveNotes() {
           modalRightButton.classList.remove('modalDeleteButton');
           overlay.style.display = 'none';
           updateUi();
-        });
-
-        modalCancelButton.addEventListener('click', () => {
-          modal.style.display = 'none';
-          overlay.style.display = 'none';
-        });
+          showToast('delete');
+        };
       }
       //ARCHIVE
-    } else if (clickedArchiveButton && clickedArchiveButton.classList.contains('archiveButton')) {
+    } else if (clickedArchiveButton) {
       const targetNote = clickedArchiveButton.closest('[data-id]');
       if (targetNote) {
         let noteToArchive = targetNote.getAttribute('data-id');
 
-        overlay.style.display = 'block';
-        modal.style.display = 'flex';
-        modalRightButton.classList.remove('modalDeleteButton');
-        modalRightButton.classList.add('modalArchiveButton');
-        modalRightButton.textContent = 'Archive Note';
-        modalTextTop.textContent = 'Archive Note';
-        modalTextBottom.textContent =
-          'Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.';
-        modalImg.setAttribute('src', './assets/images/icon-archive-lightMode.svg');
+        const modalBtn = showModal({
+          type: 'Archive',
+          topText: 'Archive Note',
+          bottomText: 'Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.',
+          buttonText: 'Archive Note',
+          imgSrc: './assets/images/icon-archive-lightMode.svg',
+        });
 
-        modalRightButton.addEventListener('click', () => {
+        modalBtn.onclick = () => {
           let archivedNote = currentUserNotes.find((note) => {
             return note.id === noteToArchive;
           });
@@ -1086,29 +1242,24 @@ function deleteAndArchiveNotes() {
           console.log('Nota Eliminada:', noteToArchive);
           window.location.href = 'index.html';
           updateUi();
-        });
-
-        modalCancelButton.addEventListener('click', () => {
-          modal.style.display = 'none';
-          overlay.style.display = 'none';
-        });
+          showToast('archived');
+        };
       }
       //RESTORE
-    } else if (clickedRestoreButton && clickedRestoreButton.classList.contains('restore')) {
+    } else if (clickedRestoreButton) {
       const targetNote = clickedRestoreButton.closest('[data-id]');
       if (targetNote) {
         let noteToRestore = targetNote.getAttribute('data-id');
 
-        overlay.style.display = 'block';
-        modal.style.display = 'flex';
-        modalRightButton.classList.remove('modalArchiveButton');
-        modalRightButton.classList.remove('modalDeleteButton');
-        modalRightButton.classList.add('modalRestoreButton');
-        modalRightButton.textContent = 'Restore Note';
-        modalTextTop.textContent = 'Restore Note';
-        modalTextBottom.textContent = 'Are you sure you want to restore thi note to All Notes Section?';
+        const modalBtn = showModal({
+          type: 'Restore',
+          topText: 'Restore Note',
+          bottomText: 'Are you sure you want to restore thi note to All Notes Section?',
+          buttonText: 'Restore Note',
+          imgSrc: './assets/images/icon-restore-darkMode.svg',
+        });
 
-        modalRightButton.addEventListener('click', () => {
+        modalBtn.onclick = () => {
           let noteStatus = currentUserArchivedNotes.find((note) => note.id === noteToRestore);
 
           if (noteStatus) {
@@ -1129,101 +1280,14 @@ function deleteAndArchiveNotes() {
           console.log('Note Restore:', noteToRestore);
           window.location.href = 'index.html';
           updateUi();
-        });
-
-        modalCancelButton.addEventListener('click', () => {
-          modal.style.display = 'none';
-          overlay.style.display = 'none';
-        });
+          showToast('restore');
+        };
       }
     }
     showNotesByTag();
   });
 }
 deleteAndArchiveNotes();
-
-//Function to show Footer Buttons Screens
-function showFooterMenuScreens() {
-  document.addEventListener('click', (event) => {
-    if (!(event.target.closest('#searchButton') 
-      || event.target.closest('#tagsButton') 
-      || event.target.closest('#archivedButton') 
-      || event.target.closest('#goBackToTags'))) return;
-
-    const titleText = document.getElementById('titleText');
-    const clickedButton = event.target.closest('.footerButton') || event.target.closest('#goBackToTags');
-
-    const elementsToHideSearch = document.querySelectorAll(
-      '.tagsListContainer, #allArchivedNotesContainer, #newNoteButton, .archivedNotesSubtitle, #newNoteContainer'
-    );
-    const elementsToShowSearch = document.querySelectorAll('.subtitleSearch, #titleContainer, #allNotesContainer, .searchEngineContainer');
-    
-    const elementsToShowTags = document.querySelectorAll('.tagsListContainer, #titleContainer');
-    const elementsToHideTags = document.querySelectorAll(
-      '#allNotesContainer, #searchEngineContainer, #allArchivedNotesContainer, #goBackToTags, #newNoteButton, .archivedNotesSubtitle, #newNoteContainer'
-    );
-    
-    const elementsToShowArchive = document.querySelectorAll('.allArchivedNotesContainer, .spacer, .archivedNotesSubtitle, #titleContainer, .spacer');
-    const elementsToHideArchive = document.querySelectorAll(
-      '#searchEngineContainer, #subtitleSearch, #newNoteContainer, #allNotesContainer, #newNoteButton, .tagsListContainer'
-    );
-    
-
-    if (!clickedButton) return;
-
-    const buttonId = clickedButton.id;
-
-    switch (buttonId) {
-      case 'searchButton':
-        elementsToHideSearch.forEach((element) => {
-          element.style.display = 'none';
-        });
-
-        elementsToShowSearch.forEach((element) => {
-          element.style.display = 'flex';
-        });
-
-        titleText.textContent = 'Search';
-        searchNotes();
-        break;
-
-      case 'tagsButton':
-        elementsToHideTags.forEach((element) => {
-          element.style.display = 'none';
-        });
-        elementsToShowTags.forEach((element) => {
-          element.style.display = 'flex';
-        });
-        titleText.textContent = 'Tags';
-        break;
-
-      case 'goBackToTags':
-        elementsToHideTags.forEach((element) => {
-          element.style.display = 'none';
-        });
-        elementsToShowTags.forEach((element) => {
-          element.style.display = 'flex';
-        });
-        titleText.textContent = 'Tags';
-        break;
-
-      case 'archivedButton':
-        console.log('Funciona Archived Kox')
-        elementsToShowArchive.forEach((element) => {
-          element.style.display = 'flex';
-        })
-        elementsToHideArchive.forEach((element) => {
-          element.style.display = 'none';
-        });
-        titleText.textContent = 'Archived Notes'
-        break;
-
-      default:
-        console.log('Error en showFooterMenuScreens');
-    }
-  });
-}
-showFooterMenuScreens();
 
 //Function to open an Archive Note
 function openArchivedNote() {
@@ -1532,6 +1596,7 @@ function showNotesByTag() {
       });
 
       li.classList.add('activeTag');
+      li.classList.add('background');
 
       const filteredNotes = currentUserNotes.filter((note) => {
         const noteTagsArray = note.tags.split(',').map((t) => t.trim());
@@ -1559,5 +1624,6 @@ function showNotesByTag() {
   });
 
   tagsListContainer.appendChild(tagsUl);
+  applyThemeToDynamicContent(currentColorTheme);
 }
 showNotesByTag();
