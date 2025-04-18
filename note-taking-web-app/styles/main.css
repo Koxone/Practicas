@@ -958,3 +958,12 @@ li.lightMode {
 #toastX {
   cursor: pointer;
 }
+
+.footerButton svg {
+  filter: brightness(100%);
+  transition: filter 0.2s;
+}
+
+.footerButton:hover svg {
+  filter: brightness(0) saturate(100%) invert(22%) sepia(97%) saturate(3435%) hue-rotate(206deg) brightness(93%) contrast(94%);
+}
