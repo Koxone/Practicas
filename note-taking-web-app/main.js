@@ -23,22 +23,201 @@ quickTest();
 
 //Functions
 
-//Function to goback to allNotesContainer
-function resetUi() {
-  const allNotesScreen = document.getElementById('allNotesContainer');
-  const newNoteScreen = document.getElementById('newNoteContainer');
-  const titleContainer = document.getElementById('titleContainer');
-  const titleText = titleContainer.querySelector('.titleText');
-  const openNotesContainer = document.getElementById('openNotesContainer');
-  const allArchivedNotesContainer = document.getElementById('allArchivedNotesContainer');
-  const subtitle = document.querySelector('.archivedNotesSubtitle');
+//Function to load notes from wwith login
+export function loadInitialState() {
+  window.addEventListener('DOMContentLoaded', () => {
+    const allNotesContainer = document.getElementById('allNotesContainer');
+    const titleContainer = document.getElementById('titleContainer');
+    const openNotes = document.querySelectorAll('.openNoteContainer');
+    const archivedNotesScreen = document.querySelector('.archivedNotesContainer');
+    const subtitle = document.querySelector('.archivedNotesSubtitle');
+    const logoText = document.querySelector('.logoText');
+    const goBackToTags = document.querySelector('.goBackToTags');
 
-  allNotesScreen.style.display = 'flex';
-  titleContainer.style.display = 'flex';
-  newNoteScreen.style.display = 'none';
-  openNotesContainer.style.display = 'none';
-  allArchivedNotesContainer.style.display = 'none';
+    const elementsForLightMode = document.querySelectorAll(
+      '.color, .src, footer, .footerButton, .border, .backImgModal, .fill, .backgroundM, .background, .imgContainer, img, .newNoteHeader, .stroke, body, .spacer, .generalContainer, .mainContainer, .mainHeader, .noteCard'
+    );
+
+    if (allNotesContainer) {
+      allNotesContainer.style.display = 'flex'; //flex
+      titleContainer.style.display = 'flex'; //flex
+      titleContainer.style.flexDirection = 'column'; //unset
+    }
+
+    goBackToTags.style.display = 'none';
+
+    if (elementsForLightMode) {
+      elementsForLightMode.forEach((element) => {
+        if (currentColorTheme === 'lightMode') {
+          switch (true) {
+            case element.classList.contains('color'):
+              element.style.color = 'black';
+              element.classList.add('lightMode');
+              break;
+
+            case element.classList.contains('src'):
+              changeSrc(element);
+              break;
+
+            case element.classList.contains('fill'):
+              element.style.fill = 'black';
+              break;
+
+            case element.classList.contains('stroke'):
+              element.style.stroke = 'black';
+              break;
+
+            case element.tagName === 'FOOTER':
+              element.style.backgroundColor = 'white';
+              element.style.boxShadow = 'none';
+              break;
+
+            case element.classList.contains('spacer'):
+              element.style.background = 'rgba(224, 228, 234)';
+              break;
+
+            case element.classList.contains('mainContainer'):
+              element.style.backgroundColor = 'white';
+              break;
+
+            case element.classList.length === 1 && element.classList.contains('generalContainer'):
+              element.style.backgroundColor = 'white';
+              break;
+
+            case element.classList.length === 2 && element.classList.contains('generalContainer') && element.classList.contains('border'):
+              element.style.border = '1px solid black';
+              element.style.backgroundColor = 'white';
+              break;
+
+            case element.tagName === 'BODY':
+              element.style.color = 'black';
+              break;
+
+            case element.tagName === 'HEADER':
+              element.style.backgroundColor = 'white';
+              break;
+
+            case element.classList.contains('noteCard'):
+              element.style.borderBottom = '1px solid #e0e4ea';
+              break;
+
+            case element.classList.contains('footerButton'):
+              element.classList.add('lightMode');
+              break;
+
+            case element.classList.contains('background'):
+              element.style.backgroundColor = '#e0e4ea';
+              break;
+
+            case element.classList.contains('imgContainer'):
+              element.style.backgroundColor = 'white';
+              break;
+
+            case element.classList.contains('border'):
+              element.style.border = '1px solid black';
+              break;
+
+            case element.classList.contains('backgroundM'):
+              element.style.backgroundColor = '#ffffff';
+              break;
+
+            case element.classList.contains('backImgModal'):
+              element.style.backgroundColor = '#ffffff';
+          }
+        } else if (currentColorTheme === 'darkMode') {
+          switch (true) {
+            case element.classList.contains('color'):
+              element.style.color = 'white';
+              element.classList.remove('lightMode');
+              break;
+
+            case element.classList.contains('src'):
+              revertSrc(element);
+              break;
+
+            case element.classList.contains('fill'):
+              element.style.fill = 'white';
+              break;
+
+            case element.classList.contains('stroke'):
+              element.style.stroke = 'white';
+              break;
+
+            case element.tagName === 'FOOTER':
+              element.style.backgroundColor = '#0e1218';
+              break;
+
+            case element.classList.contains('spacer'):
+              element.style.background = '#232530';
+              break;
+
+            case element.classList.contains('mainContainer') || element.classList.contains('generalContainer'):
+              element.style.backgroundColor = '#0e1218';
+              break;
+
+            case element.tagName === 'BODY':
+              element.style.color = 'white';
+              break;
+
+            case element.classList.contains('mainHeader'):
+              element.style.backgroundColor = '#232530';
+              break;
+
+            case element.classList.contains('newNoteHeader'):
+              element.style.backgroundColor = '#0e1218';
+
+            case element.classList.contains('noteCard'):
+              element.style.borderBottom = '1px solid rgba(255, 255, 255, 0.04)';
+              break;
+
+            case element.classList.contains('footerButton'):
+              element.classList.remove('lightMode');
+              break;
+
+            case element.classList.contains('background'):
+              element.style.backgroundColor = '#525866';
+              break;
+
+            case element.classList.contains('backgroundM'):
+              element.style.backgroundColor = '#2a3038';
+              break;
+          }
+        }
+      });
+    }
+
+    if (logoText) {
+      logoText.style.fontFamily = 'Pacifico';
+    }
+
+    if (openNotes) {
+      openNotes.forEach((note) => {
+        note.style.display = 'none';
+      });
+    }
+
+    if (archivedNotesScreen) {
+      archivedNotesScreen.style.display = 'none'; //none
+      subtitle.style.display = 'none'; //none
+    }
+
+    if (currentFontFamily === 'Space Mono, monospace') {
+      const modalFont = document.querySelector('.modalTextBottom ');
+      if (modalFont) {
+        modalFont.style.fontSize = '11px';
+      }
+    }
+    document.body.style.fontFamily = `${currentFontFamily}`;
+
+    const params = new URLSearchParams(window.location.search);
+    const from = params.get('from');
+
+    if (from === 'settings') {
+      settingsArchivedButtonHandler();
+    }
+  });
 }
+loadInitialState();
 
 //Function Footer Buttons Handler
 function footerHandler() {
@@ -53,26 +232,9 @@ function footerHandler() {
           break;
 
         case 'searchButton':
-          console.log('Search Button');
-          const titleText = document.getElementById('titleText');
-          const titleContainer = document.getElementById('titleContainer');
-          const subtitleSearch = document.querySelector('.subtitleSearch');
-          const archivedNotesSubtitle = document.querySelector('.archivedNotesSubtitle');
-          const allNotesContainer = document.getElementById('allNotesContainer');
-          const newNoteButton = document.getElementById('newNoteButton');
-          const newNoteContainer = document.getElementById('newNoteContainer');
-          const allArchivedNotesContainer = document.getElementById('allArchivedNotesContainer');
-
-          allArchivedNotesContainer.style.display = 'none';
-          titleContainer.style.display = 'flex';
-          newNoteButton.style.display = 'none';
-          newNoteContainer.style.display = 'none';
-          allNotesContainer.style.display = 'flex';
-          archivedNotesSubtitle.style.display = 'none';
-          subtitleSearch.style.display = 'block';
-          titleText.textContent = 'Search';
-          searchEngineContainer.style.display = 'flex';
-          searchNotes();
+          if (window.location.pathname.includes('settings.html')) {
+            window.location.href = 'index.html?from=settings';
+          }
           break;
 
         case 'archivedButton':
@@ -104,7 +266,7 @@ function searchNotes() {
   searchEngine.addEventListener('input', (event) => {
     const userSearch = event.target.value.toLowerCase().trim();
     const searchedText = document.querySelector('.userSearch');
-    
+
     if (searchedText) {
       searchedText.textContent = `${event.target.value}`;
     }
@@ -297,200 +459,6 @@ export function applyThemeToDynamicContent(theme) {
   }
 }
 
-//Function to load notes from wwith login
-export function loadInitialState() {
-  window.addEventListener('DOMContentLoaded', () => {
-    const allNotesContainer = document.getElementById('allNotesContainer');
-    const titleContainer = document.getElementById('titleContainer');
-    const openNotes = document.querySelectorAll('.openNoteContainer');
-    const archivedNotesScreen = document.querySelector('.archivedNotesContainer');
-    const subtitle = document.querySelector('.archivedNotesSubtitle');
-    const logoText = document.querySelector('.logoText');
-
-    const elementsForLightMode = document.querySelectorAll(
-      '.color, .src, footer, .footerButton, .border, .backImgModal, .fill, .backgroundM, .background, .imgContainer, img, .newNoteHeader, .stroke, body, .spacer, .generalContainer, .mainContainer, .mainHeader, .noteCard'
-    );
-
-    if (allNotesContainer) {
-      allNotesContainer.style.display = 'flex'; //flex
-      titleContainer.style.display = 'flex'; //flex
-      titleContainer.style.flexDirection = 'column'; //unset
-    }
-
-    if (elementsForLightMode) {
-      elementsForLightMode.forEach((element) => {
-        if (currentColorTheme === 'lightMode') {
-          switch (true) {
-            case element.classList.contains('color'):
-              element.style.color = 'black';
-              element.classList.add('lightMode');
-              break;
-
-            case element.classList.contains('src'):
-              changeSrc(element);
-              break;
-
-            case element.classList.contains('fill'):
-              element.style.fill = 'black';
-              break;
-
-            case element.classList.contains('stroke'):
-              element.style.stroke = 'black';
-              break;
-
-            case element.tagName === 'FOOTER':
-              element.style.backgroundColor = 'white';
-              element.style.boxShadow = 'none';
-              break;
-
-            case element.classList.contains('spacer'):
-              element.style.background = 'rgba(224, 228, 234)';
-              break;
-
-            case element.classList.contains('mainContainer'):
-              element.style.backgroundColor = 'white';
-              break;
-
-            case element.classList.length === 1 && element.classList.contains('generalContainer'):
-              element.style.backgroundColor = 'white';
-              break;
-
-            case element.classList.length === 2 && element.classList.contains('generalContainer') && element.classList.contains('border'):
-              element.style.border = '1px solid black';
-              element.style.backgroundColor = 'white';
-              break;
-
-            case element.tagName === 'BODY':
-              element.style.color = 'black';
-              break;
-
-            case element.tagName === 'HEADER':
-              element.style.backgroundColor = 'white';
-              break;
-
-            case element.classList.contains('noteCard'):
-              element.style.borderBottom = '1px solid #e0e4ea';
-              break;
-
-            case element.classList.contains('footerButton'):
-              element.classList.add('lightMode');
-              break;
-
-            case element.classList.contains('background'):
-              element.style.backgroundColor = '#e0e4ea';
-              break;
-
-            case element.classList.contains('imgContainer'):
-              element.style.backgroundColor = 'white';
-              break;
-
-            case element.classList.contains('border'):
-              element.style.border = '1px solid black';
-              break;
-
-            case element.classList.contains('backgroundM'):
-              element.style.backgroundColor = '#ffffff';
-              break;
-
-            case element.classList.contains('backImgModal'):
-              element.style.backgroundColor = '#ffffff';
-          }
-        } else if (currentColorTheme === 'darkMode') {
-          switch (true) {
-            case element.classList.contains('color'):
-              element.style.color = 'white';
-              element.classList.remove('lightMode');
-              break;
-
-            case element.classList.contains('src'):
-              revertSrc(element);
-              break;
-
-            case element.classList.contains('fill'):
-              element.style.fill = 'white';
-              break;
-
-            case element.classList.contains('stroke'):
-              element.style.stroke = 'white';
-              break;
-
-            case element.tagName === 'FOOTER':
-              element.style.backgroundColor = '#0e1218';
-              break;
-
-            case element.classList.contains('spacer'):
-              element.style.background = '#232530';
-              break;
-
-            case element.classList.contains('mainContainer') || element.classList.contains('generalContainer'):
-              element.style.backgroundColor = '#0e1218';
-              break;
-
-            case element.tagName === 'BODY':
-              element.style.color = 'white';
-              break;
-
-            case element.classList.contains('mainHeader'):
-              element.style.backgroundColor = '#232530';
-              break;
-
-            case element.classList.contains('newNoteHeader'):
-              element.style.backgroundColor = '#0e1218';
-
-            case element.classList.contains('noteCard'):
-              element.style.borderBottom = '1px solid rgba(255, 255, 255, 0.04)';
-              break;
-
-            case element.classList.contains('footerButton'):
-              element.classList.remove('lightMode');
-              break;
-
-            case element.classList.contains('background'):
-              element.style.backgroundColor = '#525866';
-              break;
-
-            case element.classList.contains('backgroundM'):
-              element.style.backgroundColor = '#2a3038';
-              break;
-          }
-        }
-      });
-    }
-
-    if (logoText) {
-      logoText.style.fontFamily = 'Pacifico';
-    }
-
-    if (openNotes) {
-      openNotes.forEach((note) => {
-        note.style.display = 'none';
-      });
-    }
-
-    if (archivedNotesScreen) {
-      archivedNotesScreen.style.display = 'none'; //none
-      subtitle.style.display = 'none'; //none
-    }
-
-    if (currentFontFamily === 'Space Mono, monospace') {
-      const modalFont = document.querySelector('.modalTextBottom ');
-      if (modalFont) {
-        modalFont.style.fontSize = '11px';
-      }
-    }
-    document.body.style.fontFamily = `${currentFontFamily}`;
-
-    const params = new URLSearchParams(window.location.search);
-    const from = params.get('from');
-
-    if (from === 'settings') {
-      console.log('Prueba 8 FUNCIONA');
-      settingsArchivedButtonHandler();
-    }
-  });
-}
-loadInitialState();
-
 //Function to change Font And Color Theme
 export function changeFontOrColorTheme() {
   const applyButton = document.getElementById('applyButton');
@@ -675,7 +643,7 @@ function renderSearchNotes(notesArray) {
         allNotesContainer.appendChild(article);
       });
 
-      noteOpenHandler();
+    noteOpenHandler();
   }
 }
 
@@ -841,6 +809,7 @@ function saveNewNote() {
       currentUserNotes.push(newNote);
       localStorage.setItem('currentUserNotes', JSON.stringify(currentUserNotes));
       updateUi();
+      showNotesByTag();
       inputsToSave.forEach((input) => {
         input.value = '';
       });
@@ -1168,53 +1137,93 @@ function deleteAndArchiveNotes() {
         });
       }
     }
+    showNotesByTag();
   });
 }
 deleteAndArchiveNotes();
 
-//Function to show Archive Notes Screen
-function showArchivedNotesScreen() {
+//Function to show Footer Buttons Screens
+function showFooterMenuScreens() {
   document.addEventListener('click', (event) => {
-    if (!event.target.closest('#archivedButton')) return;
+    if (!(event.target.closest('#searchButton') 
+      || event.target.closest('#tagsButton') 
+      || event.target.closest('#archivedButton') 
+      || event.target.closest('#goBackToTags'))) return;
 
-    const closest = event.target.closest('#archivedButton');
+    const titleText = document.getElementById('titleText');
+    const clickedButton = event.target.closest('.footerButton') || event.target.closest('#goBackToTags');
 
-    const newNoteButton = document.getElementById('newNoteButton');
-    newNoteButton.style.display = 'none';
+    const elementsToHideSearch = document.querySelectorAll(
+      '.tagsListContainer, #allArchivedNotesContainer, #newNoteButton, .archivedNotesSubtitle, #newNoteContainer'
+    );
+    const elementsToShowSearch = document.querySelectorAll('.subtitleSearch, #titleContainer, #allNotesContainer, .searchEngineContainer');
+    
+    const elementsToShowTags = document.querySelectorAll('.tagsListContainer, #titleContainer');
+    const elementsToHideTags = document.querySelectorAll(
+      '#allNotesContainer, #searchEngineContainer, #allArchivedNotesContainer, #goBackToTags, #newNoteButton, .archivedNotesSubtitle, #newNoteContainer'
+    );
+    
+    const elementsToShowArchive = document.querySelectorAll('.allArchivedNotesContainer, .spacer, .archivedNotesSubtitle, #titleContainer, .spacer');
+    const elementsToHideArchive = document.querySelectorAll(
+      '#searchEngineContainer, #subtitleSearch, #newNoteContainer, #allNotesContainer, #newNoteButton, .tagsListContainer'
+    );
+    
 
-    if (closest) {
-      const allNotesContainer = document.getElementById('allNotesContainer');
-      const allArchivedNotesContainer = document.querySelector('.allArchivedNotesContainer');
-      const subtitle = document.querySelector('.archivedNotesSubtitle');
-      const titleContainer = document.getElementById('titleContainer');
+    if (!clickedButton) return;
 
-      const searchEngineContainer = document.getElementById('searchEngineContainer');
-      const subtitleSearch = document.getElementById('subtitleSearch');
-      const newNoteContainer = document.getElementById('newNoteContainer');
+    const buttonId = clickedButton.id;
 
-      if (allNotesContainer) {
-        const titleText = document.getElementById('titleText');
-        const spacers = document.querySelectorAll('.spacer');
-        spacers.forEach((spacer) => {
-          spacer.style.display = 'block';
+    switch (buttonId) {
+      case 'searchButton':
+        elementsToHideSearch.forEach((element) => {
+          element.style.display = 'none';
         });
 
-        newNoteContainer.style.display = 'none';
-        searchEngineContainer.style.display = 'none';
-        subtitleSearch.style.display = 'none';
-        allArchivedNotesContainer.style.display = 'flex';
-        titleText.textContent = 'Archived Notes';
-        titleContainer.style.flexDirection = 'column';
-        titleContainer.style.display = 'flex';
-        allNotesContainer.style.display = 'none';
-        subtitle.style.display = 'flex';
-      } else {
-        console.log('Algo no funciona');
-      }
+        elementsToShowSearch.forEach((element) => {
+          element.style.display = 'flex';
+        });
+
+        titleText.textContent = 'Search';
+        searchNotes();
+        break;
+
+      case 'tagsButton':
+        elementsToHideTags.forEach((element) => {
+          element.style.display = 'none';
+        });
+        elementsToShowTags.forEach((element) => {
+          element.style.display = 'flex';
+        });
+        titleText.textContent = 'Tags';
+        break;
+
+      case 'goBackToTags':
+        elementsToHideTags.forEach((element) => {
+          element.style.display = 'none';
+        });
+        elementsToShowTags.forEach((element) => {
+          element.style.display = 'flex';
+        });
+        titleText.textContent = 'Tags';
+        break;
+
+      case 'archivedButton':
+        console.log('Funciona Archived Kox')
+        elementsToShowArchive.forEach((element) => {
+          element.style.display = 'flex';
+        })
+        elementsToHideArchive.forEach((element) => {
+          element.style.display = 'none';
+        });
+        titleText.textContent = 'Archived Notes'
+        break;
+
+      default:
+        console.log('Error en showFooterMenuScreens');
     }
   });
 }
-showArchivedNotesScreen();
+showFooterMenuScreens();
 
 //Function to open an Archive Note
 function openArchivedNote() {
@@ -1487,6 +1496,68 @@ function editAndSaveNotes() {
         }
       }
     }
+    showNotesByTag();
   });
 }
 editAndSaveNotes();
+
+//Function to show Notes by Tag
+function showNotesByTag() {
+  const tagsListContainer = document.querySelector('.tagsListContainer');
+  const allNotesContainer = document.getElementById('allNotesContainer');
+  if (!tagsListContainer) return;
+
+  const existingTags = currentUserNotes
+    .filter((note) => note.user === currentUser)
+    .flatMap((note) => note.tags.split(',').map((tag) => tag.trim()))
+    .filter((tag, index, self) => self.indexOf(tag) === index);
+
+  const sortedTags = existingTags.sort((a, b) => a.localeCompare(b));
+
+  tagsListContainer.innerHTML = '';
+
+  const tagsUl = document.createElement('ul');
+  tagsUl.classList.add('tagsUl');
+
+  sortedTags.forEach((tag) => {
+    const li = document.createElement('li');
+    li.classList.add('tagElement');
+    li.setAttribute('data-tag', tag);
+
+    li.addEventListener('click', () => {
+      const goBackToTags = document.querySelector('.goBackToTags');
+      goBackToTags.style.display = 'flex';
+      document.querySelectorAll('.tagElement').forEach((tagEl) => {
+        tagEl.classList.remove('activeTag');
+      });
+
+      li.classList.add('activeTag');
+
+      const filteredNotes = currentUserNotes.filter((note) => {
+        const noteTagsArray = note.tags.split(',').map((t) => t.trim());
+        return note.user === currentUser && noteTagsArray.includes(tag);
+      });
+
+      renderSearchNotes(filteredNotes);
+      document.getElementById('titleText').textContent = `Notes tagged: ${tag}`;
+
+      tagsListContainer.style.display = 'none';
+      allNotesContainer.style.display = 'flex';
+    });
+
+    const img = document.createElement('img');
+    img.classList.add('src');
+    img.setAttribute('src', './assets/images/icon-tag-darkMode.svg');
+
+    const span = document.createElement('span');
+    span.classList.add('tagListTitle');
+    span.innerText = tag;
+
+    li.appendChild(img);
+    li.appendChild(span);
+    tagsUl.appendChild(li);
+  });
+
+  tagsListContainer.appendChild(tagsUl);
+}
+showNotesByTag();
