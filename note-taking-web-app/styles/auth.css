@@ -65,6 +65,7 @@ body {
   max-height: 100vh;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .generalContainer {
